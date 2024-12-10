@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "airbnb-base",
+    "plugin:prettier/recommended" // Prettier와의 충돌을 방지하는 설정 추가
+  ],
+  "plugins": [
+    "prettier" // Prettier 관련 플러그인
+  ],
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": "error", // Prettier 규칙을 ESLint 규칙으로 적용
+    "no-console": "warn" // console 사용에 대한 경고
+  }
+}
