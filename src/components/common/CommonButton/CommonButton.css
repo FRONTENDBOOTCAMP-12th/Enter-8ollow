@@ -1,0 +1,10 @@
+@import url('/src/style/variable.css');
+
+.common-button {
+  background-color: #373f67; /* var(--primary)*/
+  color: #ffffff; /* var(--white) */
+  text-align: center;
+  padding: 8px 126px;
+  border-radius: 8px;
+  height: 36px;
+}
