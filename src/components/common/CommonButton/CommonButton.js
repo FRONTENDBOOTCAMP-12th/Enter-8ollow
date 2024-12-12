@@ -7,7 +7,6 @@ class CommonButton extends LitElement {
   }
 
   render() {
-    console.log(s);
     return html`<style>
         ${s}
       </style>
