@@ -1,0 +1,9 @@
+.back {
+  padding: 8px 12px;
+}
+
+.back-icon {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
