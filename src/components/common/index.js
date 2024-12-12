@@ -7,3 +7,6 @@ import {} from '/src/components/common/Back/Back.js';
 /* --------------------------------- 메인 컴포넌트 -------------------------------- */
 import {} from '/src/components/Main/PlusButton.js';
 import {} from '/src/components/Main/State.js';
+
+/* --------------------------------- 회원가입 컴포넌트 -------------------------------- */
+import {} from '/src/components/signUp/number/number.js';

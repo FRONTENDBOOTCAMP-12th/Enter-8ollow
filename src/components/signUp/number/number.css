@@ -1,0 +1,33 @@
+.number-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number-input {
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 4px;
+  height: 22px;
+  width: 100%;
+  border: 1px solid var(--contents--content-primary);
+  font-size: var(--paragraph---medium);
+}
+
+.number-input:placeholder {
+  color: --contents--content-tertiary;
+}
+
+.required {
+  margin-left: -20px;
+  margin-inline-start: -20px;
+  background-color: var(--secondary);
+  padding: 9px 1px;
+  border-radius: 4px;
+  z-index: 999;
+  display: none;
+}
+
+:invalid + .required {
+  display: block;
+}
