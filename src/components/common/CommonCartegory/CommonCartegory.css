@@ -10,7 +10,15 @@
   label {
     position: relative;
     cursor: pointer;
-    width: 400px;
+    /* width: 400px; */
+  }
+
+  .checkbox {
+    position: absolute;
+    width: 143px;
+    height: 80px;
+    z-index: 999;
+    opacity: 0;
   }
 
   .content {
@@ -22,6 +30,7 @@
     color: black;
     white-space: nowrap;
     width: 143px;
+    pointer-events: none;
   }
 
   .title {

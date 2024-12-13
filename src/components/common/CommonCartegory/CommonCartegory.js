@@ -18,12 +18,8 @@ class CommonCartegory extends LitElement {
       </style>
       <div class="category">
         <label class="card" for="check-cartegory">
-          <input
-            type="checkbox"
-            class="checkbox sr-only"
-            id="check-cartegory"
-          />
-          <div class="content">
+          <input type="checkbox" class="checkbox" id="check-cartegory" />
+          <div class="content" aria-hidden>
             <div class="container">
               <span class="title">${this.title}</span>
               <span class="detail">${this.detail}</span>
