@@ -3,6 +3,16 @@ body.modal-overlay {
   overflow: hidden;
 }
 
+nav {
+  padding-right: 20px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+
+  border-bottom: 3px solid #d3d3d3;
+}
+
 button {
   all: unset;
   background: none;
@@ -15,7 +25,7 @@ button {
   margin-bottom: 0.625rem;
 
   & .region-name {
-    font-weight: 500;
+    font-weight: 600;
     margin-right: 0.375rem;
     margin-inline-end: 0.375rem;
     font-size: 1.1663rem;
@@ -27,11 +37,11 @@ button {
 }
 
 .region-modal {
-  display: flex;
-  flex-direction: column;
+  position: absolute;
+
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin-top: 50px;
   width: 168px;
   padding: 10px;
   border-radius: 8px;
@@ -42,7 +52,7 @@ button {
     list-style: none;
     font-size: 0.875rem;
     line-height: 150%;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--contents--content-tertiary);
     cursor: pointer;
   }
@@ -58,4 +68,20 @@ button {
   & a {
     text-decoration: none;
   }
+}
+
+.menu-container {
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+
+a img {
+  width: 1.625rem;
+  height: 1.625rem;
+}
+
+a:nth-child(2) {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
 }
