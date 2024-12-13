@@ -1,0 +1,33 @@
+/* Color styles */
+:root {
+  /* Color styles */
+  --primary: #373f67;
+  --secondary: #5a85ee;
+  --tertiary: #719cf7;
+  --negative: #e11900;
+  --background: #ffffff;
+  --black: #000000;
+  --white: #ffffff;
+  --contents--content-primary: #000000;
+  --contents--content-secondary: #919191;
+  --contents--content-tertiary: #9da1b4;
+
+  /* Text-size styles */
+  /* base size: label---medium (14px) */
+  --heading---x-x-x-l: 3.16rem;
+  --heading---x-x-l: 2.37rem;
+  --heading---x-l: 1.78rem;
+  --heading---large: 1.33rem;
+  --heading---medium: 1rem;
+  --heading---small: 0.75rem;
+  --label---x-x-l: 2.37rem;
+  --label---x-l: 1.78rem;
+  --label---large: 1.33rem;
+  --label---medium: 1rem;
+  --label---small: 0.75rem;
+  --paragraph---x-l: 1.78rem;
+  --paragraph---large: 1.33rem;
+  --paragraph---medium: 1rem;
+  --paragraph---small: 0.75rem;
+  --paragraph--underline: 0.71rem;
+}
