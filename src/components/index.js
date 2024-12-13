@@ -1,2 +1,2 @@
-import '/src/components/Main/RegionMenu/Region';
-import '/src/components/Main/RegionMenu/Region.css';
+import '/src/components/Main/RegionMenu/RegionMenu';
+import '/src/components/Main/RegionMenu/RegionMenu.css';

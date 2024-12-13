@@ -1,8 +1,8 @@
 import { LitElement, html } from 'lit';
 import pb from '/src/api/pocketbase';
-import s from '/src/components/Main/RegionMenu/Region.css?inline';
+import s from '/src/components/Main/RegionMenu/RegionMenu.css?inline';
 
-class RegionButton extends LitElement {
+class RegionMenu extends LitElement {
   static properties = {
     isActive: { type: Boolean },
   };
@@ -148,4 +148,4 @@ class RegionButton extends LitElement {
   }
 }
 
-customElements.define('region-button', RegionButton);
+customElements.define('region-menu', RegionMenu);
