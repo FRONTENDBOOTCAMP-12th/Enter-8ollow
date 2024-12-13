@@ -10,22 +10,34 @@ class RegionButton extends LitElement {
   constructor() {
     super();
     this.isActive = false;
-    this.place = '';
+    this.placeList = [];
     this.checkPlace = '';
+    this.id = 'i1vn08611tpq5z2';
   }
 
-  toggleClass = async () => {
+  toggleClass = async (e) => {
     const button = this.shadowRoot.querySelector('button');
-    button.disabled = true;
 
-    if (!this.place) {
+    button.disabled = true; // 버튼 비활성화
+
+    if (!this.checkPlace) {
       await this.fetchData();
     }
 
     this.isActive = !this.isActive;
+
     this.requestUpdate();
 
-    button.disabled = false;
+    button.disabled = false; // 데이터 요청이 끝난 후 버튼 활성화
+  };
+
+  choosePlace = (e) => {
+    const li = this.shadowRoot.querySelectorAll('li');
+    this.checkPlace = e.target.textContent;
+    li.forEach((li) => {
+      li.classList.remove('highlighted');
+    });
+    e.target.classList.add('highlighted');
   };
 
   toggleDark = () => {
@@ -38,8 +50,6 @@ class RegionButton extends LitElement {
       element.classList.remove('modal-overlay');
     }
   };
-
-  choosePlace = () => {};
 
   firstUpdated() {
     const button = this.shadowRoot.querySelector('button');
@@ -60,6 +70,13 @@ class RegionButton extends LitElement {
       expand: 'name',
     });
 
+    let obj = await pb
+      .collection('place')
+      .getList(1, 50, { filter: `userId = "${this.id}"` });
+
+    this.placeList = obj.items.map((item) => item.name);
+    this.checkPlace = this.placeList[0];
+
     this.place = records.name;
     this.requestUpdate();
   }
@@ -70,7 +87,7 @@ class RegionButton extends LitElement {
         ${s}
       </style>
       <button type="button" class="region">
-        <span class="region-name">남가좌제2동</span>
+        <span class="region-name">${this.checkPlace}</span>
         <span class="svg-icon ${this.isActive ? 'active' : 'inactive'}">
           ${this.isActive
             ? html`
@@ -105,7 +122,13 @@ class RegionButton extends LitElement {
       </button>
 
       <ul class="region-modal ${this.isActive ? '' : 'hidden'}">
-        <li class="my-place"><span>${this.place}</span></li>
+        ${this.placeList.map(
+          (item) =>
+            html`<li @click="${this.choosePlace}" class="my-place ">
+              ${item}
+            </li>`
+        )}
+
         <li class="my-place-setting"><a href="/">내 동네 설정</a></li>
       </ul>
     `;

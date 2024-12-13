@@ -43,9 +43,15 @@ button {
     font-size: 0.875rem;
     line-height: 150%;
     font-weight: 500;
+    color: var(--contents--content-tertiary);
+    cursor: pointer;
   }
 
-  & li:last-child a {
+  & .highlighted {
+    color: var(--black);
+  }
+
+  & li a {
     color: var(--contents--content-tertiary);
   }
 
