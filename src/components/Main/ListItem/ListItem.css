@@ -7,7 +7,7 @@
 .list-item {
   display: flex;
   align-items: center;
-  background: yellow;
+  background: var(--background);
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 12px;

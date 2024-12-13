@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import '../State/State.css';
+import styles from '/src/components/Main/State/State.css?inline';
 
 class MainState extends LitElement {
   static properties = {
@@ -33,6 +33,9 @@ class MainState extends LitElement {
     }
 
     return html`
+      <style>
+        ${styles}
+      </style>
       <div class="container">
         <div class="${statusClass}">${this.displayStatus}</div>
         <div class="price">${this.formattedPrice}</div>

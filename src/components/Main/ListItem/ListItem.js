@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-// import styles from '/src/components/Main/ListItem/ListItem.css?inline';
+import styles from '/src/components/Main/ListItem/ListItem.css?inline';
 
 const testItems = [
   {
@@ -64,6 +64,9 @@ class ListItem extends LitElement {
 
   render() {
     return html`
+      <style>
+        ${styles}
+      </style>
       <div class="container">
         ${this.items.map(
           (item) => html`
