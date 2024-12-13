@@ -2,8 +2,21 @@ import { LitElement, html } from 'lit';
 import s from '/src/components/common/CommonButton/CommonButton.css?inline';
 
 class CommonButton extends LitElement {
+  static properties = {
+    title: { type: String },
+  };
+
   constructor() {
     super();
+  }
+
+  handleClick() {
+    this.dispatchEvent(
+      new CustomEvent('click-event', {
+        bubbles: true,
+        composed: true,
+      })
+    );
   }
 
   render() {
@@ -11,7 +24,9 @@ class CommonButton extends LitElement {
         ${s}
       </style>
 
-      <button type="button" class="common-button">시작하기</button> `;
+      <button type="button" class="common-button" @click="${this.handleClick}">
+        ${this.title}
+      </button> `;
   }
 }
 
