@@ -1,2 +1,2 @@
-import '/src/components/Header';
-import '/src/components/Header.css';
+import '/src/components/Main/RegionMenu/Region';
+import '/src/components/Main/RegionMenu/Region.css';

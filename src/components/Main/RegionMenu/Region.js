@@ -11,11 +11,21 @@ class RegionButton extends LitElement {
     super();
     this.isActive = false;
     this.place = '';
+    this.checkPlace = '';
   }
 
-  toggleClass = () => {
+  toggleClass = async () => {
+    const button = this.shadowRoot.querySelector('button');
+    button.disabled = true;
+
+    if (!this.place) {
+      await this.fetchData();
+    }
+
     this.isActive = !this.isActive;
     this.requestUpdate();
+
+    button.disabled = false;
   };
 
   toggleDark = () => {
@@ -29,16 +39,20 @@ class RegionButton extends LitElement {
     }
   };
 
+  choosePlace = () => {};
+
   firstUpdated() {
     const button = this.shadowRoot.querySelector('button');
 
-    button.addEventListener('click', this.toggleClass);
-    button.addEventListener('click', this.toggleDark);
+    button.addEventListener('click', async () => {
+      await this.toggleClass();
+      await this.toggleDark();
+    });
   }
 
-  connectedCallback() {
+  async connectedCallback() {
     super.connectedCallback();
-    this.fetchData();
+    await this.fetchData();
   }
 
   async fetchData() {
@@ -47,6 +61,7 @@ class RegionButton extends LitElement {
     });
 
     this.place = records.name;
+    this.requestUpdate();
   }
 
   render() {
