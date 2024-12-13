@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit';
+import pb from '/src/api/pocketbase';
 import s from '/src/components/Main/RegionMenu/Region.css?inline';
 
 class RegionButton extends LitElement {
@@ -9,7 +10,7 @@ class RegionButton extends LitElement {
   constructor() {
     super();
     this.isActive = false;
-    this.modal = '';
+    this.place = '';
   }
 
   toggleClass = () => {
@@ -33,6 +34,19 @@ class RegionButton extends LitElement {
 
     button.addEventListener('click', this.toggleClass);
     button.addEventListener('click', this.toggleDark);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.fetchData();
+  }
+
+  async fetchData() {
+    const records = await pb.collection('place').getOne('ptkt059wm2l8id0', {
+      expand: 'name',
+    });
+
+    this.place = records.name;
   }
 
   render() {
@@ -76,8 +90,8 @@ class RegionButton extends LitElement {
       </button>
 
       <ul class="region-modal ${this.isActive ? '' : 'hidden'}">
-        <li><span>대연동</span></li>
-        <li><a href="/">내 동네 설정</a></li>
+        <li class="my-place"><span>${this.place}</span></li>
+        <li class="my-place-setting"><a href="/">내 동네 설정</a></li>
       </ul>
     `;
   }
