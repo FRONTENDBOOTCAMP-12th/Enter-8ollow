@@ -1,24 +1,34 @@
 @import url('/src/style/reset.css');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .category {
   label {
     position: relative;
     cursor: pointer;
+    width: 400px;
   }
 
   .content {
     display: flex;
-    gap: 20px;
     background-color: #a7a7a7;
     padding: 12px;
     border-radius: 8px;
     position: absolute;
     color: black;
+    white-space: nowrap;
+    width: 143px;
   }
 
   .title {
     font-size: var(--label---small);
     color: #e9e9e9;
+    margin-bottom: 4px;
+    margin-block-end: 4px;
   }
 
   .detail {
@@ -26,18 +36,21 @@
   }
 
   .container {
+    position: relative;
     display: flex;
     flex-direction: column;
   }
 
   .check-icon {
+    position: absolute;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background-color: #d3d3d3;
+    background-color: var(--contents--content-secondary);
     background-image: url('/src/assets/common/cartegory/plus.svg');
     background-size: contain;
     align-self: center;
+    right: 12px;
   }
 
   [type='checkbox']:checked + .content {

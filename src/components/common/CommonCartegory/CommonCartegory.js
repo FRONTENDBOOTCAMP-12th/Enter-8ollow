@@ -2,6 +2,11 @@ import { LitElement, html } from 'lit';
 import s from '/src/components/common/CommonCartegory/CommonCartegory.css?inline';
 
 class CommonCartegory extends LitElement {
+  static properties = {
+    title: { type: String },
+    detail: { type: String },
+  };
+
   constructor() {
     super();
   }
@@ -20,8 +25,8 @@ class CommonCartegory extends LitElement {
           />
           <div class="content">
             <div class="container">
-              <span class="title">text</span>
-              <span class="detail">text</span>
+              <span class="title">${this.title}</span>
+              <span class="detail">${this.detail}</span>
             </div>
             <span class="check-icon"></span>
           </div>
