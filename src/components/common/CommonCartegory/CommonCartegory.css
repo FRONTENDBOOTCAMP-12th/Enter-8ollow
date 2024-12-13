@@ -1,54 +1,78 @@
 @import url('/src/style/reset.css');
 
-label {
-  position: relative;
-  cursor: pointer;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.content {
-  display: flex;
-  gap: 20px;
-  background-color: #a7a7a7;
-  padding: 12px;
-  border-radius: 8px;
-  position: absolute;
-  color: black;
-}
+.category {
+  label {
+    position: relative;
+    cursor: pointer;
+    /* width: 400px; */
+  }
 
-.title {
-  font-size: var(--label---small);
-  color: #e9e9e9;
-}
+  .checkbox {
+    position: absolute;
+    width: 143px;
+    height: 80px;
+    z-index: 999;
+    opacity: 0;
+  }
 
-.detail {
-  font-size: var(--label---large);
-}
+  .content {
+    display: flex;
+    background-color: #a7a7a7;
+    padding: 12px;
+    border-radius: 8px;
+    position: absolute;
+    color: black;
+    white-space: nowrap;
+    width: 143px;
+    pointer-events: none;
+  }
 
-.container {
-  display: flex;
-  flex-direction: column;
-}
+  .title {
+    font-size: var(--label---small);
+    color: #e9e9e9;
+    margin-bottom: 4px;
+    margin-block-end: 4px;
+  }
 
-.check-icon {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: #d3d3d3;
-  background-image: url('/src/assets/common/cartegory/plus.svg');
-  background-size: contain;
-  align-self: center;
-}
+  .detail {
+    font-size: var(--label---large);
+  }
 
-[type='checkbox']:checked + .content {
-  background-color: #373f67;
-  color: white;
-}
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
 
-[type='checkbox']:checked + .content .check-icon {
-  background-color: white;
-  background-image: url('/src/assets/common/cartegory/check.svg');
-}
+  .check-icon {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--contents--content-secondary);
+    background-image: url('/src/assets/common/cartegory/plus.svg');
+    background-size: contain;
+    align-self: center;
+    right: 12px;
+  }
 
-[type='checkbox']:focus + .content {
-  box-shadow: 1px 1px 4px 1px #929292;
+  [type='checkbox']:checked + .content {
+    background-color: #373f67;
+    color: white;
+  }
+
+  [type='checkbox']:checked + .content .check-icon {
+    background-color: white;
+    background-image: url('/src/assets/common/cartegory/check.svg');
+  }
+
+  [type='checkbox']:focus + .content {
+    box-shadow: 1px 1px 4px 1px #929292;
+  }
 }
