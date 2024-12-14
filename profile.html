@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile Component</title>
     <!-- variable.css 파일 추가 -->
-    <link rel="stylesheet" href="/src/style/variable.css" />
+    <link rel="stylesheet" href="./src/style/variable.css" />
   </head>
   <body>
-    <!-- Profile 컴포넌트를 사용 -->
+    <!-- Profile/Contents -->
     <profile-contents></profile-contents>
+    <profile-closed></profile-closed>
+    <profile-choice-button></profile-choice-button>
+    <profile-unclosed></profile-unclosed>
+    <chat-balloon
+      count="8"
+      message="제가 있는 곳까지 와서 거래했어요."
+    ></chat-balloon>
 
-    <!-- profile_component.js 파일을 가져옴 -->
-    <script
-      type="module"
-      src="/src/components/Profile/profile_component.js"
-    ></script>
+    <!-- 통합 main.js -->
+    <script type="module" src="./src/main.js"></script>
   </body>
 </html>
