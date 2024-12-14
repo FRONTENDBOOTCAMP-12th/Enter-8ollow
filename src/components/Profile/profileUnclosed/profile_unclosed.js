@@ -1,5 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import styles from '/src/style/profile-unclosed.css?inline';
+import styles from './profile-unclosed.css?inline';
 
 class ProfileUnclosed extends LitElement {
   static styles = css`
