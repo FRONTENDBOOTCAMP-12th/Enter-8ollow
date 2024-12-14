@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>finished | writeQna components</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/variable/pretendardvariable.css"
+    />
+    <link rel="stylesheet" href="./finished.css" />
+  </head>
+  <body>
+    <div class="writeQna">
+      <input
+        type="text"
+        id="qnaTitle"
+        placeholder="제목"
+        aria-label="질문 제목"
+      />
+      <textarea
+        id="qnaContent"
+        placeholder="관심있는 분야에 대한 질문을 올려주세요. 장소 정보와 사진을 함께 올리면 친구들에게 더 도움이 돼요"
+        aria-label="질문 본문"
+      ></textarea>
+    </div>
+
+    <button id="completeButton" class="inactive" disabled onclick=resetForm()>완료</button>
+     <script src="./finished.js">
+    </script>
+  </body>
+</html>

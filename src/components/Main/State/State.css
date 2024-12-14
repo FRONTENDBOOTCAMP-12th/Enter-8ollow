@@ -1,0 +1,39 @@
+@import url(/src/style/variable.css);
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.656rem;
+  font-weight: 600;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.status.hidden {
+  display: none;
+}
+
+.status.reserved {
+  background-color: #719cf7;
+  color: white;
+}
+
+.status.complete {
+  background-color: #9da1b4;
+  color: white;
+}
+
+.price {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: black;
+  white-space: nowrap;
+}

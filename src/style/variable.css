@@ -1,5 +1,6 @@
 /* Color styles */
 :root {
+  /* Color styles */
   --primary: #373f67;
   --secondary: #5a85ee;
   --tertiary: #719cf7;
@@ -12,21 +13,21 @@
   --contents--content-tertiary: #9da1b4;
 
   /* Text-size styles */
-  /* base size: heading---x-x-x-l (44.20199966430664px) */
-  --heading---x-x-x-l: 1rem;
-  --heading---x-x-l: 0.75rem;
-  --heading---x-l: 0.56rem;
-  --heading---large: 0.42rem;
-  --heading---medium: 0.32rem;
-  --heading---small: 0.24rem;
-  --label---x-x-l: 0.75rem;
-  --label---x-l: 0.56rem;
-  --label---large: 0.42rem;
-  --label---medium: 0.32rem;
-  --label---small: 0.24rem;
-  --paragraph---x-l: 0.56rem;
-  --paragraph---large: 0.42rem;
-  --paragraph---medium: 0.32rem;
-  --paragraph---small: 0.24rem;
-  --paragraph--underline: 0.23rem;
+  /* base size: label---medium (14px) */
+  --heading---x-x-x-l: 3.16rem;
+  --heading---x-x-l: 2.37rem;
+  --heading---x-l: 1.78rem;
+  --heading---large: 1.33rem;
+  --heading---medium: 1rem;
+  --heading---small: 0.75rem;
+  --label---x-x-l: 2.37rem;
+  --label---x-l: 1.78rem;
+  --label---large: 1.33rem;
+  --label---medium: 1rem;
+  --label---small: 0.75rem;
+  --paragraph---x-l: 1.78rem;
+  --paragraph---large: 1.33rem;
+  --paragraph---medium: 1rem;
+  --paragraph---small: 0.75rem;
+  --paragraph--underline: 0.71rem;
 }

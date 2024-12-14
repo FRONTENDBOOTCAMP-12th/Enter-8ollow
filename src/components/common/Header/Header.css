@@ -1,0 +1,46 @@
+@import url(/src/style/variable.css);
+
+header {
+  width: 100%;
+  background-color: var(--background);
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
+
+  & ul {
+    align-items: center;
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+
+  & li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    flex-direction: column;
+    margin-inline: 1.875rem;
+  }
+
+  & a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
+    & img {
+      width: 2rem;
+      height: 2rem;
+      margin-bottom: 0;
+    }
+
+    & p {
+      margin: 0;
+    }
+  }
+}

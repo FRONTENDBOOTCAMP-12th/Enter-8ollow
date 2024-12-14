@@ -16,7 +16,12 @@
     "sourceType": "module"
   },
   "rules": {
-    "prettier/prettier": "error", // Prettier 규칙을 ESLint 규칙으로 적용
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ], // Prettier 규칙을 ESLint 규칙으로 적용
     "no-console": "warn" // console 사용에 대한 경고
   }
 }
