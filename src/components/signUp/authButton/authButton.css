@@ -1,0 +1,16 @@
+button {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid var(--contents--content-secondary);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-block: 8px;
+  font-size: var(--label---medium);
+  color: var(--contents--content-primary);
+  border-radius: 4px;
+}
+
+button[disabled] {
+  color: var(--contents--content-secondary);
+  cursor: not-allowed;
+}
