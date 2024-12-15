@@ -4,10 +4,14 @@ import s from '/src/components/common/CommonButton/CommonButton.css?inline';
 class CommonButton extends LitElement {
   static properties = {
     title: { type: String },
+    disable: { type: Boolean },
+    type: { type: String },
   };
 
   constructor() {
     super();
+    this.disable = false;
+    this.type = 'button';
   }
 
   handleClick() {
@@ -20,11 +24,18 @@ class CommonButton extends LitElement {
   }
 
   render() {
+    // console.log('render', this.disable);
+
     return html`<style>
         ${s}
       </style>
 
-      <button type="button" class="common-button" @click="${this.handleClick}">
+      <button
+        type=${this.type}
+        class="common-button"
+        ?disabled="${this.disable}"
+        @click="${this.handleClick}"
+      >
         ${this.title}
       </button> `;
   }
