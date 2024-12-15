@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/common/CommonButton/CommonButton.css?inline';
+import s from '/src/components/signUp/authButton/authButton.css?inline';
 
-class CommonButton extends LitElement {
+class AuthButton extends LitElement {
   static properties = {
     title: { type: String },
     disable: { type: Boolean },
@@ -24,8 +24,6 @@ class CommonButton extends LitElement {
   }
 
   render() {
-    // console.log('render', this.disable);
-
     return html`<style>
         ${s}
       </style>
@@ -41,4 +39,4 @@ class CommonButton extends LitElement {
   }
 }
 
-customElements.define('common-button', CommonButton);
+customElements.define('auth-button', AuthButton);

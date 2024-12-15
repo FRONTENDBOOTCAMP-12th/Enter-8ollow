@@ -1,1 +1,1 @@
-import {} from '/src/components/common/index.js';
+import {} from '/src/components/index.js';
