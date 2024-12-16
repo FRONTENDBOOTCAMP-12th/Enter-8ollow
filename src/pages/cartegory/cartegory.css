@@ -8,12 +8,6 @@
   padding-block-end: 40px;
 }
 
-.help {
-  background-color: red;
-  width: 100%;
-  height: 40px;
-}
-
 .flex {
   display: flex;
   justify-content: space-around;

@@ -8,4 +8,6 @@ function getRandomElement(array) {
 const randomAdjective = getRandomElement(ADJECTIVE);
 const randomAnimal = getRandomElement(ANIMALS);
 
-export default `${randomAdjective} ${randomAnimal}`;
+const nickName = `${randomAdjective} ${randomAnimal}`;
+
+export { nickName };
