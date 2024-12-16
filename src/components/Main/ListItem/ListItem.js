@@ -88,6 +88,7 @@ class ListItem extends LitElement {
                   </li>
                 </ul>
               </div>
+              <like-counter class="like-counter"></like-counter>
             </div>
           `
         )}
