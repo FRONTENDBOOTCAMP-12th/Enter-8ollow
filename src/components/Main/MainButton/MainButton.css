@@ -1,0 +1,33 @@
+button {
+  background-color: var(--primary);
+  height: 1.8125rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-inline: 1.25rem;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+  padding-block: 0.375rem;
+  border-radius: var(--border-radius---large);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & img {
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: 0.25rem;
+  }
+
+  & span {
+    margin-bottom: 0.125rem;
+  }
+}
+
+.checked {
+  background-color: red;
+}
+
+.hidden {
+  display: none;
+}
