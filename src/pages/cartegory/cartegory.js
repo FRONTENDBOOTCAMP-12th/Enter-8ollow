@@ -51,7 +51,7 @@ class Cartegory extends LitElement {
   }
 
   handleClick() {
-    location.href = '/src/pages/signUp/signUp.html';
+    location.href = '/src/pages/register/';
   }
 
   render() {
@@ -60,7 +60,6 @@ class Cartegory extends LitElement {
         ${s}
       </style>
       <div class="app">
-        <div class="help"></div>
         <div class="flex">
           <div class="header">
             <back-component></back-component>

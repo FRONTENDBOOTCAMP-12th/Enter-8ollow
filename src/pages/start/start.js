@@ -27,7 +27,7 @@ class Start extends LitElement {
 
           <div class="login">
             <p>이미 계정이 있나요?</p>
-            <a href="/src/pages/cartegory/cartegory.html">로그인</a>
+            <a href="/src/pages/login/">로그인</a>
           </div>
         </div>
       </div>

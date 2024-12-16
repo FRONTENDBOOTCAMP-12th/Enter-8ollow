@@ -1,0 +1,50 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  gap: 40px;
+  margin-top: 30px;
+  margin-block-start: 30px;
+}
+
+.back-container {
+  padding: 15px;
+}
+
+.title {
+  font-size: var(--label---large);
+  color: var(--contents--content-primary);
+  font-weight: normal;
+  line-height: 1.75rem;
+}
+
+.desc {
+  font-size: var(--paragraph---small);
+  margin-top: 8px;
+  margin-block-start: 8px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  gap: 10px;
+}
+
+.info {
+  color: var(--contents--content-secondary);
+  font-size: var(--paragraph---small);
+  margin: 0;
+  margin-bottom: 30px;
+  margin-block-end: 30px;
+}
+
+a {
+  display: block;
+  color: var(--contents--content-secondary);
+  font-size: var(--paragraph--underline);
+  text-decoration: underline;
+  text-align: center;
+}

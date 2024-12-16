@@ -1,10 +1,10 @@
 import { LitElement, html } from 'lit';
-import s from '/src/pages/signUp/signUp.css?inline';
+import s from '/src/pages/register/register.css?inline';
 import pb from '/src/api/pocketbase';
 
 import Swal from 'sweetalert2';
 
-class SignUp extends LitElement {
+class Login extends LitElement {
   static properties = {
     title: { type: String }, // 토스트 타이틀
     disable: { type: Boolean }, // 버튼 비활성화 여부
@@ -21,6 +21,7 @@ class SignUp extends LitElement {
 
   constructor() {
     super();
+
     this.disable = true;
     this.showInput = false;
     this.AuthenticationDisable = true;
@@ -80,47 +81,41 @@ class SignUp extends LitElement {
     this.phoneNumber = input.value;
   }
 
-  async fetchData() {
+  async handleLogin(e) {
+    e.preventDefault();
+    console.log('click');
+
     try {
-      const id = this.phoneNumber;
+      const resultList = await pb.collection('members').getList(1, 1, {
+        filter: `phoneNumber = "${this.phoneNumber}"`,
+      });
 
-      await pb.collection('test').authWithPassword(id);
+      console.log(resultList);
 
-      const { record, token } = JSON.parse(
-        localStorage.getItem('pocketbase_auth') ?? '{}'
-      );
-
-      localStorage.setItem(
-        'auth',
-        JSON.stringify({
-          isAuth: !!record,
-          user: record,
-          token: token,
-        })
-      );
-    } catch {}
-  }
-
-  async handleCheckAuth() {
-    console.log(this.inputAuth);
-    console.log(this.answer);
-    // 인증번호 체크
-    if (this.answer === this.inputAuth) {
-      console.log('인증번호 일치');
-
-      const selectedCategories = localStorage.getItem('selectedCategories');
-
-      const data = {
-        phoneNumber: this.phoneNumber,
-        cartegory: selectedCategories,
-      };
-      console.log(data);
-
-      const record = await pb.collection('test').create(data);
-      console.log(record);
-      // this.fetchData();
-    } else {
-      console.log('인증번호 불일치');
+      if (resultList.items.length === 0) {
+        Swal.fire({
+          title: '로그인 실패',
+          text: '가입되지 않은 번호입니다',
+          icon: 'error',
+        }).then((res) => {
+          location.href = '/src/pages/register/';
+        });
+      } else {
+        Swal.fire({
+          title: '로그인 성공',
+          text: '메인 페이지로 이동합니다.',
+          icon: 'success',
+          confirmButtonText: '닫기',
+        }).then((res) => {
+          location.href = '/src/pages/main/exchange.html';
+        });
+      }
+    } catch {
+      Swal.fire({
+        title: '로그인 실패',
+        text: '아이디 또는 비밀번호가 올바르지 않습니다',
+        icon: 'error',
+      });
     }
   }
 
@@ -136,7 +131,7 @@ class SignUp extends LitElement {
         <div class="info-container">
           <h2 class="title">
             안녕하세요! <br />
-            휴대폰 번호로 가입해주세요.
+            휴대폰 번호로 로그인 해주세요.
           </h2>
 
           <p class="desc">
@@ -187,7 +182,7 @@ class SignUp extends LitElement {
                   title="동의하고 시작하기"
                   type="submit"
                   ?disable=${this.authenticationDisable}
-                  @click-event="${this.handleCheckAuth}"
+                  @click-event="${this.handleLogin}"
                 ></common-button>
                 <a href="">인증번호가 오지 않나요?</a> `
             : ''}
@@ -196,4 +191,4 @@ class SignUp extends LitElement {
   }
 }
 
-customElements.define('sign-up', SignUp);
+customElements.define('login-page', Login);
