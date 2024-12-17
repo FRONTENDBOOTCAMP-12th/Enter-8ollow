@@ -1,0 +1,24 @@
+.nav-items {
+  display: flex;
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: space-between; /* 아이템 간 간격 균등 */
+  background-color: var(--primary, #373f67);
+  height: 40px; /* 높이 설정 */
+  white-space: nowrap; /* 줄바꿈 방지 */
+  overflow: hidden; /* 내용이 넘칠 경우 숨김 처리 */
+  padding: 0;
+  position: relative;
+}
+
+.nav-item {
+  flex: 1; /* 모든 아이템이 동일한 너비를 차지 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box; /* padding 포함 너비 유지 */
+  height: 100%; /* 부모 높이와 일치 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  overflow: hidden; /* 넘치는 내용 숨김 */
+  text-overflow: ellipsis; /* 텍스트가 넘치면 말줄임표 */
+}
