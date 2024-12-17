@@ -1,4 +1,4 @@
-console.log('test');
+console.log('test-exchange');
 
 import '/src/components/Main/Like/Like.js';
 import '/src/components/Main/ListItem/ListItem.js';

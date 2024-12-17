@@ -10,18 +10,11 @@
   position: relative;
   height: 100%;
   transition: color 0.3s;
-}
 
-.nav-item {
   &.active {
     color: var(--white, #ffffff);
     background: var(--primary, #373f67);
-  }
-}
 
-.nav-item {
-  &.active {
-    position: relative;
     &::after {
       content: '';
       position: absolute;
