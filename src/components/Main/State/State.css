@@ -16,30 +16,25 @@
 }
 
 .status {
+  border-radius: 4px;
+  color: var(--white, #ffffff);
+
   & .hidden {
     display: none;
   }
-}
 
-.status {
   &.reserved {
-    border-radius: 4px;
-    background-color: #719cf7;
-    color: white;
+    background-color: var(--tertiary, #719cf7);
   }
-}
 
-.status {
   &.complete {
-    border-radius: 4px;
-    background-color: #9da1b4;
-    color: white;
+    background-color: var(--contents--content-tertiar, #9da1b4);
   }
 }
 
 .price {
   font-size: 0.875rem;
   font-weight: 600;
-  color: black;
+  color: var(--black, #000000);
   white-space: nowrap;
 }
