@@ -1,10 +1,15 @@
-.person-count {
-  height: 2.1875rem;
+.info-item {
+  height: 1.0625rem;
   display: flex;
   align-items: center;
+  color: var(--components--component-person);
 }
 
-span {
+.info-item:nth-child(1) {
+  margin-bottom: 0.1875rem;
+}
+
+.info-item span {
   font-size: var(--paragraph---small);
   color: var(--components--component-person);
   margin-left: 0.125rem;

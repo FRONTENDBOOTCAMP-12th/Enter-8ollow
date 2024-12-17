@@ -13,7 +13,7 @@ class BoardPerson extends LitElement {
         ${s}
       </style>
 
-      <div class="person">
+      <div class="person-count">
         <img alt="빈 사람 이미지" src="/src/assets/board/people.svg" />
         <span>${this.text}</span>
       </div>

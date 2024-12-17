@@ -1,1 +1,1 @@
-import '/src/components/Board/BoardPerson/BoardPerson';
+import '/src/components/Board/BoardInfoItems/BoardInfoItems';
