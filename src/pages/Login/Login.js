@@ -1,7 +1,6 @@
 import { LitElement, html } from 'lit';
 import s from '/src/pages/register/register.css?inline';
 import pb from '/src/api/pocketbase';
-
 import Swal from 'sweetalert2';
 
 class Login extends LitElement {

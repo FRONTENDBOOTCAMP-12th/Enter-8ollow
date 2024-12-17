@@ -1,7 +1,4 @@
-import '/src/components/withUs/WithUs';
-import '/src/components/Board/BoardInfoItems/BoardInfoItems';
-import '/src/components/Board/BoardPerson/BoardPerson';
-import '/src/components/Board/BoardField/BoardField';
-import '/src/components/Main/MainButton/MainButton';
-import '/src/components/Main/RegionMenu/RegionMenu';
-import '/src/components/Main/RegionMenu/RegionMenu.css';
+/* --------------------------------- board 컴포넌트 -------------------------------- */
+import {} from '/src/components/Board/BoardPerson/BoardPerson.js';
+import {} from '/src/components/Board/BoardInfoItems/BoardInfoItems.js';
+import {} from '/src/components/Board/BoardPerson/BoardPerson.js';
