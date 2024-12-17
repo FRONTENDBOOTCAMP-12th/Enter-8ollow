@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Board 테스트</title>
     <script type="module" src="/src/components/Board/index.js"></script>
-    <link rel="stylesheet" href="/src/style/best-reset.css" />
+    <link rel="stylesheet" href="/src/style/reset.css" />
 
     <link rel="stylesheet" href="/src/style/variable.css" />
     <link rel="stylesheet" href="/src/pages/board/board.css" />
@@ -14,11 +14,11 @@
       type="module"
       src="/src/components/Board/BoardField/BoardField.js"
     ></script>
+
     <script type="module" src="/src/main.js"></script>
   </head>
 
   <body>
-    <region-menu></region-menu>
     <div class="main-button-container">
       <main-button name="주제"></main-button>
       <main-button name="인기글"></main-button>
@@ -43,7 +43,7 @@
       <li><board-field text="같이해요"></board-field></li>
       <li><board-field text="자유게시판"></board-field></li>
     </ul>
-
+    <region-menu></region-menu>
     <base-header></base-header>
   </body>
 </html>
