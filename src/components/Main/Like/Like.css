@@ -1,0 +1,23 @@
+:host {
+  display: inline-block;
+}
+
+.like-button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: inherit;
+  font-size: var(--paragraph---small), 0.75rem;
+  color: var(--contents--content-primary), #000000;
+  gap: 2px;
+}
+
+.heart-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.count {
+  font-size: 0.656rem;
+}

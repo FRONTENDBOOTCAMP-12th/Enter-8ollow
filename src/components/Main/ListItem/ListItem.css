@@ -1,18 +1,14 @@
-:host {
-  display: block;
-  font-family: inherit;
-  background-color: var(--background);
+.container {
+  min-width: 320px;
 }
 
 .list-item {
   display: flex;
-  align-items: center;
   background: var(--background);
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border-bottom: 1px solid #d3d3d3;
   padding: 12px;
-  margin-bottom: 12px;
   gap: 16px;
+  position: relative;
 }
 
 figure {
@@ -32,11 +28,10 @@ figure img {
 }
 
 .content {
-  flex: 1;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-between;
 }
 
 .title {
@@ -56,4 +51,10 @@ ul {
   list-style: none;
   display: flex;
   flex-direction: column;
+}
+
+.like-counter {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
 }

@@ -1,4 +1,5 @@
-import './components/Profile/profileChoiceButton';
-import './components/Profile/profileUnclosed/profile_unclosed';
-import './components/Profile/profileIconballons/profile_icon@balloon';
-import './components/Profile/profileComponents/profile_component';
+// import {} from '/src/components/index.js';
+// import {} from '/src/components/Main/index.js';
+// import {} from '/src/components/signUp/index.js';
+
+import {} from '/src/components/index.js';

@@ -1,5 +1,3 @@
-@import url(/src/style/variable.css);
-
 .container {
   display: flex;
   align-items: center;
@@ -8,7 +6,7 @@
 
 .status {
   padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+
   font-size: 0.656rem;
   font-weight: 600;
   white-space: nowrap;
@@ -17,23 +15,26 @@
   align-items: center;
 }
 
-.status.hidden {
-  display: none;
-}
+.status {
+  border-radius: 4px;
+  color: var(--white, #ffffff);
 
-.status.reserved {
-  background-color: #719cf7;
-  color: white;
-}
+  & .hidden {
+    display: none;
+  }
 
-.status.complete {
-  background-color: #9da1b4;
-  color: white;
+  &.reserved {
+    background-color: var(--tertiary, #719cf7);
+  }
+
+  &.complete {
+    background-color: var(--contents--content-tertiar, #9da1b4);
+  }
 }
 
 .price {
   font-size: 0.875rem;
   font-weight: 600;
-  color: black;
+  color: var(--black, #000000);
   white-space: nowrap;
 }

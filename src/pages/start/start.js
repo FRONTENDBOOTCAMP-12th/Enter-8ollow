@@ -13,7 +13,7 @@ class Start extends LitElement {
         ${s}
       </style>
       <div class="app">
-        <img src="/src/assets/common/logo.svg" alt="EUID" />
+        <img src="/src/assets/logo.svg" alt="EUID" />
         <h1 class="title">당신 곁에 엔터이듬</h1>
         <p class="description">
           With EUID's 함께 성장하기 <br />함께 배우고 적용하며 성장해보세요!
@@ -27,7 +27,7 @@ class Start extends LitElement {
 
           <div class="login">
             <p>이미 계정이 있나요?</p>
-            <a href="/src/pages/cartegory/cartegory.html">로그인</a>
+            <a href="/src/pages/login/">로그인</a>
           </div>
         </div>
       </div>

@@ -1,6 +1,10 @@
 /* https://piccalil.li/blog/a-modern-css-reset */
 
 /* Box sizing rules */
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 body *,
 body *::before,
 body *::after {
