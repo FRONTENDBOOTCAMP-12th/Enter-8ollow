@@ -23,7 +23,7 @@ class BaseHeader extends LitElement {
         <ul>
           <li>
             <a target="_blank" rel="noreferrer noopener">
-              <img alt="홈" src="/src/assets/home.svg" />
+              <img alt="홈" src="/src/assets/fullHome.svg" />
               <p>홈</p>
               <p>${this.home}</p>
             </a>
