@@ -1,5 +1,8 @@
 .container {
   min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .list-item {
@@ -31,7 +34,7 @@ figure img {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .title {
