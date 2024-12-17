@@ -2,6 +2,9 @@ import { LitElement, html } from 'lit';
 import s from '/src/components/Board/BoardPerson/BoardPerson.css?inline';
 
 class BoardPerson extends LitElement {
+  static properties = {
+    text: { type: String },
+  };
   constructor() {
     super();
     this.text = 'text';

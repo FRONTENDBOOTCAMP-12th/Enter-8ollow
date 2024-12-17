@@ -5,10 +5,9 @@
   color: var(--components--component-person);
 }
 
-.info-item:nth-child(1) {
-  margin-bottom: 0.1875rem;
+.info-item:nth-child(2) {
+  margin-bottom: 0.5rem;
 }
-
 .info-item span {
   font-size: var(--paragraph---small);
   color: var(--components--component-person);

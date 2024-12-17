@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/Board/BoardPerson/BoardPerson.css?inline';
+import s from '/src/components/Board/BoardInfoItems/BoardInfoItems.css?inline';
 
 class BoardInfoItems extends LitElement {
   constructor() {
@@ -36,6 +36,7 @@ class BoardInfoItems extends LitElement {
 
         <span>text</span>
       </div>
+
       <div class="info-item meet-day">
         <svg
           width="20"

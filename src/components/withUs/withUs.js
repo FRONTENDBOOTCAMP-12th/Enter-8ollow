@@ -1,22 +1,24 @@
 import { LitElement, html } from 'lit';
+import s from '/src/components/withUs/withUs.css?inline';
 
 class WithUs extends LitElement {
-  static get properties() {
-    return {
-      text: { type: String },
-    };
-  }
-
+  static properties = {
+    text: { type: String },
+  };
   constructor() {
     super();
     this.text = 'text';
   }
 
   render() {
-    return html` <div class="withUs">${this.text}</div> `;
+    return html`
+      <style>
+        ${s}
+      </style>
+
+      <div class="withUs">${this.text}</div>
+    `;
   }
 }
 
 customElements.define('with-us', WithUs);
-
-export default WithUs;
