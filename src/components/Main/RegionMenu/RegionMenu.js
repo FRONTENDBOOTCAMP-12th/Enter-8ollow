@@ -66,12 +66,12 @@ class RegionMenu extends LitElement {
   }
 
   async fetchData() {
-    const records = await pb.collection('place').getOne('ptkt059wm2l8id0', {
+    const records = await pb.collection('places').getOne('ptkt059wm2l8id0', {
       expand: 'name',
     });
 
     let obj = await pb
-      .collection('place')
+      .collection('places')
       .getList(1, 50, { filter: `userId = "${this.id}"` });
 
     this.placeList = obj.items.map((item) => item.name);
@@ -135,13 +135,9 @@ class RegionMenu extends LitElement {
         </ul>
 
         <div class="menu-container">
-          <a href="/"><img src="/src/assets/common/search.svg" alt="검색" /></a>
-          <a href="/"
-            ><img src="/src/assets/common/hamburger.svg" alt="전체메뉴"
-          /></a>
-          <a href="/"
-            ><img src="/src/assets/common/alramBell.svg" alt="알림"
-          /></a>
+          <a href="/"><img src="/src/assets/search.svg" alt="검색" /></a>
+          <a href="/"><img src="/src/assets/hamburger.svg" alt="전체메뉴" /></a>
+          <a href="/"><img src="/src/assets/alramBell.svg" alt="알림" /></a>
         </div>
       </nav>
     `;

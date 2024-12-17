@@ -3,6 +3,9 @@ import s from '/src/components/Main/MainButton/MainButton.css?inline';
 import buttonReset from '/src/style/buttonReset.css?inline';
 
 class MainButton extends LitElement {
+  static properties = {
+    name: { type: String },
+  };
   constructor() {
     super();
     this.name = 'text';

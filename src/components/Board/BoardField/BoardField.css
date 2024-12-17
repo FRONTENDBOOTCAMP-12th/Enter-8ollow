@@ -1,22 +1,22 @@
 .board-field {
   background-color: var(--white);
-  padding: 12px;
+  padding: 0.75rem;
+
   display: flex;
   display: grid;
-  grid-template-columns: 1fr auto; /* 두 개의 열을 사용. 첫 번째 열은 세로로 배치된 요소들, 두 번째 열은 board-person */
-  gap: 20px; /* 두 열 사이의 간격 */
+  grid-template-columns: 1fr auto;
+
   position: relative;
 }
 .content {
   display: flex;
   flex-direction: column; /* 세로로 정렬 */
 }
-.board-field > *:nth-child(2) {
+.board-field > board-person {
   align-self: flex-start;
 
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
+  padding-top: 4.375rem;
+  padding-right: 0.625rem;
 }
 
 h2 {
@@ -31,4 +31,12 @@ span {
   line-height: 180%;
   color: var(--contents--content-tertiary);
   font-size: var(--paragraph---small);
+}
+
+img {
+  width: 3.75rem;
+  height: 3.75rem;
+
+  padding-top: 0;
+  border-radius: 4px;
 }
