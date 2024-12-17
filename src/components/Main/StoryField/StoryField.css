@@ -1,7 +1,6 @@
 .story-field {
   display: inline-block;
   margin: 10px;
-  width: 40%;
 
   img {
     background-color: var(--contents--content-secondary);
