@@ -29,7 +29,7 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  margin-top: 130px;
+  margin-top: 5.4375rem;
 
   overflow-y: auto;
   max-height: calc(100vh - 130px);
@@ -66,4 +66,8 @@ body.modal-overlay::before {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 9999; /* 최상단으로 배치 */
+}
+
+.main-button-container .category.selected::after {
+  opacity: 1;
 }
