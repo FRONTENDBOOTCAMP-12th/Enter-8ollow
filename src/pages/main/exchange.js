@@ -35,7 +35,7 @@ export default class ExchangeLayout extends LitElement {
     if (!item || !item.image) {
       return '/src/assets/test/test2.png'; // 기본 이미지 경로 반환
     }
-    return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.image}`;
+    return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item['image']}`;
   }
 
   render() {
@@ -44,6 +44,7 @@ export default class ExchangeLayout extends LitElement {
         <div class="item-list">
           ${this.items.length > 0
             ? this.items.map((item) => {
+                console.log(this.getImageURL(item));
                 return html`
                   <div class="item-wrapper">
                     <list-item
