@@ -53,7 +53,7 @@ export default class ExchangeLayout extends LitElement {
                         region: item.region || '지역 없음',
                         price: item.price || 0,
                         state: item.status || 'available',
-                        liked: item.liked || 0,
+                        liked_count: item.liked || 0,
                         image: this.getImageURL(item),
                         created: item.created,
                       }}
@@ -61,7 +61,7 @@ export default class ExchangeLayout extends LitElement {
                     <div class="like-counter-container">
                       <like-counter
                         .liked="${item.liked || false}"
-                        .count="${item.favorite || 0}"
+                        .liked_count="${item.favorite || 0}"
                       ></like-counter>
                     </div>
                   </div>
