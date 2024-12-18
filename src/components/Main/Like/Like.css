@@ -4,15 +4,15 @@
   right: 10px;
   display: flex;
   align-items: center;
-  gap: 4px;
+
 }
 
 .list-item {
-  position: relative; /* 부모 요소로부터 상대 위치 */
+  position: relative; 
   display: flex;
   flex-direction: column;
   padding: 10px;
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
 
 .like-button {
@@ -20,14 +20,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
-  color: var(--contents--content-primary, #000000);
-  cursor: pointer;
+  font-size: 0.75rem; 
+  color: var(--contents--content-primary, #000000); /* 기본 색상 */
+  cursor: pointer; 
 }
 
 .heart-icon {
   width: 14px;
   height: 14px;
+  fill: none;
+  stroke: gray; 
+  stroke-width: 1px; 
+/
+}
+
+.like-button.liked {
+  .heart-icon {
+    fill: var(--tertiary, #719cf7);
+    stroke: none;
+  }
 }
 
 .count {
