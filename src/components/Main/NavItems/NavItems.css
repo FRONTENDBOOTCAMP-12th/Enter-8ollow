@@ -6,7 +6,9 @@
   height: 40px;
   white-space: nowrap;
   overflow: hidden;
-  position: relative;
+  position: sticky;
+  top: -1px;
+  z-index: 999;
 }
 
 .nav-item {
