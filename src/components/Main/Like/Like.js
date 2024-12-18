@@ -30,7 +30,11 @@ class LikeCounter extends LitElement {
         aria-label="좋아요 버튼"
         @click="${this.toggleLike}"
       >
-        <img src="/src/assets/heart.svg" alt="Heart Icon" class="heart-icon" />
+        <img
+          src="/src/assets/heart.svg"
+          alt="Heart Icon"
+          class="heart-icon"
+        />
         <span class="count">${this.count}</span>
       </button>
     `;

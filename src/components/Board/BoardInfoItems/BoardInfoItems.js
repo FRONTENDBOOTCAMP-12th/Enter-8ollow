@@ -2,16 +2,14 @@ import { LitElement, html } from 'lit';
 import s from '/src/components/Board/BoardInfoItems/BoardInfoItems.css?inline';
 
 class BoardInfoItems extends LitElement {
-  constructor() {
-    super();
-    this.gender = 'text';
-    this.meetDay = 'text';
-  }
-
   static properties = {
     gender: { type: String },
     meetDay: { type: String },
   };
+
+  constructor() {
+    super();
+  }
 
   render() {
     return html`
@@ -34,7 +32,7 @@ class BoardInfoItems extends LitElement {
           />
         </svg>
 
-        <span>text</span>
+        <span>${this.gender}</span>
       </div>
 
       <div class="info-item meet-day">
@@ -52,7 +50,7 @@ class BoardInfoItems extends LitElement {
           />
         </svg>
 
-        <span>text</span>
+        <span>${this.meetDay}</span>
       </div>
     `;
   }

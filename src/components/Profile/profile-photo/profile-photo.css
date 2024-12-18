@@ -1,0 +1,71 @@
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%; /* 원형 이미지 */
+  object-fit: cover;
+  position: relative;
+}
+
+.edit-icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.user-level {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: #5865f2; /* 블루 계열 색상 */
+  margin-left: 5px;
+  border: 1px solid #5865f2;
+  border-radius: 12px;
+  padding: 2px 6px;
+}
+
+.user-stats {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.icon-section {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.icon svg {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 5px;
+}

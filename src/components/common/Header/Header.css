@@ -3,11 +3,17 @@
 header {
   width: 100%;
   background-color: var(--background);
+
   display: flex;
   justify-content: center; /* 수평 가운데 정렬 */
   align-items: center; /* 수직 가운데 정렬 */
   padding-top: 0.5rem;
   padding-bottom: 1.5rem;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 
   & ul {
     align-items: center;
@@ -15,32 +21,33 @@ header {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
+
+    display: grid; /* Grid 레이아웃 사용 */
+    grid-template-columns: repeat(5, 1fr); /* 5개의 동일한 너비 열을 설정 */
+    gap: 40px;
   }
 
   & li {
-    padding: 0;
-    margin: 0;
     list-style: none;
-    flex-direction: column;
-    margin-inline: 1.875rem;
+
+    text-align: center;
+    white-space: nowrap;
   }
 
   & a {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: block;
     text-decoration: none;
+    color: inherit;
 
     & img {
-      width: 2rem;
-      height: 2rem;
+      width: 1.25rem;
+      height: 1.25rem;
       margin-bottom: 0;
     }
 
     & p {
       margin: 0;
+      font-size: var(--paragraph---small);
     }
   }
 }

@@ -1,0 +1,14 @@
+.profile-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  background-color: var(--contents--content-tertiary);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.profile-item .icon {
+  margin-right: 8px;
+}

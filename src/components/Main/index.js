@@ -11,3 +11,4 @@ import {} from '/src/components/Main/PlusButton/PlusButton.js';
 import {} from '/src/components/Main/State/State.js';
 import {} from '/src/components/Main/SwiperComponent/SwiperComponent.js';
 import {} from '/src/components/Main/StoryField/StoryField.js';
+import {} from '/src/components/Main/MainButton/MainButton.js';
