@@ -22,6 +22,12 @@ button {
     padding: 0.25rem;
   }
 
+  & svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: 0.25rem;
+  }
+
   & span {
     margin-bottom: 0.125rem;
     font-size: var(--paragraph---small);
@@ -31,6 +37,14 @@ button {
 .checked {
   background-color: var(--primary);
   border: 2px solid var(--primary);
+
+  & span {
+    color: var(--white);
+  }
+
+  & svg path {
+    stroke: white;
+  }
 }
 
 .hidden {

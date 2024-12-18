@@ -2,11 +2,10 @@
   background-color: var(--white);
   padding: 0.75rem;
 
-  display: flex;
   display: grid;
   grid-template-columns: 1fr auto;
-
-  position: relative;
+  position: relative; /* 'position' 속성 설정 */
+  z-index: 1;
 }
 .content {
   display: flex;

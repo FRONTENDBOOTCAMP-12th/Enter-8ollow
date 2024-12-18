@@ -25,11 +25,23 @@ class MainButton extends LitElement {
         class="category"
         onclick="this.classList.toggle('checked')"
       >
-        <img
-          alt="카테고리이미지"
-          src="/src/assets/hamburger.svg"
+        <svg
+          width="14"
+          height="10"
+          viewBox="0 0 14 10"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
           class="${imageClass}"
-        />
+        >
+          <title>카테고리 이미지</title>
+          <path
+            d="M1.16675 9.16668H12.8334M1.16675 5.00001H12.8334M1.16675 0.833344H12.8334"
+            stroke="black"
+            stroke-width="1.16667"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
         <span>${this.name}</span>
       </button>
     `;
