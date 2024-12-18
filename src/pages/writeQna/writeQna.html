@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>writeQna | pages</title>
+    <script
+      type="module"
+      src="./../../components/finished/finished.js"
+    ></script>
+    <script type="module" src="./../../components/info/info.js"></script>
+    <script src="/src/pages/writeQna/writeQna.js"></script>
+    <link rel="stylesheet" href="writeQna.css" />
+  </head>
+  <body>
+    <finished-component></finished-component>
+    <info-component></info-component>
+    <input
+      type="text"
+      id="qnaTitle"
+      placeholder="제목"
+      aria-label="질문 제목"
+    />
+    <textarea
+      id="qnaContent"
+      placeholder="관심있는 분야에 대한 질문을 올려주세요. 장소 정보와 사진을 함께 올리면 친구들에게 더 도움이 돼요"
+      aria-label="질문 본문"
+    ></textarea>
+    <script>
+      document
+        .getElementById('qnaTitle')
+        .addEventListener('input', function () {
+          checkInput();
+        });
+
+      document
+        .getElementById('qnaContent')
+        .addEventListener('input', function () {
+          checkInput();
+        });
+
+      function checkInput() {
+        const title = document.getElementById('qnaTitle').value;
+        const content = document.getElementById('qnaContent').value;
+
+        if (title !== '' && content !== '') {
+          buttonStyleChanger(true);
+        } else {
+          buttonStyleChanger(false);
+        }
+      }
+
+      function buttonStyleChanger(isChanged) {
+        const finishedComponent = document.querySelector('finished-component');
+
+        const shadowRoot = finishedComponent.shadowRoot;
+
+        const completeButton = shadowRoot.querySelector('#completeButton');
+
+        if (completeButton) {
+          if (isChanged) {
+            completeButton.classList.remove('inactive');
+            completeButton.classList.add('active');
+          } else {
+            completeButton.classList.remove('active');
+            completeButton.classList.add('inactive');
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
