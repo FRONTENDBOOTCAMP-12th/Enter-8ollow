@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
 import s from '/src/pages/start/start.css?inline';
+import logo from '/src/assets/logo.svg';
 
 class Start extends LitElement {
   constructor() {
@@ -13,7 +14,7 @@ class Start extends LitElement {
         ${s}
       </style>
       <div class="app">
-        <img src="/src/assets/logo.svg" alt="EUID" />
+        <img src="${logo}" alt="EUID" />
         <h1 class="title">당신 곁에 엔터이듬</h1>
         <p class="description">
           With EUID's 함께 성장하기 <br />함께 배우고 적용하며 성장해보세요!
