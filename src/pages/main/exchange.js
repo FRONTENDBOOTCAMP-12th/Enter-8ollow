@@ -2,6 +2,7 @@ import { LitElement, html } from 'lit';
 import '/src/components/Main/Like/Like';
 import '/src/components/Main/ListItem/ListItem';
 import '/src/components/Main/PlusButton/PlusButton';
+import s from '/src/pages/main/exchange.css?inline';
 
 export default class ExchangeLayout extends LitElement {
   static get properties() {
@@ -41,6 +42,9 @@ export default class ExchangeLayout extends LitElement {
   // 렌더링
   render() {
     return html`
+      <style>
+        ${s}
+      </style>
       <div class="exchange-container">
         <div class="item-list">
           ${this.items.length > 0
