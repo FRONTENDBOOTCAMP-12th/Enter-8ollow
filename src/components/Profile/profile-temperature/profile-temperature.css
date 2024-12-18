@@ -1,14 +1,21 @@
+/* 전체 컨테이너 */
 .manner-temp-container {
   font-family: Arial, sans-serif;
   padding: 10px;
+  max-width: 400px; /* 최대 너비 설정 */
+  margin: 0 auto; /* 양쪽 여백 및 가운데 정렬 */
+  box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
 }
 
+/* 헤더 스타일 */
 .manner-header {
   font-size: 0.9em;
   font-weight: bold;
   margin-bottom: 5px;
+  text-align: center;
 }
 
+/* 정보 섹션 */
 .manner-info {
   display: flex;
   justify-content: space-between;
@@ -17,21 +24,24 @@
   margin-bottom: 5px;
 }
 
+/* 현재 온도 강조 */
 .current-temp {
   color: #27ae60; /* 초록색 강조 */
   font-weight: bold;
 }
 
+/* 진행 바 컨테이너 */
 .manner-bar {
-  width: 70%;
+  width: 100%;
   height: 10px;
   background-color: #e6e6e6;
   border-radius: 5px;
   overflow: hidden;
 }
 
+/* 진행 바 스타일 */
 .manner-progress {
-  height: 70%;
+  height: 100%;
   background-color: #27ae60;
   border-radius: 5px;
 }

@@ -1,90 +1,51 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
+import s from './profile-temperature.css?inline';
+import pb from '/src/api/pocketbase';
 
-export class ProfileTemperature extends LitElement {
-  // 스타일 정의
-  static styles = css`
-    .manner-temp-container {
-      font-family: Arial, sans-serif;
-      padding: 10px;
-      max-width: 400px; /* 최대 너비 설정 */
-      margin: 0 auto; /* 양쪽 여백 및 가운데 정렬 */
-      box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
-    }
+class ProfileTemperature extends LitElement {
+  static styles = s;
 
-    .manner-header {
-      font-size: 0.9em;
-      font-weight: bold;
-      margin-bottom: 5px;
-      text-align: center;
-    }
-
-    .manner-info {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.9em;
-      color: #777;
-      margin-bottom: 5px;
-    }
-
-    .current-temp {
-      color: #27ae60; /* 초록색 강조 */
-      font-weight: bold;
-    }
-
-    .manner-bar {
-      width: 100%;
-      height: 10px;
-      background-color: #e6e6e6;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-
-    .manner-progress {
-      height: 100%;
-      background-color: #27ae60;
-      border-radius: 5px;
-    }
-  `;
-
-  // 속성 정의
   static properties = {
-    initialTemp: { type: Number },
-    currentTemp: { type: Number },
+    userId: { type: String }, // 사용자의 ID
+    initialTemp: { type: Number }, // 초기 온도
+    currentTemp: { type: Number }, // 현재 온도
   };
 
   constructor() {
     super();
-    this.initialTemp = 36.5;
-    this.currentTemp = this.initialTemp; // 초기 온도
+    this.userId = 'no4l9i8a06plv7f'; // 예시 사용자 ID (사용자 ID를 여기에 설정)
+    this.initialTemp = 36.5; // 초기 온도
+    this.currentTemp = this.initialTemp; // 현재 온도
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this.fetchData();
+    this.fetchDataById();
   }
 
-  // PocketBase 데이터 가져오기
-  async fetchData() {
-    const baseUrl =
-      import.meta.env.VITE_PB_API || 'https://follow-eight.pockethost.io/api';
+  // 특정 사용자 ID로 데이터 가져오기
+  async fetchDataById() {
     try {
-      const response = await fetch(`${baseUrl}/collections/profile/records`);
-      const data = await response.json();
+      const record = await pb.collection('profile').getOne(this.userId);
+      const exchangeComment = record.exchange_comment || 0;
 
-      if (data.items && data.items.length > 0) {
-        const exchangeCount = data.items[0].exchange_comment || 0;
-        this.calculateTemperature(exchangeCount);
-      }
+      // 온도 계산
+      this.calculateTemperature(exchangeComment);
     } catch (error) {
       console.error('Error fetching data:', error);
+      Swal.fire({
+        title: '데이터 불러오기 실패',
+        text: '잠시 후 다시 시도해주세요.',
+        icon: 'error',
+      });
     }
   }
 
   // 온도 계산 함수
-  calculateTemperature(exchangeCount) {
-    const increment = exchangeCount * 0.1;
-    this.currentTemp = this.initialTemp + increment;
-    this.requestUpdate();
+  calculateTemperature(exchangeComment) {
+    const increment = exchangeComment * 0.1; // 0.1을 곱해 증가량 계산
+    this.currentTemp = this.initialTemp + increment; // 현재 온도 업데이트
+    this.requestUpdate(); // 화면 업데이트 요청
   }
 
   // 진행 바 너비 계산
@@ -99,13 +60,20 @@ export class ProfileTemperature extends LitElement {
   render() {
     return html`
       <div class="manner-temp-container">
+        <!-- 열정 온도 헤더 -->
         <div class="manner-header">
           <strong>열정온도 ℹ</strong>
         </div>
+
+        <!-- 온도 정보 표시 -->
         <div class="manner-info">
-          <span>첫 온도 ${this.initialTemp.toFixed(1)}℃</span>
-          <span class="current-temp">${this.currentTemp.toFixed(1)}℃ 😊</span>
+          <span>첫 온도: ${this.initialTemp.toFixed(1)}℃</span>
+          <span class="current-temp"
+            >현재 온도: ${this.currentTemp.toFixed(1)}℃ 😊</span
+          >
         </div>
+
+        <!-- 게이지 바 -->
         <div class="manner-bar">
           <div
             class="manner-progress"
