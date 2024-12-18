@@ -1,0 +1,11 @@
+.person-count {
+  height: 2.1875rem;
+  display: flex;
+  align-items: center;
+}
+
+span {
+  font-size: var(--paragraph---small);
+  color: var(--components--component-person);
+  margin-left: 0.125rem;
+}

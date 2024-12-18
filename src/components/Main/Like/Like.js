@@ -31,7 +31,7 @@ class LikeCounter extends LitElement {
         @click="${this.toggleLike}"
       >
         <img
-          src="/src/assets/common/heart.svg"
+          src="/src/assets/heart.svg"
           alt="Heart Icon"
           class="heart-icon"
         />

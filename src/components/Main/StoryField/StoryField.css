@@ -1,0 +1,22 @@
+.story-field {
+  display: inline-block;
+  margin: 10px;
+
+  img {
+    background-color: var(--contents--content-secondary);
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .text {
+    margin-top: 0.75rem;
+    margin-block-start: 0.75rem;
+    margin-bottom: 0.25rem;
+    margin-block-end: 0.25rem;
+  }
+
+  .acthor {
+    font-size: var(--paragraph---small);
+    color: var(--contents--content-secondary);
+  }
+}

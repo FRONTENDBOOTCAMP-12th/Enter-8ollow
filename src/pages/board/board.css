@@ -1,0 +1,73 @@
+.main-button-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.2rem;
+
+  grid-auto-flow: row;
+
+  padding-bottom: 0.5rem;
+
+  padding-left: 0.3125rem;
+  padding-right: 0.3125rem;
+  padding-inline: 0.3125rem;
+  padding-top: 4.75rem;
+
+  position: fixed;
+  top: 0;
+  z-index: 2;
+
+  background-color: var(--white);
+  border-bottom: 1px solid var(--contents--content-secondary);
+}
+
+.board-field-container .board-field {
+  border: 1px solid var(--contents--content-secondary);
+}
+
+ul {
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 5.4375rem;
+
+  overflow-y: auto;
+  max-height: calc(100vh - 130px);
+}
+
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--contents--content-secondary);
+}
+
+board-field {
+  position: relative;
+  z-index: 1; /* modal-overlay 뒤에 오도록 설정 */
+}
+
+region-menu {
+  position: relative;
+  z-index: 10000;
+}
+
+base-header {
+  position: relative;
+  z-index: 10000;
+}
+
+body.modal-overlay::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999; /* 최상단으로 배치 */
+}
+
+.main-button-container .category.selected::after {
+  opacity: 1;
+}

@@ -1,0 +1,57 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toggle-group {
+  display: flex;
+  position: relative;
+  width: 296px;
+  height: 33px; /* 테두리를 포함한 높이 조정 */
+  border: 2px solid var(--secondary); /* 전체 상자 테두리 파란색 */
+  border-radius: 8px;
+  background-color: var(--contents--content-tertiary);
+  overflow: hidden;
+}
+
+.toggle-background {
+  position: absolute;
+  width: 148px; /* 각 버튼의 너비 (296px / 2) */
+  height: 33px; /* 테두리를 포함한 높이를 전체 상자와 동일하게 설정 */
+  background: var(--background); /* 흰색 배경 */
+  border: 2px solid var(--secondary); /* 이동 상자의 파란색 테두리 */
+  border-radius: 6px;
+  transition: transform 0.3s ease; /* 부드러운 이동 */
+}
+
+.toggle-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Pretendard, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative; /* 아이콘 위치 조정 */
+  z-index: 1; /* 배경보다 위에 표시 */
+  transition: color 0.3s;
+}
+
+.toggle-button .icon {
+  margin-right: 8px;
+  display: none; /* 기본적으로 아이콘 숨김 */
+}
+
+.toggle-button.active .icon {
+  display: flex; /* 활성화된 버튼에만 아이콘 표시 */
+}
+
+.toggle-button.active {
+  color: var(--secondary); /* 활성화된 버튼 텍스트 색상 */
+}
+
+.toggle-button:not(.active) {
+  color: var(--background); /* 비활성화된 버튼 텍스트 색상 */
+}

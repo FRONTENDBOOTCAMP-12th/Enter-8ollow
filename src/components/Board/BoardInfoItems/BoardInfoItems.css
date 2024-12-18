@@ -1,0 +1,15 @@
+.info-item {
+  height: 1.0625rem;
+  display: flex;
+  align-items: center;
+  color: var(--components--component-person);
+}
+
+.info-item:nth-child(2) {
+  margin-bottom: 0.5rem;
+}
+.info-item span {
+  font-size: var(--paragraph---small);
+  color: var(--components--component-person);
+  margin-left: 0.125rem;
+}

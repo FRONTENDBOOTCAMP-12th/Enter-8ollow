@@ -1,11 +1,14 @@
 .container {
   min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .list-item {
   display: flex;
   background: var(--background);
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #d3d3d3;
   padding: 12px;
   gap: 16px;
   position: relative;
@@ -31,7 +34,7 @@ figure img {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .title {

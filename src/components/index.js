@@ -1,8 +1,6 @@
-import '/src/components/common';
-import '/src/components/signUp';
+import {} from '/src/components/Main/index.js';
+import {} from '/src/components/signUp/index.js';
+import {} from '/src/components/common/index.js';
+import {} from '/src/components/finished/finished.js';
+import {} from '/src/components/Board/index.js';
 
-// import '/src/components/Header';
-// import '/src/components/Header.css';
-
-import '/src/components/Main/RegionMenu/RegionMenu';
-import '/src/components/Main/RegionMenu/RegionMenu.css';

@@ -2,20 +2,27 @@ import { LitElement, html } from 'lit';
 import s from '/src/components/signUp/number/number.css?inline';
 
 class InputComponent extends LitElement {
-  constructor() {
-    super();
-  }
-
   static properties = {
     placeholder: { type: String },
     type: { type: String },
     maxlength: { type: Number },
+    border: { type: String },
   };
+
+  constructor() {
+    super();
+  }
 
   render() {
     return html`
       <style>
-        ${s}
+        ${s} :host {
+          --border-color: 1px solid var(--contents--content-primary);
+        }
+
+        .number-input {
+          border: var(--border-color);
+        }
       </style>
       <div class="number-box">
         <input

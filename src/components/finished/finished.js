@@ -18,3 +18,4 @@ class FinishedComponent extends LitElement {
 }
 
 customElements.define('finished-component', FinishedComponent);
+
