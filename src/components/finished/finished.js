@@ -15,5 +15,5 @@ function isWritten() {
   }
 }
 
-qnaTitle.addEventListener('input', isWritten);
-qnaContent.addEventListener('input', isWritten);
+// qnaTitle.addEventListener('input', isWritten);
+// qnaContent.addEventListener('input', isWritten);
