@@ -1,39 +1,93 @@
-// // 입력 확인 함수
-// function buttonStyleChanger(isChanged) {
-//   // Shadow DOM 내부 요소에 접근하기
-//   const finishedComponent = document.querySelector('finished-component');
+import { LitElement, html } from 'lit';
+import style from '/src/pages/writeQna/writeQna.css?inline';
 
-//   // Shadow DOM에 접근
-//   const { shadowRoot } = finishedComponent;
+class WriteQna extends LitElement {
+  static get properties() {
+    return {
+      inputTitle: { type: String },
+      inputContent: { type: String },
+    };
+  }
 
-//   // Shadow DOM 내부에서 특정 요소를 찾기
-//   const innerElement = shadowRoot.querySelector('#completeButton'); // 예: id가 "completeButton"인 요소
+  constructor() {
+    super();
+    this.inputTitle = '';
+    this.inputContent = '';
+  }
 
-//   // 텍스트 또는 스타일 변경
-//   if (innerElement) {
-//     if (isChanged) {
-//       // 클래스 변경: 'inactive'에서 'active'로
-//       innerElement.classList.remove('inactive');
-//       innerElement.classList.add('active');
-//     } else {
-//       // 클래스 변경: 'active'에서 'inactive'로
-//       innerElement.classList.remove('active');
-//       innerElement.classList.add('inactive');
-//     }
-//   }
-// }
+  updated(changedProperties) {
+    if (
+      changedProperties.has('inputTitle') ||
+      changedProperties.has('inputContent')
+    ) {
+      this.checkInput();
+    }
+  }
 
-// function checkInputs() {
-//   const title = document.getElementById('qnaTitle').value;
-//   const content = document.getElementById('qnaContent').value;
+  checkInput() {
+    console.log('checkInput 메서드 실행');
 
-//   if (title !== '' && content !== '') {
-//     buttonStyleChanger(true); // 버튼 스타일 변경
-//   } else {
-//     buttonStyleChanger(false); // 버튼 원래대로 복원
-//   }
-// }
+    if (this.inputTitle !== '' && this.inputContent !== '') {
+      this.buttonStyleChanger(true);
+    } else {
+      this.buttonStyleChanger(false);
+    }
+  }
 
-// document.getElementById('qnaTitle').addEventListener('input', checkInputs());
+  buttonStyleChanger(isChanged) {
+    const finishedComponent =
+      this.renderRoot.querySelector('finished-component');
+    if (!finishedComponent) return;
 
-// document.getElementById('qnaContent').addEventListener('input', checkInputs());
+    const { shadowRoot } = finishedComponent;
+    if (!shadowRoot) return;
+
+    const completeButton = shadowRoot.querySelector('#completeButton');
+    if (!completeButton) return;
+
+    if (isChanged) {
+      completeButton.classList.remove('inactive');
+      completeButton.classList.add('active');
+    } else {
+      completeButton.classList.remove('active');
+      completeButton.classList.add('inactive');
+    }
+  }
+
+  render() {
+    return html`
+      <style>
+        ${style}
+      </style>
+      <finished-component></finished-component>
+      <info-component></info-component>
+
+      <input-component
+        placeholder="제목"
+        style="--border-color: transparent"
+        @input="${(e) => {
+          const input = e.composedPath().find((el) => el.tagName === 'INPUT');
+          if (!input) return;
+
+          this.inputTitle = input.value;
+        }}"
+      ></input-component>
+
+      <textarea
+        id="qnaContent"
+        placeholder="관심있는 분야에 대한 질문을 올려주세요. 장소 정보와 사진을 함께 올리면 친구들에게 더 도움이 돼요"
+        aria-label="질문 본문"
+        @input="${(e) => {
+          const input = e
+            .composedPath()
+            .find((el) => el.tagName === 'TEXTAREA');
+          if (!input) return;
+
+          this.inputContent = input.value;
+        }}"
+      ></textarea>
+    `;
+  }
+}
+
+customElements.define('write-qna', WriteQna);
