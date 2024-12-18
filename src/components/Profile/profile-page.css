@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Pretendard', sans-serif;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto; /* 가운데 정렬 */
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-components {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* 컴포넌트 사이 여백 */
+}
+
+.chat-balloon {
+  margin: 1rem 0;
+}
+
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+}
