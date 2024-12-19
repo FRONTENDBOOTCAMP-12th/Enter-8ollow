@@ -50,9 +50,9 @@ export class PlusButton extends LitElement {
       <ul class="exchange-button-list ${this.active ? 'visible' : ''}">
         <li>
           <a
-            role="button"
             href="/"
             class="exchange-button"
+            role="button"
             tabindex="0"
             @keydown="${this.handleKeyPress}"
           >
@@ -61,9 +61,9 @@ export class PlusButton extends LitElement {
         </li>
         <li>
           <a
-            role="button"
             href="/"
             class="exchange-button"
+            role="button"
             tabindex="0"
             @keydown="${this.handleKeyPress}"
           >
@@ -94,9 +94,9 @@ export class PlusButton extends LitElement {
         </li>
         <li>
           <a
-            role="button"
             href="/"
             class="exchange-button"
+            role="button"
             tabindex="0"
             @keydown="${this.handleKeyPress}"
           >
