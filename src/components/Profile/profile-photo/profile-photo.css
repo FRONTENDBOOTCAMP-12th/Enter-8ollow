@@ -1,58 +1,74 @@
+/* 전체 컨테이너 */
 .profile-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
+  font-family: Arial, sans-serif;
+  max-width: 400px; /* 최대 너비 설정 */
+  padding: 0 1rem; /* 양쪽 여백 */
+}
+
+/* 프로필 이미지 */
+.profile-image-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 0.5rem;
 }
 
 .profile-image {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%; /* 원형 이미지 */
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius---large);
   object-fit: cover;
-  position: relative;
 }
 
+/* 수정 아이콘 */
 .edit-icon {
   position: absolute;
-  right: 0;
   bottom: 0;
+  right: 0;
   width: 20px;
   height: 20px;
-  background-color: white;
+  background-color: var(--white);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
 }
 
+/* 사용자 정보 */
 .user-info {
-  margin-top: 10px;
-  font-size: 1.2rem;
+  font-size: var(--heading---medium);
   font-weight: bold;
+  display: flex;
+  align-items: center;
 }
 
 .user-level {
-  display: inline-block;
-  font-size: 0.8rem;
-  color: #5865f2; /* 블루 계열 색상 */
+  font-size: var(--label---small);
+  color: var(--secondary);
   margin-left: 5px;
-  border: 1px solid #5865f2;
+  border: 1px solid var(--secondary);
   border-radius: 12px;
   padding: 2px 6px;
 }
 
 .user-stats {
-  font-size: 0.9rem;
-  color: #777;
+  font-size: var(--paragraph---medium);
+  color: var(--contents--content-secondary);
+  margin-bottom: 1rem;
 }
 
+/* 아이콘 섹션 */
 .icon-section {
   display: flex;
   justify-content: space-around;
+  width: 100%;
   margin-top: 1rem;
 }
 
@@ -60,12 +76,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 0.9rem;
-  color: #333;
+  font-size: var(--label---medium);
+  color: var(--contents--content-primary);
 }
 
 .icon svg {
-  width: 24px;
-  height: 24px;
+  width: 50px;
+  height: 50px;
   margin-bottom: 5px;
 }
