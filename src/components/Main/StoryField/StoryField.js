@@ -4,6 +4,9 @@ import s from '/src/components/Main/StoryField/StoryField.css?inline';
 export class StoryField extends LitElement {
   static properties = {
     image: { type: String },
+    title: { type: String },
+    content: { type: String },
+    author: { type: String },
   };
 
   constructor() {
@@ -16,11 +19,11 @@ export class StoryField extends LitElement {
         ${s}
       </style>
       <div class="story-field">
-        <img src="/src/assets/MainSwiper.png" alt="" />
+        <img src="${this.image}" alt="" />
 
         <div class="text-field">
-          <p class="text">Story ContentStory</p>
-          <p class="acthor">Acthor</p>
+          <p class="text">${this.title}</p>
+          <p class="acthor">${this.author}</p>
         </div>
       </div>
     `;
