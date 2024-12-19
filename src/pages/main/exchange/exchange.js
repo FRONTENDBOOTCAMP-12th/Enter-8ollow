@@ -3,6 +3,7 @@ import '/src/components/Main/Like/Like';
 import '/src/components/Main/ListItem/ListItem';
 import '/src/components/Main/PlusButton/PlusButton';
 import s from '/src/pages/main/exchange/exchange.css?inline';
+import defaultImage from '/src/assets/logo.svg';
 
 export default class ExchangeLayout extends LitElement {
   static get properties() {
@@ -36,7 +37,7 @@ export default class ExchangeLayout extends LitElement {
   // 이미지 URL 생성
   getImageURL(item) {
     if (!item || !item.image) {
-      return '/src/assets/logo.svg'; // 기본 이미지 경로 반환
+      return defaultImage; // 기본 이미지 경로 반환
     }
     return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.image}`;
   }
