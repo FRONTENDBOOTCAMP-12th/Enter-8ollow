@@ -68,6 +68,13 @@ body.modal-overlay::before {
   z-index: 9999; /* 최상단으로 배치 */
 }
 
-.main-button-container .category.selected::after {
-  opacity: 1;
+board-theme-list {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  bottom: 68px;
+}
+
+.hidden {
+  display: none;
 }

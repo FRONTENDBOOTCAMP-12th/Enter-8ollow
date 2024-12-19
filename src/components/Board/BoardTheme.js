@@ -1,37 +1,43 @@
-import { LitElement, html } from "lit";
+import { LitElement, html } from 'lit';
 
-class BoardTheme extends LitElement{
+class BoardTheme extends LitElement {
   static properties = {
-    imgLink : { type: String },
+    imgLink: { type: String },
     imgAlt: { type: String },
-    text : {type: String}
-  }
+    text: { type: String },
+  };
 
   constructor() {
     super();
     this.text = 'text';
-    this.imgLink = 'https://via.placeholder.com/34';
-    this.imgAlt = '샘플 이미지'
+    this.imgLink = '';
+    this.imgAlt = '샘플 이미지';
   }
 
   render() {
-    return html`
-    <style>
-      img {
-        width:2.125rem;
-        height:2.125rem;
-        border-radius: 6px;
-      }
+    return html` <style>
+        .theme {
+          width: 2.125rem;
+          height: 2.125rem;
+          border-radius: 6px;
+          background-color: gray;
+        }
 
-      img, p {
-      display: inline-block;  
-      vertical-align: middle; 
-      }
+        .theme,
+        p {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        p {
+          margin: 0;
+          color: var(--white);
+          font-size: var(--paragraph---medium);
+        }
+      </style>
 
-    </style>
-    
-    <img src='${this.imgLink}' alt='${this.imgAlt}'/>
-    <p>${this.text}</p>`
+      <!-- <img src="${this.imgLink}" alt="${this.imgAlt}" /> -->
+      <div class="theme"></div>
+      <p>${this.text}</p>`;
   }
 }
 

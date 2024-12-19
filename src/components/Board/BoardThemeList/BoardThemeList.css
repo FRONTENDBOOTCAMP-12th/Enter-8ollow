@@ -1,0 +1,47 @@
+.board-theme-container {
+  background-color: var(--primary);
+  padding-inline: 0.625rem;
+  padding-bottom: 0.5rem;
+  border-radius: 10px 10px 0 0;
+}
+board-theme {
+  display: block;
+  padding-block: 0.75rem;
+  position: relative;
+}
+hgroup {
+  padding-top: 16px;
+  padding-bottom: 14px;
+}
+h4 {
+  margin: 0;
+
+  padding-bottom: 4px;
+  font-size: var(--label---medium);
+  color: var(--background);
+  font-weight: 300;
+}
+p {
+  margin: 0;
+
+  font-size: var(--paragraph---small);
+  color: var(--contents--content-secondary);
+}
+
+.join::after {
+  width: 4.25rem;
+  height: 1.75rem;
+  border-radius: 8px;
+  content: '참여중';
+  background-color: var(--components--component-theme);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--secondary);
+  font-size: var(--paragraph---small);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
