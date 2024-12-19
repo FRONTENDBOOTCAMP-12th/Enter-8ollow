@@ -1,19 +1,21 @@
-const qnaTitle = document.getElementById('qnaTitle');
-const qnaContent = document.getElementById('qnaContent');
-const completeButton = document.getElementById('completeButton');
+import { LitElement, html } from 'lit';
+// import styles from '/src/components/finished/finished.css';
 
-function updateButtonState(state) {
-  completeButton.classList.toggle('active', state);
-  completeButton.classList.toggle('inactive', !state);
-}
+class FinishedComponent extends LitElement {
+  constructor() {
+    super();
+    this.cssPath = './../../components/finished/finished.css';
+  }
 
-function isWritten() {
-  if (qnaTitle.value !== '' && qnaContent.value !== '') {
-    updateButtonState(true);
-  } else if (qnaTitle.value === '' || qnaContent.value === '') {
-    updateButtonState(false);
+  render() {
+    return html`
+      <link rel="stylesheet" href="${this.cssPath}" />
+      <button id="completeButton" type="submit" class="inactive" disabled>
+        완료
+      </button>
+    `;
   }
 }
 
-// qnaTitle.addEventListener('input', isWritten);
-// qnaContent.addEventListener('input', isWritten);
+customElements.define('finished-component', FinishedComponent);
+
