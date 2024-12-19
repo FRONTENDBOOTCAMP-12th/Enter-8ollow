@@ -28,8 +28,6 @@ class Board extends LitElement {
 
     let postArray = records.items.map((item) => item.expand);
 
-    console.log(postArray);
-
     postArray.forEach((item) => {
       if (item.qna) {
         const { id, category, content, created, place, title, viewCount, img } =
@@ -137,19 +135,18 @@ class Board extends LitElement {
       <style>
         ${s}
       </style>
+
       <div class="main-button-container">
         <main-button
           class="category"
           name="주제"
-          onclick="this.classList.toggle('selected')"
+          onclick="document.querySelector('board-page').shadowRoot.querySelector('board-theme-list').classList.toggle('hidden')"
         ></main-button>
         <main-button name="인기글"></main-button>
         <main-button name="같이해요"></main-button>
         <main-button name="질의응답"> </main-button>
         <main-button name="자유게시판"></main-button>
       </div>
-
-      ${this.postDetailArray}
 
       <ul class="board-field-container">
         ${this.postDetailArray.map(
@@ -179,6 +176,7 @@ class Board extends LitElement {
       </ul>
       <region-menu></region-menu>
       <base-header></base-header>
+      <board-theme-list id="board-theme-list" class="hidden"></board-theme-list>
     `;
   }
 }
