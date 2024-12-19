@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import s from '/src/pages/Cartegory/Cartegory.css?inline';
+import s from '/src/pages/cartegory/cartegory.css?inline';
 import search from '/src/assets/common/cartegory/search.svg';
 
 class Cartegory extends LitElement {

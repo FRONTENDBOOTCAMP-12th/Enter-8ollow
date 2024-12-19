@@ -14,6 +14,7 @@ header {
   bottom: 0;
   left: 0;
   width: 100%;
+  z-index: 10;
 
   & ul {
     align-items: center;
@@ -24,7 +25,7 @@ header {
 
     display: grid; /* Grid 레이아웃 사용 */
     grid-template-columns: repeat(5, 1fr); /* 5개의 동일한 너비 열을 설정 */
-    gap: 40px;
+    gap: 25px;
   }
 
   & li {
