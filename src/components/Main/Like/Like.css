@@ -23,6 +23,11 @@
   color: var(--contents--content-primary, #000000); /* 기본 색상 */
   cursor: pointer;
   gap: 2px;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--tertiary, #719cf7);
+  }
 }
 
 .heart-icon {

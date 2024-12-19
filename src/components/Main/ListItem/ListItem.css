@@ -60,4 +60,10 @@ ul {
   position: absolute;
   right: 12px;
   bottom: 12px;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--tertiary, #719cf7);
+    border: 3px;
+  }
 }
