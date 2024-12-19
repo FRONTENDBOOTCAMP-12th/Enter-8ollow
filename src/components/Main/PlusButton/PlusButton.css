@@ -74,7 +74,6 @@
         background-color 0.3s,
         transform 0.2s;
 
-      /* 키보드 접근 시 focus 스타일 */
       &:focus-visible {
         outline: none;
         box-shadow: 0 0 0 3px var(--tertiary, #719cf7);

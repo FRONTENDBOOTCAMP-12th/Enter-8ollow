@@ -16,9 +16,8 @@ export class PlusButton extends LitElement {
     this.requestUpdate();
   }
 
-  handleKeyPress(event) {
-    // Enter 또는 Space 키를 누르면 클릭 이벤트와 동일하게 동작
-    if (event.key === 'Enter' || event.key === ' ') {
+  handleKeyPress(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
       this.handleClick();
     }
   }
