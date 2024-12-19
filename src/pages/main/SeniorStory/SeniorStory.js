@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import styles from '/src/pages/Main/SeniorStory/SeniorStory.css?inline';
+import styles from '/src/pages/main/SeniorStory/SeniorStory.css?inline';
 
 import {} from '/src/components/index.js';
 
