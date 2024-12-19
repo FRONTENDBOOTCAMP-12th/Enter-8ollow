@@ -106,7 +106,7 @@ class Login extends LitElement {
           icon: 'success',
           confirmButtonText: '닫기',
         }).then((res) => {
-          location.href = '/src/pages/main/exchange.html';
+          location.href = '/src/pages/main/';
         });
       }
     } catch {
