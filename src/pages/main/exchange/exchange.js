@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import '/src/components/Main/Like/Like';
 import '/src/components/Main/ListItem/ListItem';
 import '/src/components/Main/PlusButton/PlusButton';
-import s from '/src/pages/main/exchange.css?inline';
+import s from '/src/pages/main/exchange/exchange.css?inline';
 
 export default class ExchangeLayout extends LitElement {
   static get properties() {
@@ -25,7 +25,9 @@ export default class ExchangeLayout extends LitElement {
       );
       const data = await response.json();
       console.log('서버에서 받은 전체 데이터:', data);
-      this.items = data.items || [];
+
+      // 클라이언트에서 역순 정렬
+      this.items = (data.items || []).reverse();
     } catch (error) {
       console.error('데이터 가져오기 실패:', error);
     }
@@ -34,7 +36,7 @@ export default class ExchangeLayout extends LitElement {
   // 이미지 URL 생성
   getImageURL(item) {
     if (!item || !item.image) {
-      return '/src/assets/test/test2.png'; // 기본 이미지 경로 반환
+      return '/src/assets/logo.svg'; // 기본 이미지 경로 반환
     }
     return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.image}`;
   }
