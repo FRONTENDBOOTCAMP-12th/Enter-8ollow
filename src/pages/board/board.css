@@ -1,9 +1,9 @@
 .main-button-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.2rem;
-
-  grid-auto-flow: row;
+  width: 100%;
+  grid-template-columns: repeat(5, auto);
+  justify-content: start;
+  gap: 2px;
 
   padding-bottom: 0.5rem;
 
