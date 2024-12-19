@@ -148,8 +148,6 @@ class Board extends LitElement {
         <main-button name="자유게시판"></main-button>
       </div>
 
-      ${this.postDetailArray}
-
       <ul class="board-field-container">
         ${this.postDetailArray.map(
           (item) => html`

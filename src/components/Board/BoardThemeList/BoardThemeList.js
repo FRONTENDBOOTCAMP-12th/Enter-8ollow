@@ -8,7 +8,6 @@ class BoardThemeList extends LitElement {
 
   firstUpdated() {
     const customElements = this.shadowRoot.querySelectorAll('board-theme');
-    console.log(customElements);
 
     customElements.forEach((customElement) => {
       customElement.addEventListener('click', function () {
