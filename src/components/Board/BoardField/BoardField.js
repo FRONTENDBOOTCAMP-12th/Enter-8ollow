@@ -10,6 +10,9 @@ class BoardField extends LitElement {
     gender: { type: String },
     meetDay: { type: String },
     imgLink: { type: String },
+    description: { type: String },
+    time: { type: String },
+    viewCount: { type: Number },
   };
 
   constructor() {
@@ -22,6 +25,9 @@ class BoardField extends LitElement {
     this.meetDay = '';
     this.classType = 'freeForm';
     this.imgLink = '/src/assets/board/example.png';
+    this.description = '어쩌고 저쩌고...';
+    this.time = '4분전';
+    this.viewCount = 4;
   }
 
   render() {
@@ -38,9 +44,13 @@ class BoardField extends LitElement {
                   gender=${this.gender}
                   meetDay=${this.meetDay}
                 ></board-info-items>
-                <span class="meet-location">${this.location}</span>`
-            : html`<span>어쩌고저쩌고...</span>
-                <span class="meet-location">${this.location}</span>`}
+                <span class="meet-location"
+                  >${this.location}·${this.time}·조회 ${this.viewCount}</span
+                >`
+            : html`<span>${this.description}</span>
+                <span class="meet-location"
+                  >${this.location}·${this.time}·조회 ${this.viewCount}</span
+                >`}
         </div>
         ${this.text === '같이해요'
           ? html` <board-person text="${this.personCount}"></board-person>`

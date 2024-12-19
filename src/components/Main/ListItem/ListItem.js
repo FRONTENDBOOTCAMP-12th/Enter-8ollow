@@ -28,6 +28,10 @@ class ListItem extends LitElement {
     };
   }
 
+  constructor() {
+    super();
+  }
+
   render() {
     return html`
       <style>
@@ -36,7 +40,7 @@ class ListItem extends LitElement {
       <div class="list-item">
         <figure>
           <img
-            src="${this.getImageURL()}"
+            src="${this.item.image}"
             alt="${this.item.title || '상품 이미지'}"
           />
         </figure>
@@ -57,13 +61,6 @@ class ListItem extends LitElement {
         </div>
       </div>
     `;
-  }
-
-  getImageURL(item) {
-    if (!item || !item.image) {
-      return '/src/assets/test/test2.png'; // 기본 이미지 경로 반환
-    }
-    return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.image}`;
   }
 }
 

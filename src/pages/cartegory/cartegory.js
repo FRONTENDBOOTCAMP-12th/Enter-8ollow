@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
-import s from '/src/pages/Cartegory/Cartegory.css?inline';
+import s from '/src/pages/cartegory/cartegory.css?inline';
+import search from '/src/assets/common/cartegory/search.svg';
 
 class Cartegory extends LitElement {
   static properties = {
@@ -65,7 +66,7 @@ class Cartegory extends LitElement {
             <back-component></back-component>
             <div class="search-container">
               <span class="search-icon">
-                <img src="/src/assets/common/cartegory/search.svg" alt="검색" />
+                <img src="${search}" alt="검색" />
               </span>
               <input
                 type="text"

@@ -5,15 +5,27 @@
     <link rel="icon" type="/" href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>main page</title>
-    <link rel="stylesheet" href="./src/index.css" />
+    <link rel="stylesheet" href="/src/style/index.css" />
     <link rel="stylesheet" href="/src/style/reset.css" />
     <link rel="stylesheet" href="/src/style/variable.css" />
     <script type="module" src="/src/pages/main/index.js"></script>
+    <script type="module" src="/src/main.js"></script>
   </head>
   <body>
-    <h1>main page</h1>
-    <hr />
-
+    <div class="time-celluar"></div>
+    <region-menu></region-menu>
     <nav-items></nav-items>
+
+    <swiper-container loop="true">
+      <swiper-slide>
+        <senior-story></senior-story>
+      </swiper-slide>
+      <swiper-slide>
+        <exchange-layout></exchange-layout>
+      </swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+      <swiper-slide>Slide 4</swiper-slide>
+    </swiper-container>
+    <base-header></base-header>
   </body>
 </html>
