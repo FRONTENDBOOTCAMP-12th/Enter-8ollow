@@ -1,10 +1,8 @@
-import { LitElement, html } from 'lit';
-import s from './profile-temperature.css?inline';
+import { LitElement, html, css } from 'lit';
+import s from '/src/components/Profile/profile-temperature/profile-temperature.css?inline';
 import pb from '/src/api/pocketbase';
 
 class ProfileTemperature extends LitElement {
-  static styles = s;
-
   static properties = {
     userId: { type: String }, // 사용자 ID
     initialTemp: { type: Number }, // 초기 온도
@@ -13,7 +11,7 @@ class ProfileTemperature extends LitElement {
 
   constructor() {
     super();
-    this.userId = 'no4l9i8a06plv7f'; // 예시 사용자 ID
+    this.userId = 'no4l9i8q06plv7f'; // 예시 사용자 ID
     this.initialTemp = 36.5; // 초기 온도
     this.currentTemp = this.initialTemp; // 현재 온도 초기화
   }
@@ -26,13 +24,31 @@ class ProfileTemperature extends LitElement {
   // 특정 사용자 ID로 데이터 가져오기
   async fetchDataById() {
     try {
-      const record = await pb.collection('profile').getOne(this.userId);
+      const record = await pb.collection('profile').getOne('no4l9i8q06plv7f');
+
+      console.log(record);
+
       const exchangeComment = record?.exchange_comment || 0;
 
       // 온도 계산 및 업데이트
       this.calculateTemperature(exchangeComment);
     } catch (error) {
       console.error('Error fetching data:', error);
+    }
+  }
+
+  async fetchData() {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_PB_API}/collections/profile/records`
+      );
+      const data = await response.json();
+      console.log('서버에서 받은 전체 데이터:', data);
+
+      // 클라이언트에서 역순 정렬
+      this.items = (data.items || []).reverse();
+    } catch (error) {
+      console.error('데이터 가져오기 실패:', error);
     }
   }
 
@@ -55,6 +71,9 @@ class ProfileTemperature extends LitElement {
 
   render() {
     return html`
+      <style>
+        ${s}
+      </style>
       <div class="manner-temp-container">
         <!-- 열정 온도 헤더 -->
         <div class="manner-header">열정온도 ℹ</div>
