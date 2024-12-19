@@ -28,8 +28,6 @@ class Board extends LitElement {
 
     let postArray = records.items.map((item) => item.expand);
 
-    console.log(postArray);
-
     postArray.forEach((item) => {
       if (item.qna) {
         const { id, category, content, created, place, title, viewCount, img } =
