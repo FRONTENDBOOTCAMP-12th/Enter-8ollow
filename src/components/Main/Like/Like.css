@@ -23,6 +23,12 @@
   color: var(--contents--content-primary, #000000); /* 기본 색상 */
   cursor: pointer;
   gap: 2px;
+
+  /* 키보드 접근 시 focus 스타일 */
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--tertiary, #719cf7);
+  }
 }
 
 .heart-icon {
