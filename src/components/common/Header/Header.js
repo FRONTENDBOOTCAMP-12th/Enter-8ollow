@@ -16,6 +16,7 @@ class BaseHeader extends LitElement {
   static properties = {
     checked: { type: Number },
     index: { type: Number },
+    urlChecked: { type: Number },
   };
 
   constructor() {
@@ -27,6 +28,12 @@ class BaseHeader extends LitElement {
     link.href = '/src/components/Header.css';
 
     shadowRoot.appendChild(link);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    this.urlChecked = urlParams.get('checked');
+    if (this.urlChecked) {
+      this.checked = parseInt(this.urlChecked);
+    }
   }
 
   toggleClass(index) {
@@ -42,7 +49,7 @@ class BaseHeader extends LitElement {
       <header>
         <ul>
           <li @click="${() => this.toggleClass(0)}">
-            <a href="/src/pages/main/">
+            <a href="/src/pages/main/?checked=${this.checked}">
               <img
                 alt="홈"
                 src="${this.checked === 0 ? `${fullHome}` : `${home}`}"
@@ -52,7 +59,7 @@ class BaseHeader extends LitElement {
             </a>
           </li>
           <li @click=${() => this.toggleClass(1)}>
-            <a href="/src/pages/board/board.html">
+            <a href="/src/pages/board/board.html?checked=${this.checked}">
               <img
                 alt="게시판"
                 src="${this.checked === 1 ? `${fullBoard}` : `${board}`}"
