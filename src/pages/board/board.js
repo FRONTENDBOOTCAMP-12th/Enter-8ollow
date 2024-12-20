@@ -112,7 +112,7 @@ class Board extends LitElement {
       } else {
         console.error('dom 요소들을 찾지 못했습니다.');
       }
-    }, 300); // 300ms 후에 중첩된 두 번째 shadowRoot에 접근
+    }, 100); // 100ms 후에 중첩된 두 번째 shadowRoot에 접근
   }
 
   render() {
