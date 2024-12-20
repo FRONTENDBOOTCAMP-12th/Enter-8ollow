@@ -21,6 +21,12 @@ h4 {
   color: var(--background);
   font-weight: 300;
 }
+
+svg {
+  position: absolute;
+  top: 16px;
+  right: 12px;
+}
 p {
   margin: 0;
 

@@ -3,3 +3,8 @@
   height: 37px;
   /* background-color: red; */
 }
+
+body {
+  padding-bottom: 4.375rem;
+  padding-block-end: 4.375rem;
+}
