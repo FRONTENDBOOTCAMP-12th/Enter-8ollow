@@ -15,6 +15,7 @@ const config = defineConfig({
         login: resolve(__dirname, 'src/pages/Login/index.html'),
         register: resolve(__dirname, 'src/pages/register/index.html'),
         main: resolve(__dirname, 'src/pages/main/index.html'),
+        profile: resolve(__dirname, 'src/components/Profile/index1.html'),
       },
     },
   },
