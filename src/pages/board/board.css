@@ -1,6 +1,6 @@
 .main-button-container {
   display: grid;
-  width: 100%;
+
   grid-template-columns: repeat(5, auto);
   justify-content: start;
   gap: 2px;
@@ -12,7 +12,7 @@
   padding-inline: 0.3125rem;
   padding-top: 4.75rem;
 
-  position: fixed;
+  position: sticky;
   top: 0;
   z-index: 2;
 
@@ -29,10 +29,9 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  margin-top: 124px;
+  margin-bottom: 70px;
 
   overflow-y: auto;
-  max-height: calc(100vh - 130px);
 }
 
 li {
@@ -69,7 +68,7 @@ body.modal-overlay::before {
 }
 
 board-theme-list {
-  position: absolute;
+  position: fixed;
   width: 100%;
   z-index: 1;
   bottom: 68px;
