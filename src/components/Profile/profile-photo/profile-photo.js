@@ -12,7 +12,7 @@ class ProfileHeader extends LitElement {
         <!-- 프로필 이미지 -->
         <div class="profile-image-container">
           <img
-            src="/src/assets/test/test2.png"
+            src="/src/assets/MainSwiper.png"
             alt="Profile Image"
             class="profile-image"
           />
