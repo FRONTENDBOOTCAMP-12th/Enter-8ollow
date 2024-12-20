@@ -30,13 +30,11 @@ class SeniorStory extends LitElement {
 
   // 이미지 URL 생성
   getImageURL(item) {
-    console.log('아이템:', item);
-    if (!item || !item.image) {
-      console.log('이미지 없음');
+    console.log(item.iamge);
+    if (!item || !item.iamge) {
       return '/src/assets/test/test2.png'; // 기본 이미지 경로 반환
     }
-    console.log('이미지 있음');
-    return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.image}`;
+    return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.iamge}`;
   }
 
   render() {
