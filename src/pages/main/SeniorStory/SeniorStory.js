@@ -3,6 +3,8 @@ import styles from '/src/pages/main/SeniorStory/SeniorStory.css?inline';
 
 import {} from '/src/components/index.js';
 
+import image from '/src/assets/logo.svg';
+
 class SeniorStory extends LitElement {
   static get properties() {
     return {
@@ -32,9 +34,13 @@ class SeniorStory extends LitElement {
   getImageURL(item) {
     console.log(item.iamge);
     if (!item || !item.iamge) {
-      return '/src/assets/test/test2.png'; // 기본 이미지 경로 반환
+      return `${image}`;
     }
     return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.iamge}`;
+  }
+
+  handleClick(id) {
+    location.href = `/src/pages/main/SeniorDetail/?story=${id}`;
   }
 
   render() {
@@ -52,6 +58,7 @@ class SeniorStory extends LitElement {
                   title="${item.title}"
                   content="${item.content}"
                   author="${item.author}"
+                  @click="${() => this.handleClick(item.id)}"
                 ></story-field>
               `
             )

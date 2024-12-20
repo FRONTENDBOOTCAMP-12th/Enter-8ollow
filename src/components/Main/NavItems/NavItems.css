@@ -7,7 +7,7 @@
   white-space: nowrap;
   overflow: hidden;
   position: sticky;
-  top: -1px;
+  top: 50px;
   z-index: 10;
 }
 

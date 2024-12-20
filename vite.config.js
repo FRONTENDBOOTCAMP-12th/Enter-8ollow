@@ -17,6 +17,7 @@ const config = defineConfig({
         main: resolve(__dirname, 'src/pages/main/index.html'),
         board: resolve(__dirname, 'src/pages/board/board.html'),
         exchange: resolve(__dirname, 'src/pages/main/exchange/exchange.html'),
+        profile: resolve(__dirname, 'src/pages/profile/index.html'),
       },
     },
   },

@@ -2,6 +2,8 @@ import { LitElement, html } from 'lit';
 import { register } from 'swiper/element/bundle';
 import styles from '/src/components/Main/SwiperComponent/SwiperComponent.css?inline';
 
+import mainImage from '/src/assets/MainSwiper.png';
+
 register();
 
 class SwiperComponent extends LitElement {
@@ -31,7 +33,7 @@ class SwiperComponent extends LitElement {
 
           <div class="image-container">
             <img
-              src="/src/assets/MainSwiper.png"
+              src="${mainImage}"
               alt="두 명의 남자가 어꺠동무를 하고 파이팅 하고 있는 모습"
             />
           </div>
