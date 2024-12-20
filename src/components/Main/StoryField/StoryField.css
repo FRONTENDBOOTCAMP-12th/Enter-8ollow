@@ -1,6 +1,7 @@
 .story-field {
   display: inline-block;
   margin: 10px;
+  font-size: var(--paragraph---small);
 
   img {
     background-color: var(--contents--content-secondary);
@@ -16,7 +17,6 @@
   }
 
   .acthor {
-    font-size: var(--paragraph---small);
     color: var(--contents--content-secondary);
   }
 }
