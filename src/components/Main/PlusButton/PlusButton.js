@@ -16,9 +16,8 @@ export class PlusButton extends LitElement {
     this.requestUpdate();
   }
 
-  handleKeyPress(event) {
-    // Enter 또는 Space 키를 누르면 클릭 이벤트와 동일하게 동작
-    if (event.key === 'Enter' || event.key === ' ') {
+  handleKeyPress(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
       this.handleClick();
     }
   }
@@ -50,9 +49,9 @@ export class PlusButton extends LitElement {
       <ul class="exchange-button-list ${this.active ? 'visible' : ''}">
         <li>
           <a
-            role="button"
             href="/"
             class="exchange-button"
+            role="button"
             tabindex="0"
             @keydown="${this.handleKeyPress}"
           >
@@ -61,9 +60,9 @@ export class PlusButton extends LitElement {
         </li>
         <li>
           <a
-            role="button"
             href="/"
             class="exchange-button"
+            role="button"
             tabindex="0"
             @keydown="${this.handleKeyPress}"
           >
@@ -94,9 +93,9 @@ export class PlusButton extends LitElement {
         </li>
         <li>
           <a
-            role="button"
             href="/"
             class="exchange-button"
+            role="button"
             tabindex="0"
             @keydown="${this.handleKeyPress}"
           >

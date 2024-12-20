@@ -30,6 +30,12 @@ class LikeCounter extends LitElement {
     );
   }
 
+  handleKeyPress(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      this.handleClick();
+    }
+  }
+
   render() {
     return html`
       <style>
@@ -42,8 +48,9 @@ class LikeCounter extends LitElement {
           aria-pressed="${this.liked}"
           aria-label="좋아요 버튼"
           @click="${this.toggleLike}"
+          @keydown="${this.handleKeyPress}"
         >
-          <img src="${heartIcon}" alt="Heart Icon" class="heart-icon" />
+          <img src="${heartIcon}" class="heart-icon" alt="하트 아이콘" />
           <span class="count">${this.liked_count}</span>
         </button>
       </div>
