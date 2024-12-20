@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import styles from '/src/components/Main/ListItem/ListItem.css?inline';
+import s from '/src/components/Main/ListItem/ListItem.css?inline';
 import '/src/components/Main/State/State';
 import '/src/components/Main/Like/Like';
 
@@ -35,7 +35,7 @@ class ListItem extends LitElement {
   render() {
     return html`
       <style>
-        ${styles}
+        ${s}
       </style>
       <div class="list-item">
         <figure>

@@ -2,6 +2,9 @@ import { LitElement, html } from 'lit';
 import pb from '/src/api/pocketbase';
 import s from '/src/components/Main/RegionMenu/RegionMenu.css?inline';
 
+import search from '/src/assets/search.svg';
+import hamburger from '/src/assets/hamburger.svg';
+import alramBell from '/src/assets/alramBell.svg';
 class RegionMenu extends LitElement {
   static properties = {
     isActive: { type: Boolean },
@@ -135,9 +138,9 @@ class RegionMenu extends LitElement {
         </ul>
 
         <div class="menu-container">
-          <a href="/"><img src="/src/assets/search.svg" alt="검색" /></a>
-          <a href="/"><img src="/src/assets/hamburger.svg" alt="전체메뉴" /></a>
-          <a href="/"><img src="/src/assets/alramBell.svg" alt="알림" /></a>
+          <a href="/"><img src="${search}" alt="검색" /></a>
+          <a href="/"><img src="${hamburger}" alt="전체메뉴" /></a>
+          <a href="/"><img src="${alramBell}" alt="알림" /></a>
         </div>
       </nav>
     `;

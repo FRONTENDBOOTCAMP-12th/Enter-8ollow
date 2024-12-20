@@ -19,14 +19,6 @@ export class NavItems extends LitElement {
       '/',
     ];
     this.activeIndex = 0;
-    this.setActiveIndex();
-  }
-
-  // 현재 URL을 기반으로 activeIndex를 설정하는 함수
-  setActiveIndex() {
-    const currentPath = window.location.pathname;
-    this.activeIndex = this.links.findIndex((link) => link === currentPath);
-    if (this.activeIndex === -1) this.activeIndex = 0;
   }
 
   handleItemClick(index) {
@@ -44,13 +36,11 @@ export class NavItems extends LitElement {
       <div class="nav-items">
         ${this.items.map(
           (item, index) => html`
-            <a href="${this.links[index]}">
-              <nav-item
-                .label="${item}"
-                .isActive="${this.activeIndex === index}"
-                @click="${() => this.handleItemClick(index)}"
-              ></nav-item>
-            </a>
+            <nav-item
+              .label="${item}"
+              .isActive="${this.activeIndex === index}"
+              @click="${() => this.handleItemClick(index)}"
+            ></nav-item>
           `
         )}
       </div>

@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import styles from '/src/components/Main/PlusButton/PlusButton.css?inline';
+import s from '/src/components/Main/PlusButton/PlusButton.css?inline';
 
 export class PlusButton extends LitElement {
   static properties = {
@@ -26,7 +26,7 @@ export class PlusButton extends LitElement {
   render() {
     return html`
       <style>
-        ${styles} .exchange-button-list {
+        ${s} .exchange-button-list {
           display: none;
         }
         .exchange-button-list.visible {

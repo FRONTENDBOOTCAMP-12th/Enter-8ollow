@@ -1,6 +1,12 @@
 import { LitElement, html } from 'lit';
 import s from '/src/components/common/Header/Header.css?inline';
 
+import fullHome from '/src/assets/fullHome.svg';
+import board from '/src/assets/board.svg';
+import map from '/src/assets/map.svg';
+import chat from '/src/assets/chat.svg';
+import profile from '/src/assets/profile.svg';
+
 class BaseHeader extends LitElement {
   constructor() {
     super();
@@ -14,7 +20,6 @@ class BaseHeader extends LitElement {
   }
 
   render() {
-    console.log(s);
     return html`
       <style>
         ${s}
@@ -23,32 +28,32 @@ class BaseHeader extends LitElement {
         <ul>
           <li>
             <a target="_blank" rel="noreferrer noopener">
-              <img alt="홈" src="/src/assets/fullHome.svg" />
+              <img alt="홈" src="${fullHome}" />
               <p>홈</p>
               <p>${this.home}</p>
             </a>
           </li>
           <li>
             <a target="_blank" rel="noreferrer noopener">
-              <img alt="게시판" src="/src/assets/board.svg" />
+              <img alt="게시판" src="${board}" />
               <p>게시판</p>
             </a>
           </li>
           <li>
             <a target="_blank" rel="noreferrer noopener">
-              <img alt="내 근처" src="/src/assets/map.svg" />
+              <img alt="내 근처" src="${map}" />
               <p>내 근처</p>
             </a>
           </li>
           <li>
             <a target="_blank" rel="noreferrer noopener">
-              <img alt="채팅" src="/src/assets/chat.svg" />
+              <img alt="채팅" src="${chat}" />
               <p>채팅</p>
             </a>
           </li>
           <li>
             <a target="_blank" rel="noreferrer noopener">
-              <img alt="내 근처" src="/src/assets/profile.svg" />
+              <img alt="내 근처" src="${profile}" />
               <p>나의 이듬</p>
             </a>
           </li>
