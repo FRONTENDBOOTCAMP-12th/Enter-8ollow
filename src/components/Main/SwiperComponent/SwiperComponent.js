@@ -7,8 +7,43 @@ import mainImage from '/src/assets/MainSwiper.png';
 register();
 
 class SwiperComponent extends LitElement {
-  constructor() {
-    super();
+  static get properties() {
+    return {
+      swiperInstance: { type: Object },
+    };
+  }
+
+  firstUpdated() {
+    this.swiperInstance =
+      this.renderRoot.querySelector('swiper-container')?.swiper;
+    if (!this.swiperInstance) {
+      const swiperContainer = this.renderRoot.querySelector('swiper-container');
+      swiperContainer.addEventListener('swiper-init', () => {
+        this.swiperInstance = swiperContainer.swiper;
+        this.attachNavigation();
+      });
+    } else {
+      this.attachNavigation();
+    }
+  }
+
+  attachNavigation() {
+    const prevButton = this.renderRoot.querySelector('.prev');
+    const nextButton = this.renderRoot.querySelector('.next');
+
+    if (prevButton && nextButton && this.swiperInstance) {
+      prevButton.addEventListener('click', () => {
+        console.log('prev');
+        this.swiperInstance.slidePrev();
+      });
+
+      nextButton.addEventListener('click', () => {
+        console.log('next');
+        this.swiperInstance.slideNext();
+      });
+    } else {
+      console.error('버그발생 ');
+    }
   }
 
   render() {
@@ -16,7 +51,7 @@ class SwiperComponent extends LitElement {
       <style>
         ${styles}
       </style>
-      <swiper-container navigation="true" loop="true">
+      <swiper-container loop="true">
         <swiper-slide>
           <div class="text-container">
             <p class="title">
@@ -42,6 +77,9 @@ class SwiperComponent extends LitElement {
         <swiper-slide>Slide 3</swiper-slide>
         <swiper-slide>Slide 4</swiper-slide>
       </swiper-container>
+
+      <button class="next sr-only" type="button">다음 배너</button>
+      <button class="prev sr-only" type="button">이전 배너</button>
     `;
   }
 }

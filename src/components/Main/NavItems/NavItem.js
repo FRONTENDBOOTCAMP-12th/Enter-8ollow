@@ -18,7 +18,9 @@ export class NavItem extends LitElement {
       <style>
         ${s}
       </style>
-      <div class="nav-item ${this.isActive ? 'active' : ''}">${this.label}</div>
+      <button class="nav-item ${this.isActive ? 'active' : ''}">
+        ${this.label}
+      </button>
     `;
   }
 }
