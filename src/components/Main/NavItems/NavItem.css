@@ -1,3 +1,8 @@
+button {
+  cursor: pointer;
+  all: unset;
+}
+
 .nav-item {
   display: flex;
   align-items: center;
@@ -15,7 +20,7 @@
     color: var(--white, #ffffff);
     background: var(--primary, #373f67);
 
-    &::after {
+    &:after {
       content: '';
       position: absolute;
       bottom: 0;
@@ -25,5 +30,11 @@
       background-color: var(--tertiary, #719cf7);
       margin-bottom: -4px;
     }
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--tertiary, #719cf7);
+    border: 3px;
+    border-radius: 2px;
   }
 }

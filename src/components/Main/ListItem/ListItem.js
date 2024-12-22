@@ -32,11 +32,11 @@ class ListItem extends LitElement {
     super();
   }
 
-  handleKeyPress(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      this.handleClick();
-    }
-  }
+  // handleKeyPress(e) {
+  //   if (e.key === 'Enter' || e.key === ' ') {
+  //     this.handleClick();
+  //   }
+  // }
 
   // handleClick() {
   //   console.log('아이템 클릭:', this.item);
@@ -47,12 +47,7 @@ class ListItem extends LitElement {
       <style>
         ${s}
       </style>
-      <div
-        class="list-item"
-        tabindex="0"
-        @keydown="${this.handleKeyPress}"
-        @click="${this.handleClick}"
-      >
+      <div class="list-item" tabindex="0" @click="${this.handleClick}">
         <figure>
           <img
             src="${this.item.image}"
