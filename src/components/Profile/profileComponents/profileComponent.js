@@ -1,5 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import styles from './profile_compmnents.css?inline';
+import styles from './profileCompmnents.css?inline';
 
 class ProfileContents extends LitElement {
   // 속성 정의
