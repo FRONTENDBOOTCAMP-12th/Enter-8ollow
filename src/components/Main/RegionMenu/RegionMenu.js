@@ -1,14 +1,16 @@
 import { LitElement, html } from 'lit';
 import pb from '/src/api/pocketbase';
-import s from '/src/components/Main/MainRegionMenu/MainRegionMenu.css?inline';
-
+import { RegionMenuCSS } from './RegionMenuCSS';
 import search from '/src/assets/search.svg';
 import hamburger from '/src/assets/hamburger.svg';
 import alramBell from '/src/assets/alramBell.svg';
-class MainRegionMenu extends LitElement {
+
+class RegionMenu extends LitElement {
   static properties = {
     isActive: { type: Boolean },
   };
+
+  static styles = RegionMenuCSS;
 
   constructor() {
     super();
@@ -86,10 +88,6 @@ class MainRegionMenu extends LitElement {
 
   render() {
     return html`
-      <style>
-        ${s}
-      </style>
-
       <nav>
         <button type="button" class="region">
           <span class="region-name">${this.checkPlace}</span>
@@ -147,4 +145,4 @@ class MainRegionMenu extends LitElement {
   }
 }
 
-customElements.define('main-region-menu', MainRegionMenu);
+customElements.define('region-menu', RegionMenu);
