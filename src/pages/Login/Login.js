@@ -76,8 +76,18 @@ class Login extends LitElement {
     const input = e.composedPath().find((el) => el.tagName === 'INPUT');
     if (!input) return;
 
-    this.phoneNumberLength = input.value.length;
     this.phoneNumber = input.value;
+
+    this.disable = false;
+  }
+
+  handleAuthInput(e) {
+    const input = e.composedPath().find((el) => el.tagName === 'INPUT');
+    if (!input) return;
+
+    this.inputAuth = input.value;
+
+    this.disable = false;
   }
 
   async handleLogin(e) {
@@ -143,16 +153,7 @@ class Login extends LitElement {
             maxlength="13"
             placeholder="휴대폰번호(- 없이 숫자만 입력)"
             type="phoneNumber"
-            @input="${(e) => {
-              const input = e
-                .composedPath()
-                .find((el) => el.tagName === 'INPUT');
-              if (!input) return;
-
-              this.phoneNumberLength = input.value.length;
-              this.phoneNumber = input.value;
-              // console.log(this.phoneNumberLength);
-            }}"
+            @input="${this.handlePhoneNumberInput}"
           ></input-component>
 
           <auth-button
@@ -165,15 +166,7 @@ class Login extends LitElement {
             ? html`<input-component
                   placeholder="인증번호 입력"
                   maxlength="6"
-                  @input="${(e) => {
-                    const input = e
-                      .composedPath()
-                      .find((el) => el.tagName === 'INPUT');
-                    if (!input) return;
-
-                    this.authenticationNumber = input.value.length;
-                    this.inputAuth = input.value;
-                  }}"
+                  @input="${this.handleAuthInput}"
                 ></input-component>
                 <p class="info">Hint. 사실 인증번호는 콘솔에 뜹니다</p>
 
