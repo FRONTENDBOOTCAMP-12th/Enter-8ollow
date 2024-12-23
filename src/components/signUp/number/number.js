@@ -26,7 +26,7 @@ class InputComponent extends LitElement {
       </style>
       <div class="number-box">
         <input
-          type="text"
+          type="${this.type === 'phoneNumber' ? 'tel' : 'text'}"
           maxlength="${this.maxlength}"
           class="number-input"
           placeholder="${this.placeholder}"
@@ -35,6 +35,7 @@ class InputComponent extends LitElement {
           required
         />
         <span class="required"></span>
+        <label for=""></label>
       </div>
     `;
   }

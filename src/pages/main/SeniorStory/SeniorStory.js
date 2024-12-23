@@ -54,6 +54,7 @@ class SeniorStory extends LitElement {
           ? this.items.map(
               (item) => html`
                 <story-field
+                  tabindex="0"
                   image="${this.getImageURL(item)}"
                   title="${item.title}"
                   content="${item.content}"
