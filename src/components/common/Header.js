@@ -19,46 +19,57 @@ export class Header extends LitElement {
   };
 
   static styles = css`
-    .board-field {
-      background-color: var(--white);
-      padding: 0.75rem;
+    header {
+      width: 100%;
+      background-color: var(--background);
 
-      display: grid;
-      grid-template-columns: 1fr auto;
-      position: relative; /* 'position' 속성 설정 */
-      z-index: 1;
-    }
-    .content {
       display: flex;
-      flex-direction: column; /* 세로로 정렬 */
-    }
-    .board-field > board-person {
-      align-self: flex-start;
+      justify-content: center; /* 수평 가운데 정렬 */
+      align-items: center; /* 수직 가운데 정렬 */
+      padding-top: 0.5rem;
+      padding-bottom: 1.5rem;
 
-      padding-top: 4.375rem;
-      padding-right: 0.625rem;
-    }
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
 
-    h2 {
-      margin: 0;
+      & ul {
+        align-items: center;
 
-      font-size: var(--paragraph---medium);
-      line-height: 180%;
-      font-weight: 500;
-    }
+        list-style: none;
+        padding: 0;
+        margin: 0;
 
-    span {
-      line-height: 180%;
-      color: var(--contents--content-tertiary);
-      font-size: var(--paragraph---small);
-    }
+        display: grid; /* Grid 레이아웃 사용 */
+        grid-template-columns: repeat(5, 1fr); /* 5개의 동일한 너비 열을 설정 */
+        gap: 25px;
+      }
 
-    img {
-      width: 3.75rem;
-      height: 3.75rem;
+      & li {
+        list-style: none;
 
-      padding-top: 0;
-      border-radius: 4px;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      & a {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+
+        & img {
+          width: 1.25rem;
+          height: 1.25rem;
+          margin-bottom: 0;
+        }
+
+        & p {
+          margin: 0;
+          font-size: var(--paragraph---small);
+        }
+      }
     }
   `;
 
@@ -140,4 +151,4 @@ export class Header extends LitElement {
   }
 }
 
-customElements.define('header', Header);
+customElements.define('header-component', Header);

@@ -211,7 +211,7 @@ class Board extends LitElement {
         )}
       </ul>
       <region-menu></region-menu>
-      <base-header></base-header>
+      <header-component></header-component>
       <board-theme-list id="board-theme-list" class="hidden"></board-theme-list>
     `;
   }

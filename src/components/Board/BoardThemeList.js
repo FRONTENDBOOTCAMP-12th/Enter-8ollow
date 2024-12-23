@@ -1,5 +1,4 @@
 import { LitElement, html, css } from 'lit';
-import s from '/src/components/Board/BoardThemeList/BoardThemeList.css?inline';
 
 export class BoardThemeList extends LitElement {
   static styles = css`
@@ -72,9 +71,6 @@ export class BoardThemeList extends LitElement {
   }
   render() {
     return html`
-      <style>
-        ${s}
-      </style>
       <div class="board-theme-container">
         <hgroup>
           <h4>주제목록</h4>
