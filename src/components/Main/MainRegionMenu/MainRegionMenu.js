@@ -1,11 +1,11 @@
 import { LitElement, html } from 'lit';
 import pb from '/src/api/pocketbase';
-import s from '/src/components/Main/RegionMenu/RegionMenu.css?inline';
+import s from '/src/components/Main/MainRegionMenu/MainRegionMenu.css?inline';
 
 import search from '/src/assets/search.svg';
 import hamburger from '/src/assets/hamburger.svg';
 import alramBell from '/src/assets/alramBell.svg';
-class RegionMenu extends LitElement {
+class MainRegionMenu extends LitElement {
   static properties = {
     isActive: { type: Boolean },
   };
@@ -147,4 +147,4 @@ class RegionMenu extends LitElement {
   }
 }
 
-customElements.define('region-menu', RegionMenu);
+customElements.define('main-region-menu', MainRegionMenu);

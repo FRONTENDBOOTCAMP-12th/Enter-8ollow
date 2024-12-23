@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/common/Header/Header.css?inline';
+import s from '/src/components/common/CommonNavItems/CommonNavItems.css?inline';
 
 import fullHome from '/src/assets/fullHome.svg';
 import home from '/src/assets/home.svg';
@@ -12,7 +12,7 @@ import chat from '/src/assets/chat.svg';
 import fullProfile from '/src/assets/fullMy.svg';
 import profile from '/src/assets/profile.svg';
 
-class BaseHeader extends LitElement {
+class CommonNavItems extends LitElement {
   static properties = {
     checked: { type: Number },
     index: { type: Number },
@@ -100,4 +100,4 @@ class BaseHeader extends LitElement {
   }
 }
 
-customElements.define('base-header', BaseHeader);
+customElements.define('common-nav-items', CommonNavItems);
