@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/Main/PlusButton/PlusButton.css?inline';
+import reset from '/src/style/reset.js';
+import ListItemCSS from '/src/components/Main/PlusButton/PlusButtonCSS';
 
 export class PlusButton extends LitElement {
   static properties = {
@@ -22,16 +23,13 @@ export class PlusButton extends LitElement {
     }
   }
 
+  static get styles() {
+    return [reset, ListItemCSS];
+  }
+
   render() {
     return html`
-      <style>
-        ${s} .exchange-button-list {
-          display: none;
-        }
-        .exchange-button-list.visible {
-          display: block;
-        }
-      </style>
+      >
       <!-- 버튼 -->
       <button
         class="plus-button"

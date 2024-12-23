@@ -1,7 +1,6 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/Main/ListItem/ListItem.css?inline';
-import '/src/components/Main/State/State';
-import '/src/components/Main/Like/Like';
+import ListItemCSS from '/src/components/Main/ListItem/ListItemCSS';
+import heartIcon from '/src/assets/heart.svg';
 
 function elapsedTime(created) {
   const createTimestamp = new Date(created);
@@ -22,32 +21,56 @@ function elapsedTime(created) {
 }
 
 class ListItem extends LitElement {
-  static get properties() {
-    return {
-      item: { type: Object },
-    };
-  }
+  static properties = {
+    item: { type: Object },
+    liked: { type: Boolean },
+    liked_count: { type: Number },
+  };
+
+  static styles = ListItemCSS;
 
   constructor() {
     super();
+    this.item = {};
+    this.liked = false;
+    this.liked_count = 0;
   }
 
-  // handleKeyPress(e) {
-  //   if (e.key === 'Enter' || e.key === ' ') {
-  //     this.handleClick();
-  //   }
-  // }
+  toggleLike() {
+    this.liked = !this.liked;
+    this.liked_count += this.liked ? 1 : -1;
+    this.dispatchEvent(
+      new CustomEvent('like-toggled', {
+        detail: { liked: this.liked },
+        bubbles: true,
+        composed: true,
+      })
+    );
+  }
 
-  // handleClick() {
-  //   console.log('아이템 클릭:', this.item);
-  // }
+  handleKeyPress(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      this.toggleLike();
+    }
+  }
+
+  get displayStatus() {
+    const status = this.item.state?.trim().toLowerCase();
+    if (status === 'reserved') return '예약중';
+    if (status === 'complete') return '거래 완료';
+    return ''; // 판매중 상태일 때 빈 값 반환
+  }
+
+  get formattedPrice() {
+    return this.item.price ? `${this.item.price.toLocaleString()}원` : '';
+  }
 
   render() {
+    const isAvailable = this.item.state?.trim().toLowerCase() === 'available';
+    const statusClass = isAvailable ? 'hidden' : `status ${this.item.state}`;
+
     return html`
-      <style>
-        ${s}
-      </style>
-      <div class="list-item" tabindex="0" @click="${this.handleClick}">
+      <div class="list-item" tabindex="0">
         <figure>
           <img
             src="${this.item.image}"
@@ -62,12 +85,25 @@ class ListItem extends LitElement {
               ${elapsedTime(this.item.created)}
             </li>
             <li>
-              <main-state
-                status="${this.item.state || 'available'}"
-                price="${this.item.price || 0}"
-              ></main-state>
+              <div class="container">
+                <div class="${statusClass}">${this.displayStatus}</div>
+                <div class="price">${this.formattedPrice}</div>
+              </div>
             </li>
           </ul>
+        </div>
+        <div class="like-container">
+          <button
+            class="like-button ${this.liked ? 'liked' : ''}"
+            type="button"
+            aria-pressed="${this.liked}"
+            aria-label="좋아요 버튼"
+            @click="${this.toggleLike}"
+            @keydown="${this.handleKeyPress}"
+          >
+            <img src="${heartIcon}" class="heart-icon" alt="하트 아이콘" />
+            <span class="count">${this.liked_count}</span>
+          </button>
         </div>
       </div>
     `;

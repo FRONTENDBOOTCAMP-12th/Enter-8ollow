@@ -1,0 +1,92 @@
+import { css } from 'lit';
+
+export default css`
+  /* 플러스 버튼 스타일 */
+  .plus-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+
+    font-size: 2rem;
+    cursor: pointer;
+
+    position: fixed;
+    bottom: 20vh;
+    right: 5vw;
+    z-index: 1010;
+
+    background-color: var(--primary, #373f67);
+    color: white;
+    margin-bottom: 12px; /* 버튼 아래 간격 */
+
+    transition:
+      background-color 0.3s,
+      color 0.3s,
+      box-shadow 0.2s;
+
+    &[aria-pressed='true'] {
+      background-color: var(--white, #ffffff);
+      color: var(--black, #000000);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--tertiary, #719cf7);
+    }
+  }
+
+  /* exchange 버튼 리스트 스타일 */
+  .exchange-button-list {
+    display: none;
+    position: fixed;
+    bottom: calc(20vh + 4rem); /* 버튼 기준 위로 이동 */
+    right: 5vw;
+    z-index: 1005;
+
+    &.visible {
+      display: block;
+    }
+
+    li {
+      list-style: none;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 108px;
+        height: 41px;
+        margin-bottom: 4px;
+
+        background: var(--primary, #373f67);
+        color: var(--white, #ffffff);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 600;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+        transition:
+          background-color 0.3s,
+          transform 0.2s;
+
+        &:focus-visible {
+          outline: none;
+          box-shadow: 0 0 0 3px var(--tertiary, #719cf7);
+        }
+
+        &:hover {
+          background-color: var(--secondary, #5a85ee);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+`;

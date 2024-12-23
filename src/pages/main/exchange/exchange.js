@@ -1,8 +1,6 @@
 import { LitElement, html } from 'lit';
-import '/src/components/Main/Like/Like';
-import '/src/components/Main/ListItem/ListItem';
-import '/src/components/Main/PlusButton/PlusButton';
-import s from '/src/pages/main/exchange/exchange.css?inline';
+import ListItemCSS from '/src/components/Main/ListItem/ListItemCSS';
+import {} from '/src/components/Main/index.js';
 import defaultImage from '/src/assets/logo.svg';
 
 export default class ExchangeLayout extends LitElement {
@@ -42,12 +40,11 @@ export default class ExchangeLayout extends LitElement {
     return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.image}`;
   }
 
+  static styles = ListItemCSS;
+
   // 렌더링
   render() {
     return html`
-      <style>
-        ${s}
-      </style>
       <div class="exchange-container">
         <div class="item-list">
           ${this.items.length > 0
