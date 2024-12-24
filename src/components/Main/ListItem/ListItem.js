@@ -23,8 +23,6 @@ function elapsedTime(created) {
 class ListItem extends LitElement {
   static properties = {
     item: { type: Object },
-    liked: { type: Boolean },
-    liked_count: { type: Number },
   };
 
   static styles = ListItemCSS;
@@ -32,27 +30,13 @@ class ListItem extends LitElement {
   constructor() {
     super();
     this.item = {};
-    this.liked = false;
-    this.liked_count = 0;
   }
 
-  toggleLike() {
-    this.liked = !this.liked;
-    this.liked_count += this.liked ? 1 : -1;
-    this.dispatchEvent(
-      new CustomEvent('like-toggled', {
-        detail: { liked: this.liked },
-        bubbles: true,
-        composed: true,
-      })
-    );
-  }
-
-  handleKeyPress(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      this.toggleLike();
-    }
-  }
+  // handleKeyPress(e) {
+  //   if (e.key === 'Enter' || e.key === ' ') {
+  //     this.toggleLike();
+  //   }
+  // }
 
   get displayStatus() {
     const status = this.item.state?.trim().toLowerCase();
@@ -70,42 +54,26 @@ class ListItem extends LitElement {
     const statusClass = isAvailable ? 'hidden' : `status ${this.item.state}`;
 
     return html`
-      <div class="list-item" tabindex="0">
-        <figure>
-          <img
-            src="${this.item.image}"
-            alt="${this.item.title || '상품 이미지'}"
-          />
-        </figure>
-        <div class="content">
-          <ul>
-            <li class="title">${this.item.title || '제목 없음'}</li>
-            <li class="subtitle">
-              ${this.item.region || '지역 없음'} •
-              ${elapsedTime(this.item.created)}
-            </li>
-            <li>
-              <div class="container">
-                <div class="${statusClass}">${this.displayStatus}</div>
-                <div class="price">${this.formattedPrice}</div>
-              </div>
-            </li>
-          </ul>
+      <section class="list-item" tabindex="0">
+        <div class="item-img-container">
+          <img src="${this.item.image}" alt="기기거래 상품 이미지" />
         </div>
-        <div class="like-container">
-          <button
-            class="like-button ${this.liked ? 'liked' : ''}"
-            type="button"
-            aria-pressed="${this.liked}"
-            aria-label="좋아요 버튼"
-            @click="${this.toggleLike}"
-            @keydown="${this.handleKeyPress}"
-          >
+        <ul>
+          <li class="title">${this.item.title || '제목 없음'}</li>
+          <li class="subtitle">
+            ${this.item.region || '지역 없음'} •
+            ${elapsedTime(this.item.created)}
+          </li>
+          <li class="status-price-container">
+            <span class="status ${statusClass}">${this.displayStatus}</span>
+            <span class="price">${this.formattedPrice}</span>
+          </li>
+          <li class="like-button">
             <img src="${heartIcon}" class="heart-icon" alt="하트 아이콘" />
-            <span class="count">${this.liked_count}</span>
-          </button>
-        </div>
-      </div>
+            <span class="count">${this.item.liked_count || 0}</span>
+          </li>
+        </ul>
+      </section>
     `;
   }
 }

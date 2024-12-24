@@ -1,49 +1,41 @@
 import { css } from 'lit';
 
 export default css`
-  .container {
-    min-width: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
   .list-item {
     display: flex;
-    background: var(--background);
-    border-bottom: 1px solid #d3d3d3;
-    padding: 12px;
-    gap: 16px;
-    position: relative;
+    align-items: center;
+    list-style: none;
+    gap: 12px;
+    padding: 12px 12px 5px 12px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
   }
 
-  figure {
+  .item-img-container {
     width: 90px;
     height: 90px;
-    border-radius: 8px;
-    background-color: #ddd;
-    flex-shrink: 0;
-    margin: 0;
-  }
+    overflow: hidden;
+    background: var(--contents--content-secondary, #919191);
+    border-radius: 8px; /* 원하면 이미지의 모서리를 둥글게 */
 
-  figure img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
-
-  .content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  ul {
+    flex: 1;
+    list-style: none;
+    padding: 0;
+    margin: 25px 0 0 0;
+    line-height: 160%;
+    font-size: var(--paragraph---medium, 1rem);
+    font-weight: 400;
   }
 
   .title {
-    font-size: var(--heading---medium);
     color: var(--contents--content-primary);
-    font-weight: 500;
   }
 
   .subtitle {
@@ -51,23 +43,45 @@ export default css`
     color: var(--Contents-contentTertiary, #9da1b4);
   }
 
-  ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  .status-price-container {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 8px;
   }
 
-  .like-counter {
-    position: absolute;
-    right: 12px;
-    bottom: 12px;
+  .status {
+    border-radius: 4px;
+    color: var(--white, #ffffff);
+    display: inline-block;
+    font-size: var(--paragraph---small);
+    padding: 1px 4px;
+  }
 
-    &:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 3px var(--tertiary, #719cf7);
-      border: 3px;
-    }
+  .status.hidden {
+    display: none;
+  }
+
+  .status.reserved {
+    background-color: var(--tertiary, #719cf7);
+  }
+
+  .status.complete {
+    background-color: var(--contents--content-tertiary, #9da1b4);
+  }
+
+  .price {
+    font-weight: 600;
+    color: var(--black, #000000);
+  }
+
+  .like-button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-size: 0.75rem;
+    color: var(--contents--content-primary, #000000);
+    gap: 2px;
+    margin: 0;
   }
 `;
