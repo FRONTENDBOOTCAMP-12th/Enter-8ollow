@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/common/CommonButton/CommonButton.css?inline';
+import { styles } from '/src/components/common/CommonButton/CommonButtonCSS.js';
 
 class CommonButton extends LitElement {
   static properties = {
@@ -7,6 +7,8 @@ class CommonButton extends LitElement {
     disable: { type: Boolean },
     type: { type: String },
   };
+
+  static styles = styles;
 
   constructor() {
     super();
@@ -24,12 +26,7 @@ class CommonButton extends LitElement {
   }
 
   render() {
-    // console.log('render', this.disable);
-
-    return html`<style>
-        ${s}
-      </style>
-
+    return html`
       <button
         type=${this.type}
         class="common-button"
@@ -37,7 +34,8 @@ class CommonButton extends LitElement {
         @click="${this.handleClick}"
       >
         ${this.title}
-      </button> `;
+      </button>
+    `;
   }
 }
 

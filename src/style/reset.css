@@ -1,112 +1,200 @@
-/* https://piccalil.li/blog/a-modern-css-reset */
-
-/* Box sizing rules */
-
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-body *,
-body *::before,
-body *::after {
-  box-sizing: border-box;
-}
-
-/* Remove default margin */
+html,
 body,
+div,
+span,
+applet,
+object,
+iframe,
 h1,
 h2,
 h3,
 h4,
+h5,
+h6,
 p,
-figure,
 blockquote,
-dl,
-dd {
-  margin: 0;
-}
-
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul,
-ol {
-  list-style: none;
-  margin: 0;
-  padding-left: 0;
-}
-
-/* Set core root defaults */
-html:focus-within {
-  scroll-behavior: smooth;
-}
-
-/* Set core body defaults */
-body {
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.15;
-}
-
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
-
-/* Make images easier to work with */
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
 img,
-picture {
-  max-width: 100%;
-  display: block;
-}
-
-/* iframe, video 요소의 기본 스타일 */
-iframe,
-video {
-  width: 100%;
-  display: block;
-}
-
-/* Inherit fonts for inputs and buttons */
-input,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+caption,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
 button,
-textarea,
-select {
+[type='button'],
+[type='file'],
+[type='image'],
+[type='password'],
+[type='reset'],
+[type='submit'],
+[type='text'],
+[type='date'],
+[type='datetime-local'],
+[type='email'],
+[type='month'],
+[type='number'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='url'],
+[type='week'] {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  background: transparent;
   font: inherit;
+  color: inherit;
+  text-align: inherit;
+  vertical-align: baseline;
 }
 
-button {
-  cursor: pointer;
-
-  &:disabled {
-    cursor: not-allowed;
-  }
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 
-em {
-  font-style: normal;
+html {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  /* Prevents screen from shifting when content overflows the height of the screen */
+  overflow-y: scroll;
+  /* Enable antialiasing */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+ol,
+ul {
+  list-style: none;
 }
+
+blockquote,
+q {
+  quotes: none;
+}
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+  content: none;
+}
+
+acronym,
+applet,
+basefont,
+big,
+center,
+dir,
+font,
+frame,
+frameset,
+isindex,
+noframes,
+s,
+strike,
+tt,
+u,
+[type='datetime'] {
+  /* Deprecated tags */
+  display: none;
+}
+
+*,
+*::before,
+*::after {
+  /* Intuitive layout defaults */
+  box-sizing: border-box;
+  outline-offset: 0;
+}
+
+textarea {
+  resize: vertical;
+  /* Remove the default vertical scrollbar in IE 11 */
+  overflow: auto;
+}
+
+/* 숨김 클래스 */
+.hidden {
+  display: none !important;
+}
+
+/* ARIA 속성을 위한 유틸리티 클래스 */
 .sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
-  padding: 0;
   margin: -1px;
-  overflow: hidden;
+  padding: 0;
+  border: 0;
   clip: rect(0, 0, 0, 0);
+  overflow: hidden;
   white-space: nowrap;
-  border-width: 0;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
 }

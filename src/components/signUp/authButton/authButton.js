@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/signUp/authButton/authButton.css?inline';
+
+import { styles } from '/src/components/signUp/AuthButton/AuthButtonCSS?inline';
 
 class AuthButton extends LitElement {
   static properties = {
@@ -7,6 +8,8 @@ class AuthButton extends LitElement {
     disable: { type: Boolean },
     type: { type: String },
   };
+
+  static styles = [styles];
 
   constructor() {
     super();
@@ -24,10 +27,7 @@ class AuthButton extends LitElement {
   }
 
   render() {
-    return html`<style>
-        ${s}
-      </style>
-
+    return html`
       <button
         type=${this.type}
         class="common-button"
@@ -35,7 +35,8 @@ class AuthButton extends LitElement {
         @click="${this.handleClick}"
       >
         ${this.title}
-      </button> `;
+      </button>
+    `;
   }
 }
 

@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, css } from 'lit';
 import { register } from 'swiper/element/bundle';
 import {} from '/src/pages/main/exchange/exchange.js';
 import {} from '/src/pages/main/SeniorStory/SeniorStory.js';
@@ -9,6 +9,49 @@ class MainPage extends LitElement {
   static properties = {
     activeIndex: { type: Number },
   };
+
+  static styles = css`
+    button {
+      cursor: pointer;
+      all: unset;
+    }
+
+    .nav-pagination {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .bullet {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #666;
+      font-weight: bold;
+    }
+
+    .bullet.is-active {
+      background: #007bff;
+      color: white;
+      transform: scale(1.2);
+    }
+
+    swiper-container {
+      width: 100%;
+      height: 100vh;
+    }
+  `;
 
   constructor() {
     super();

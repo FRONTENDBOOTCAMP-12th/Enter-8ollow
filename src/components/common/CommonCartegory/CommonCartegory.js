@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/common/CommonCartegory/CommonCartegory.css?inline';
+import { styles } from '/src/components/common/CommonCartegory/CommonCartegoryCSS?inline';
 
 class CommonCartegory extends LitElement {
   static properties = {
@@ -7,15 +7,14 @@ class CommonCartegory extends LitElement {
     detail: { type: String },
   };
 
+  static styles = styles;
+
   constructor() {
     super();
   }
 
   render() {
     return html`
-      <style>
-        ${s}
-      </style>
       <div class="category">
         <label class="card" for="check-cartegory">
           <input type="checkbox" class="checkbox" id="check-cartegory" />

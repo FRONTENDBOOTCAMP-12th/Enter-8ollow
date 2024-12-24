@@ -1,5 +1,4 @@
-import { LitElement, html } from 'lit';
-import s from '/src/components/common/Back/Back.css?inline';
+import { LitElement, html, css } from 'lit';
 import back from '/src/assets/common/back/direction=left.png';
 
 class BackComponent extends LitElement {
@@ -7,11 +6,28 @@ class BackComponent extends LitElement {
     super();
   }
 
+  static styles = css`
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .back {
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .back-icon {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+    }
+  `;
+
   render() {
     return html`
-      <style>
-        ${s}
-      </style>
       <div class="back">
         <img
           src="${back}"
