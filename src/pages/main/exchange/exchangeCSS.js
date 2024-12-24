@@ -1,18 +1,3 @@
 import { css } from 'lit';
 
-export default css`
-  .exchange-container .item-list .item-wrapper {
-    position: relative;
-  }
-
-  .exchange-container .item-list .like-counter-container {
-    position: absolute;
-    right: 16px;
-    bottom: 3px;
-    z-index: 1;
-  }
-
-  .list-item {
-    padding-right: 50px;
-  }
-`;
+export default css``;

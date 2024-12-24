@@ -16,7 +16,7 @@ export default css`
     height: 90px;
     overflow: hidden;
     background: var(--contents--content-secondary, #919191);
-    border-radius: 8px; /* 원하면 이미지의 모서리를 둥글게 */
+    border-radius: 8px;
 
     img {
       width: 100%;

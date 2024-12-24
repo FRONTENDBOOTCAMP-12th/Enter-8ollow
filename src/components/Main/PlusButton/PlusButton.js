@@ -29,7 +29,6 @@ export class PlusButton extends LitElement {
 
   render() {
     return html`
-      >
       <!-- 버튼 -->
       <button
         class="plus-button"
@@ -37,7 +36,6 @@ export class PlusButton extends LitElement {
         aria-pressed="${this.active}"
         aria-label="${this.active ? '활성화' : '비활성화'}"
         @click="${this.handleClick}"
-        @keydown="${this.handleKeyPress}"
         tabindex="0"
       >
         +

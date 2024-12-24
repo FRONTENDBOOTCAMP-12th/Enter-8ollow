@@ -32,12 +32,6 @@ class ListItem extends LitElement {
     this.item = {};
   }
 
-  // handleKeyPress(e) {
-  //   if (e.key === 'Enter' || e.key === ' ') {
-  //     this.toggleLike();
-  //   }
-  // }
-
   get displayStatus() {
     const status = this.item.state?.trim().toLowerCase();
     if (status === 'reserved') return '예약중';
