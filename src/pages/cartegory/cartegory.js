@@ -1,11 +1,13 @@
 import { LitElement, html } from 'lit';
-import s from '/src/pages/cartegory/cartegory.css?inline';
+import { styles } from '/src/pages/cartegory/cartegoryCSS?inline';
 import search from '/src/assets/common/cartegory/search.svg';
 
 class Cartegory extends LitElement {
   static properties = {
     selectedCategories: { type: Array },
   };
+
+  static styles = styles;
 
   constructor() {
     super();
@@ -57,9 +59,6 @@ class Cartegory extends LitElement {
 
   render() {
     return html`
-      <style>
-        ${s}
-      </style>
       <div class="app">
         <div class="flex">
           <div class="header">
@@ -76,8 +75,10 @@ class Cartegory extends LitElement {
             </div>
           </div>
         </div>
-        <common-button title="관심분야 선택하기"></common-button>
 
+        <div class="title">
+          <common-button title="관심분야 선택하기"></common-button>
+        </div>
         <div class="grid">
           ${this.data.map(
             (item) => html`
@@ -91,12 +92,11 @@ class Cartegory extends LitElement {
               ></common-cartegory>
             `
           )}
+          <common-button
+            title="이대로 저장할래요"
+            @click="${this.handleClick}"
+          ></common-button>
         </div>
-
-        <common-button
-          title="이대로 저장할래요"
-          @click="${this.handleClick}"
-        ></common-button>
       </div>
     `;
   }

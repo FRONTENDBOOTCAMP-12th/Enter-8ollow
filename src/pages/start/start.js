@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import s from '/src/pages/start/start.css?inline';
+import { styles } from '/src/pages/start/startCSS?inline';
 import logo from '/src/assets/logo.svg';
 
 class Start extends LitElement {
@@ -7,12 +7,11 @@ class Start extends LitElement {
     super();
   }
 
+  static styles = styles;
+
   render() {
     console.log('렌더링');
     return html`
-      <style>
-        ${s}
-      </style>
       <div class="app">
         <img src="${logo}" alt="EUID" />
         <h1 class="title">당신 곁에 엔터이듬</h1>

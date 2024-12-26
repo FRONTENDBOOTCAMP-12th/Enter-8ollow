@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import { register } from 'swiper/element/bundle';
-import styles from '/src/components/Main/SwiperComponent/SwiperComponent.css?inline';
+import { SwiperSlide } from '/src/components/Main/SwiperComponent/SwiperComponentCSS?inline';
 
 import mainImage from '/src/assets/MainSwiper.png';
 
@@ -12,6 +12,8 @@ class SwiperComponent extends LitElement {
       swiperInstance: { type: Object },
     };
   }
+
+  static styles = SwiperSlide;
 
   firstUpdated() {
     this.swiperInstance =
@@ -48,9 +50,6 @@ class SwiperComponent extends LitElement {
 
   render() {
     return html`
-      <style>
-        ${styles}
-      </style>
       <swiper-container loop="true">
         <swiper-slide>
           <div class="text-container">

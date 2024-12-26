@@ -75,6 +75,7 @@ class DetailPage extends LitElement {
     if (!this.story) {
       return html`<p>로딩 중...</p>`;
     }
+    console.log(styles);
 
     return html`
       <style>
@@ -82,50 +83,22 @@ class DetailPage extends LitElement {
       </style>
 
       <div class="detail-container">
-        <div class="button-group">
-          <button @click="${this.handleCancel}" class="cancel">취소</button>
-          <button @click="${this.handleUpdate}" class="update">수정</button>
+        <div class="field">
+          <h2>${this.story.title}</h2>
         </div>
 
-        <div class="story-content">
-          <img
-            class="story-image"
-            src="${this.getImageURL()}"
-            alt="스토리 이미지"
-          />
+        <div class="field">
+          <span class="author">작성자: ${this.story.author}</span>
+        </div>
 
-          <div class="field">
-            <label for="title">제목</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              .value="${this.story.title}"
-              @input="${this.handleInputChange}"
-            />
-          </div>
+        <img
+          class="story-image"
+          src="${this.getImageURL()}"
+          alt="스토리 이미지"
+        />
 
-          <div class="field">
-            <label for="content">내용</label>
-            <textarea
-              id="content"
-              name="content"
-              @input="${this.handleInputChange}"
-            >
-${this.story.content}</textarea
-            >
-          </div>
-
-          <div class="field">
-            <label for="author">작성자</label>
-            <input
-              type="text"
-              id="author"
-              name="author"
-              .value="${this.story.author}"
-              @input="${this.handleInputChange}"
-            />
-          </div>
+        <div class="field">
+          <p>${this.story.contents}</p>
         </div>
       </div>
     `;
