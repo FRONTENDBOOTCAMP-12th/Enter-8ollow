@@ -1,7 +1,6 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/Main/ListItem/ListItem.css?inline';
-import '/src/components/Main/State/State';
-import '/src/components/Main/Like/Like';
+import ListItemCSS from '/src/components/Main/ListItem/ListItemCSS';
+import heartIcon from '/src/assets/heart.svg';
 
 function elapsedTime(created) {
   const createTimestamp = new Date(created);
@@ -22,54 +21,53 @@ function elapsedTime(created) {
 }
 
 class ListItem extends LitElement {
-  static get properties() {
-    return {
-      item: { type: Object },
-    };
-  }
+  static properties = {
+    item: { type: Object },
+  };
+
+  static styles = ListItemCSS;
 
   constructor() {
     super();
+    this.item = {};
   }
 
-  // handleKeyPress(e) {
-  //   if (e.key === 'Enter' || e.key === ' ') {
-  //     this.handleClick();
-  //   }
-  // }
+  get displayStatus() {
+    const status = this.item.state?.trim().toLowerCase();
+    if (status === 'reserved') return '예약중';
+    if (status === 'complete') return '거래 완료';
+    return ''; // 판매중 상태일 때 빈 값 반환
+  }
 
-  // handleClick() {
-  //   console.log('아이템 클릭:', this.item);
-  // }
+  get formattedPrice() {
+    return this.item.price ? `${this.item.price.toLocaleString()}원` : '';
+  }
 
   render() {
+    const isAvailable = this.item.state?.trim().toLowerCase() === 'available';
+    const statusClass = isAvailable ? 'hidden' : `status ${this.item.state}`;
+
     return html`
-      <style>
-        ${s}
-      </style>
-      <div class="list-item" tabindex="0" @click="${this.handleClick}">
-        <figure>
-          <img
-            src="${this.item.image}"
-            alt="${this.item.title || '상품 이미지'}"
-          />
-        </figure>
-        <div class="content">
-          <ul>
-            <li class="title">${this.item.title || '제목 없음'}</li>
-            <li class="subtitle">
-              ${this.item.region || '지역 없음'} •
-              ${elapsedTime(this.item.created)}
-            </li>
-            <li>
-              <main-state
-                status="${this.item.state || 'available'}"
-                price="${this.item.price || 0}"
-              ></main-state>
-            </li>
-          </ul>
+      <section class="list-item" tabindex="0">
+        <div class="item-img-container">
+          <img src="${this.item.image}" alt="기기거래 상품 이미지" />
         </div>
-      </div>
+        <ul>
+          <li class="title">${this.item.title || '제목 없음'}</li>
+          <li class="subtitle">
+            ${this.item.region || '지역 없음'} •
+            ${elapsedTime(this.item.created)}
+          </li>
+          <li class="status-price-container">
+            <span class="status ${statusClass}">${this.displayStatus}</span>
+            <span class="price">${this.formattedPrice}</span>
+          </li>
+          <li class="like-button">
+            <img src="${heartIcon}" class="heart-icon" alt="하트 아이콘" />
+            <span class="count">${this.item.liked_count || 0}</span>
+          </li>
+        </ul>
+      </section>
     `;
   }
 }
