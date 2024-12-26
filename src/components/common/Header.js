@@ -1,5 +1,4 @@
-import { LitElement, html } from 'lit';
-import s from '/src/components/common/Header/Header.css?inline';
+import { LitElement, html, css } from 'lit';
 
 import fullHome from '/src/assets/fullHome.svg';
 import home from '/src/assets/home.svg';
@@ -12,12 +11,67 @@ import chat from '/src/assets/chat.svg';
 import fullProfile from '/src/assets/fullMy.svg';
 import profile from '/src/assets/profile.svg';
 
-class BaseHeader extends LitElement {
+export class Header extends LitElement {
   static properties = {
     checked: { type: Number },
     index: { type: Number },
     urlChecked: { type: Number },
   };
+
+  static styles = css`
+    header {
+      width: 100%;
+      background-color: var(--background);
+
+      display: flex;
+      justify-content: center; /* 수평 가운데 정렬 */
+      align-items: center; /* 수직 가운데 정렬 */
+      padding-top: 0.5rem;
+      padding-bottom: 1.5rem;
+
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+
+      & ul {
+        align-items: center;
+
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        display: grid; /* Grid 레이아웃 사용 */
+        grid-template-columns: repeat(5, 1fr); /* 5개의 동일한 너비 열을 설정 */
+        gap: 25px;
+      }
+
+      & li {
+        list-style: none;
+
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      & a {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+
+        & img {
+          width: 1.25rem;
+          height: 1.25rem;
+          margin-bottom: 0;
+        }
+
+        & p {
+          margin: 0;
+          font-size: var(--paragraph---small);
+        }
+      }
+    }
+  `;
 
   constructor() {
     super();
@@ -43,9 +97,6 @@ class BaseHeader extends LitElement {
 
   render() {
     return html`
-      <style>
-        ${s}
-      </style>
       <header>
         <ul>
           <li @click="${() => this.toggleClass(0)}">
@@ -100,4 +151,4 @@ class BaseHeader extends LitElement {
   }
 }
 
-customElements.define('base-header', BaseHeader);
+customElements.define('header-component', Header);
