@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/Main/Like/Like.css?inline';
+import styles from '/src/components/Main/Like/LikeCSS?inline';
+
 import heartIcon from '/src/assets/heart.svg';
 class LikeCounter extends LitElement {
   static properties = {
@@ -38,9 +39,6 @@ class LikeCounter extends LitElement {
 
   render() {
     return html`
-      <style>
-        ${s}
-      </style>
       <div class="plus-button-container">
         <button
           class="like-button ${this.liked ? 'liked' : ''}"
