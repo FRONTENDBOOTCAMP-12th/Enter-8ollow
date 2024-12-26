@@ -23,10 +23,7 @@ const config = defineConfig({
           'src/pages/main/SeniorDetail/index.html'
         ),
 
-        qnadetail: resolve(
-          __dirname,
-          'src/pages/qnaBoard/?qnadetail/index.html'
-        ),
+        qnadetail: resolve(__dirname, 'src/pages/qnaBoard/index.html'),
       },
     },
   },
