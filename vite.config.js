@@ -18,6 +18,15 @@ const config = defineConfig({
         board: resolve(__dirname, 'src/pages/board/board.html'),
         exchange: resolve(__dirname, 'src/pages/main/exchange/exchange.html'),
         profile: resolve(__dirname, 'src/components/Profile/index1.html'),
+        seniordetail: resolve(
+          __dirname,
+          'src/pages/main/SeniorDetail/index.html'
+        ),
+
+        qnadetail: resolve(
+          __dirname,
+          'src/pages/qnaBoard/?qnadetail/index.html'
+        ),
       },
     },
   },

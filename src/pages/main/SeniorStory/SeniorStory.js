@@ -1,7 +1,6 @@
 import { LitElement, html, css } from 'lit';
-import styles from '/src/pages/main/SeniorStory/SeniorStory.css?inline';
 
-import {} from '/src/components/index.js';
+import { styles } from '/src/pages/main/SeniorStory/SeniorStoryCSS?inline';
 
 import image from '/src/assets/logo.svg';
 
@@ -11,6 +10,8 @@ class SeniorStory extends LitElement {
       items: { type: Array },
     };
   }
+
+  static styles = styles;
 
   constructor() {
     super();
@@ -45,10 +46,6 @@ class SeniorStory extends LitElement {
 
   render() {
     return html`
-      <style>
-        ${styles}
-      </style>
-
       <div class="story-container">
         ${this.items.length > 0
           ? this.items.map(
