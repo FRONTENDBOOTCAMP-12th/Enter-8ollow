@@ -29,15 +29,15 @@ export default class Exchange extends LitElement {
     return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.image}`;
   }
 
-  // 데이터 가져오기
   async fetchData() {
     try {
       const records = await pb.collection('exchangePosts').getFullList({
         sort: '-created', // 최신순 정렬
       });
-      console.log('서버에서 받은 전체 데이터:', records);
+      // console.log('서버에서 받은 전체 데이터:', records);
 
       this.items = records.map((item) => ({
+        id: item.id,
         title: item.title || '제목 없음',
         region: item.region || '지역 없음',
         price: item.price || 0,
@@ -52,6 +52,13 @@ export default class Exchange extends LitElement {
     }
   }
 
+  // 디테일 페이지로 이동
+  handleClick(id) {
+    const url = `/src/pages/main/exchangeDetail/?post=${id}`;
+    console.log('Navigating to:', url);
+    location.href = url;
+  }
+
   static styles = ListItemCSS;
 
   render() {
@@ -61,10 +68,10 @@ export default class Exchange extends LitElement {
         ${this.items.length > 0
           ? this.items.map(
               (item) => html`
-                <div class="item-wrapper">
-                  <!-- 게시물 내용 렌더링 -->
-                  <list-item .item=${item}></list-item>
-                </div>
+                <list-item
+                  .item=${item}
+                  @click="${() => this.handleClick(item.id)}"
+                ></list-item>
               `
             )
           : html`<p>데이터를 불러오는 중입니다...</p>`}
@@ -75,4 +82,4 @@ export default class Exchange extends LitElement {
   }
 }
 
-customElements.define('exchange-layout', Exchange);
+customElements.define('exchange-page', Exchange);

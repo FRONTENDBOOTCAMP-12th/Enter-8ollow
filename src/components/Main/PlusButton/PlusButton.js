@@ -1,5 +1,4 @@
 import { LitElement, html } from 'lit';
-import reset from '/src/style/reset.js';
 import ListItemCSS from '/src/components/Main/PlusButton/PlusButtonCSS';
 
 export class PlusButton extends LitElement {
@@ -24,7 +23,7 @@ export class PlusButton extends LitElement {
   }
 
   static get styles() {
-    return [reset, ListItemCSS];
+    return [ListItemCSS];
   }
 
   render() {
