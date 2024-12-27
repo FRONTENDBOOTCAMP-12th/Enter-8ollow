@@ -1,11 +1,64 @@
-import { LitElement, html } from 'lit';
-import s from '/src/components/Main/MainButton/MainButton.css?inline';
+import { LitElement, html, css } from 'lit';
 import buttonReset from '/src/style/buttonReset.css?inline';
 
-class MainButton extends LitElement {
+export class MainButton extends LitElement {
   static properties = {
     name: { type: String },
   };
+  static styles = css`
+    button {
+      background-color: var(--white);
+      height: 27px;
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-inline: 8px;
+
+      padding-top: 4px;
+      padding-bottom: 4px;
+      padding-block: 4px;
+      border-radius: var(--border-radius---large);
+      border: 2px solid var(--contents--content-tertiary);
+      white-space: nowrap;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & img {
+        width: 1.25rem;
+        height: 1.25rem;
+        padding: 0.25rem;
+      }
+
+      & svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        padding: 0.25rem;
+      }
+
+      & span {
+        margin-bottom: 0.125rem;
+        font-size: var(--paragraph---small);
+      }
+    }
+
+    .checked {
+      background-color: var(--primary);
+      border: 2px solid var(--primary);
+
+      & span {
+        color: var(--white);
+      }
+
+      & svg path {
+        stroke: white;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+  `;
   constructor() {
     super();
     this.name = 'text';
@@ -18,7 +71,6 @@ class MainButton extends LitElement {
     return html`
       <style>
         ${buttonReset}
-        ${s}
       </style>
       <button
         type="button"

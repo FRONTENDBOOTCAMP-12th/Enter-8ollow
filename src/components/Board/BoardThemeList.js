@@ -1,7 +1,61 @@
-import { LitElement, html } from 'lit';
-import s from '/src/components/Board/BoardThemeList/BoardThemeList.css?inline';
+import { LitElement, html, css } from 'lit';
 
-class BoardThemeList extends LitElement {
+export class BoardThemeList extends LitElement {
+  static styles = css`
+    .board-theme-container {
+      background-color: var(--primary);
+      padding-inline: 0.625rem;
+      padding-bottom: 0.5rem;
+      border-radius: 10px 10px 0 0;
+    }
+    board-theme {
+      display: block;
+      padding-block: 0.75rem;
+      position: relative;
+    }
+    hgroup {
+      padding-top: 16px;
+      padding-bottom: 14px;
+    }
+    h4 {
+      margin: 0;
+
+      padding-bottom: 4px;
+      font-size: var(--label---medium);
+      color: var(--background);
+      font-weight: 300;
+    }
+
+    svg {
+      position: absolute;
+      top: 16px;
+      right: 12px;
+    }
+    p {
+      margin: 0;
+
+      font-size: var(--paragraph---small);
+      color: var(--contents--content-secondary);
+    }
+
+    .join::after {
+      width: 4.25rem;
+      height: 1.75rem;
+      border-radius: 8px;
+      content: '참여중';
+      background-color: var(--components--component-theme);
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--secondary);
+      font-size: var(--paragraph---small);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  `;
   constructor() {
     super();
   }
@@ -17,9 +71,6 @@ class BoardThemeList extends LitElement {
   }
   render() {
     return html`
-      <style>
-        ${s}
-      </style>
       <div class="board-theme-container">
         <hgroup>
           <h4>주제목록</h4>

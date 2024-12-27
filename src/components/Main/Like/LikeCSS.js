@@ -1,0 +1,54 @@
+import { css } from 'lit';
+
+export default css`
+  .like-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .list-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .like-button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: var(--contents--content-primary, #000000); /* 기본 색상 */
+    cursor: pointer;
+    gap: 2px;
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--tertiary, #719cf7);
+    }
+  }
+
+  .heart-icon {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: gray;
+    stroke-width: 1px;
+  }
+
+  .like-button.liked {
+    .heart-icon {
+      fill: var(--tertiary, #719cf7);
+      stroke: none;
+    }
+  }
+
+  .count {
+    font-size: 0.75rem;
+  }
+`;

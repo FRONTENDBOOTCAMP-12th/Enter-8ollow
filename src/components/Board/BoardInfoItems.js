@@ -1,11 +1,28 @@
-import { LitElement, html } from 'lit';
-import s from '/src/components/Board/BoardInfoItems/BoardInfoItems.css?inline';
+import { LitElement, html, css } from 'lit';
 
-class BoardInfoItems extends LitElement {
+export class BoardInfoItems extends LitElement {
   static properties = {
     gender: { type: String },
     meetDay: { type: String },
   };
+
+  static styles = css`
+    .info-item {
+      height: 1.0625rem;
+      display: flex;
+      align-items: center;
+      color: var(--components--component-person);
+    }
+
+    .info-item:nth-child(2) {
+      margin-bottom: 0.5rem;
+    }
+    .info-item span {
+      font-size: var(--paragraph---small);
+      color: var(--components--component-person);
+      margin-left: 0.125rem;
+    }
+  `;
 
   constructor() {
     super();
@@ -13,10 +30,6 @@ class BoardInfoItems extends LitElement {
 
   render() {
     return html`
-      <style>
-        ${s}
-      </style>
-
       <div class="info-item gender">
         <svg
           width="20"

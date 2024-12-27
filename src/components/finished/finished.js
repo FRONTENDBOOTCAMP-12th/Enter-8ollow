@@ -4,7 +4,7 @@ import { LitElement, html } from 'lit';
 class FinishedComponent extends LitElement {
   constructor() {
     super();
-    this.cssPath = './../../components/finished/finished.css';
+    this.cssPath = './../../components/Finished/finished.css';
   }
 
   render() {
@@ -18,4 +18,3 @@ class FinishedComponent extends LitElement {
 }
 
 customElements.define('finished-component', FinishedComponent);
-

@@ -1,0 +1,26 @@
+import { css } from 'lit';
+
+export const styles = css`
+  .common-button {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--white);
+    text-align: center;
+    min-width: 254px;
+    width: 100%;
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-block: 8px;
+    border-radius: 8px;
+    height: 40px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  button[disabled] {
+    background-color: var(--contents--content-secondary);
+    color: var(--background);
+    cursor: not-allowed;
+  }
+`;

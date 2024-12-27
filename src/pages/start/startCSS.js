@@ -1,0 +1,51 @@
+import { css } from 'lit';
+
+export const styles = css`
+  .app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    color: var(--primary);
+  }
+
+  .title {
+    margin-top: 45px;
+    margin-block-start: 45px;
+    font-size: var(--heading---large);
+    margin-bottom: 20px;
+    margin-block-end: 20px;
+  }
+
+  .description {
+    text-align: center;
+    font-size: var(--paragraph---medium);
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: absolute;
+    bottom: 2rem;
+    text-align: center;
+    color: var(--contents--content-secondary);
+    font-size: var(--paragraph---small);
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--primary);
+    font-size: var(--label---small);
+    display: flex;
+    align-items: center;
+  }
+
+  .login {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+`;

@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/signUp/number/number.css?inline';
+import { styles } from '/src/components/signUp/InputComponent/InputComponentCSS?inline';
+// import resetStyles from '/src/style/reset';
 
 class InputComponent extends LitElement {
   static properties = {
@@ -13,10 +14,12 @@ class InputComponent extends LitElement {
     super();
   }
 
+  static styles = [styles];
+
   render() {
     return html`
       <style>
-        ${s} :host {
+        :host {
           --border-color: 1px solid var(--contents--content-primary);
         }
 

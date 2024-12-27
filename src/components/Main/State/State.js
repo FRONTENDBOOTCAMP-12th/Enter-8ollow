@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import styles from '/src/components/Main/State/State.css?inline';
+import styles from '/src/components/Main/State/StateCSS?inline';
 
 class MainState extends LitElement {
   static properties = {

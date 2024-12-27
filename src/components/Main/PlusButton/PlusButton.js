@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/Main/PlusButton/PlusButton.css?inline';
+import ListItemCSS from '/src/components/Main/PlusButton/PlusButtonCSS';
 
 export class PlusButton extends LitElement {
   static properties = {
@@ -22,16 +22,12 @@ export class PlusButton extends LitElement {
     }
   }
 
+  static get styles() {
+    return ListItemCSS;
+  }
+
   render() {
     return html`
-      <style>
-        ${s} .exchange-button-list {
-          display: none;
-        }
-        .exchange-button-list.visible {
-          display: block;
-        }
-      </style>
       <!-- 버튼 -->
       <button
         class="plus-button"
@@ -39,7 +35,6 @@ export class PlusButton extends LitElement {
         aria-pressed="${this.active}"
         aria-label="${this.active ? '활성화' : '비활성화'}"
         @click="${this.handleClick}"
-        @keydown="${this.handleKeyPress}"
         tabindex="0"
       >
         +

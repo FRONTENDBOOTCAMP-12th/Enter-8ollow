@@ -1,2 +1,2 @@
-import {} from '/src/components/signUp/number/number.js';
-import {} from '/src/components/signUp/authButton/authButton.js';
+import {} from '/src/components/signUp/InputComponent/InputComponent.js';
+import {} from '/src/components/signUp/AuthButton/AuthButton.js';

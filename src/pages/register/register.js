@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
-import s from '/src/pages/register/register.css?inline';
+
+import { styles } from '/src/pages/register/registerCSS?inline';
 import pb from '/src/api/pocketbase';
 
 import Swal from 'sweetalert2';
@@ -19,6 +20,8 @@ class Register extends LitElement {
     showInput: { type: Boolean }, // 인증번호 입력란 보이게
     authTitle: { type: String }, // 인증 버튼 타이틀
   };
+
+  static styles = styles;
 
   constructor() {
     super();
@@ -144,10 +147,7 @@ class Register extends LitElement {
    closest로 사용하지 않은 이유는 input-component가 쉐도우 돔이라 접근이 불가능함  */
 
   render() {
-    return html`<style>
-        ${s}
-      </style>
-
+    return html`
       <div class="app">
         <div class="info-container">
           <h2 class="title">
@@ -191,7 +191,8 @@ class Register extends LitElement {
                 <a href="/src/pages/Login/">로그인</a> `
             : ''}
         </form>
-      </div> `;
+      </div>
+    `;
   }
 }
 
