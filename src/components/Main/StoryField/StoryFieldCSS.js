@@ -1,0 +1,28 @@
+import { css } from 'lit';
+
+export const styles = css`
+  .story-field {
+    display: inline-block;
+    margin: 10px;
+    font-size: var(--paragraph---small);
+
+    img {
+      background-color: var(--contents--content-secondary);
+      width: 100%;
+      height: 6.25rem;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .text {
+      margin-top: 0.75rem;
+      margin-block-start: 0.75rem;
+      margin-bottom: 0.25rem;
+      margin-block-end: 0.25rem;
+    }
+
+    .acthor {
+      color: var(--contents--content-secondary);
+    }
+  }
+`;

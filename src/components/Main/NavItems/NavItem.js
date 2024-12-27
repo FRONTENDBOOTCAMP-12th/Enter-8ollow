@@ -1,11 +1,13 @@
-import { LitElement, html, css } from 'lit';
-import s from '/src/components/Main/NavItems/NavItem.css?inline';
+import { LitElement, html } from 'lit';
+import { styles } from '/src/components/Main/NavItems/NavItemCSS?inline';
 
 export class NavItem extends LitElement {
   static properties = {
     label: { type: String },
     isActive: { type: Boolean },
   };
+
+  static styles = styles;
 
   constructor() {
     super();
@@ -15,9 +17,6 @@ export class NavItem extends LitElement {
 
   render() {
     return html`
-      <style>
-        ${s}
-      </style>
       <button class="nav-item ${this.isActive ? 'active' : ''}">
         ${this.label}
       </button>

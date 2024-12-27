@@ -1,6 +1,7 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 import '/src/components/Main/NavItems/NavItem.js';
-import s from '/src/components/Main/NavItems/NavItems.css?inline';
+
+import { styles } from '/src/components/Main/NavItems/NavItemsCSS?inline';
 
 export class NavItems extends LitElement {
   static properties = {
@@ -14,6 +15,8 @@ export class NavItems extends LitElement {
 
     this.activeIndex = 0;
   }
+
+  static styles = styles;
 
   handleItemClick(index) {
     this.dispatchEvent(
@@ -29,12 +32,6 @@ export class NavItems extends LitElement {
 
   render() {
     return html`
-      <style>
-        ${s} a {
-          text-decoration: none;
-          color: inherit;
-        }
-      </style>
       <div class="nav-items">
         ${this.items.map(
           (item, index) => html`

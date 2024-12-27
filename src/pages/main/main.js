@@ -89,7 +89,9 @@ class MainPage extends LitElement {
         <swiper-slide>
           <exchange-layout></exchange-layout>
         </swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
+        <swiper-slide>
+          <qna-page></qna-page>
+        </swiper-slide>
         <swiper-slide>Slide 4</swiper-slide>
 
         <div class="swiper-pagination"></div>

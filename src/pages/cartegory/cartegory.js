@@ -94,7 +94,7 @@ class Cartegory extends LitElement {
           )}
           <common-button
             title="이대로 저장할래요"
-            @click="${this.handleClick}"
+            @click-event="${this.handleClick}"
           ></common-button>
         </div>
       </div>

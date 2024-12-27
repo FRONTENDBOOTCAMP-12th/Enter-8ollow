@@ -30,7 +30,7 @@ export const RegionMenuCSS = css`
 
     border-bottom: 3px solid #d3d3d3;
 
-    position: fixed;
+    position: sticky;
     z-index: 999;
     top: 0;
     left: 0;
