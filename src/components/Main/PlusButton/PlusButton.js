@@ -23,7 +23,7 @@ export class PlusButton extends LitElement {
   }
 
   static get styles() {
-    return [ListItemCSS];
+    return ListItemCSS;
   }
 
   render() {

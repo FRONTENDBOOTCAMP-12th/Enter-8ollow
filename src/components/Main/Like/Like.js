@@ -1,0 +1,59 @@
+import { LitElement, html } from 'lit';
+import styles from '/src/components/Main/Like/LikeCSS?inline';
+
+import heartIcon from '/src/assets/heart.svg';
+class LikeCounter extends LitElement {
+  static properties = {
+    liked: { type: Boolean },
+    liked_count: { type: Number },
+  };
+
+  constructor() {
+    super();
+    this.liked_count = 0;
+    this.liked = false;
+  }
+
+  toggleLike() {
+    // 좋아요 상태 토글
+    this.liked = !this.liked;
+
+    // 카운트 값 변경
+    this.liked_count += this.liked ? 1 : -1;
+
+    // 부모 컴포넌트로 이벤트 전달
+    this.dispatchEvent(
+      new CustomEvent('like-toggled', {
+        detail: { liked: this.liked },
+        bubbles: true,
+        composed: true,
+      })
+    );
+  }
+
+  handleKeyPress(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      this.handleClick();
+    }
+  }
+
+  render() {
+    return html`
+      <div class="plus-button-container">
+        <button
+          class="like-button ${this.liked ? 'liked' : ''}"
+          type="button"
+          aria-pressed="${this.liked}"
+          aria-label="좋아요 버튼"
+          @click="${this.toggleLike}"
+          @keydown="${this.handleKeyPress}"
+        >
+          <img src="${heartIcon}" class="heart-icon" alt="하트 아이콘" />
+          <span class="count">${this.liked_count}</span>
+        </button>
+      </div>
+    `;
+  }
+}
+
+customElements.define('like-counter', LikeCounter);
