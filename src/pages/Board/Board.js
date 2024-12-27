@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import s from '/src/pages/board/board.css?inline';
+import BoardCSS from '/src/pages/Board/BoardCSS';
 import pb from '/src/api/pocketbase';
 
 class Board extends LitElement {
@@ -8,6 +8,9 @@ class Board extends LitElement {
     postDetailArray: {},
     postId: { type: String },
   };
+
+  static styles = BoardCSS;
+
   constructor() {
     super();
     this.description = '';
