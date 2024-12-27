@@ -1,9 +1,8 @@
 import { LitElement, html, css } from 'lit';
-import s from '/src/components/Profile/profile-temperature/profile-temperature.css?inline';
+import s from '/src/components/Profile/profileTemperature/profileTemperature.css?inline';
 import pb from '/src/api/pocketbase';
 
 class ProfileTemperature extends LitElement {
-
   static properties = {
     userId: { type: String }, // 사용자 ID
     initialTemp: { type: Number }, // 초기 온도
@@ -48,7 +47,6 @@ class ProfileTemperature extends LitElement {
 
       // 클라이언트에서 역순 정렬
       this.items = (data.items || []).reverse();
-      
     } catch (error) {
       console.error('데이터 가져오기 실패:', error);
     }

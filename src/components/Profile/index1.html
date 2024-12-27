@@ -10,8 +10,8 @@
   <body>
     <div class="container">
       <!-- 프로필 헤더 -->
-      <div class="profile-header">
-        <profile-header></profile-header>
+      <div class="ProfileHeader">
+        <ProfilePhoto></ProfilePhoto>
       </div>
 
       <!-- 매너 온도 및 리뷰 섹션 -->
@@ -19,18 +19,18 @@
         <profile-temperature></profile-temperature>
 
         <!-- 각기 다른 속성으로 변형된 컴포넌트 -->
-        <profile-contents
+        <profileLink
           text="활동 배지"
           link="https://example.com/qna"
-        ></profile-contents>
-        <profile-contents
+        ></profileLink>
+        <profileLink
           text="판매 상품"
           link="https://example.com/settings"
-        ></profile-contents>
-        <profile-contents
+        ></profileLink>
+        <profileLink
           text="받은 매너 평가"
           link="https://example.com/notices"
-        ></profile-contents>
+        ></profileLink>
 
         <chat-balloon
           count="8"
