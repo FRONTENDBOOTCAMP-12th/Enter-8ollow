@@ -1,5 +1,4 @@
-import { LitElement, html, css, unsafeCSS } from 'lit';
-import styles from './profileCompmnents.css?inline';
+import { LitElement, html, css } from 'lit';
 
 class ProfileContents extends LitElement {
   // 속성 정의
@@ -9,7 +8,44 @@ class ProfileContents extends LitElement {
   };
 
   static styles = css`
-    ${unsafeCSS(styles)}
+    :host {
+      display: flex; /* 프로필 페이지 구성상 flex 방식으로 설정 */
+      justify-content: center;
+      align-items: center; /* 위치는 임의로 중앙으로 조정 */
+      height: 60px;
+      box-sizing: border-box; /* 박스 크기 계산 시 패딩과 테두리 포함 */
+    }
+
+    .ProfileContents {
+      width: 100%; /* 화면 사이즈에 따라 크기 조정 */
+      height: 21px;
+      padding: 20px; /* 상하좌우 여백을 모두 16px로 설정 */
+      background: var(--background);
+      border: 0.1px solid var(--contents--content-secondary); /* 전체 테두리 적용 */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px;
+      cursor: pointer; /* 마우스 오버 시 포인터 표시 */
+    }
+
+    .ProfileText {
+      font-family: Pretendard, sans-serif; /* Pretendard 폰트 사용 */
+      font-size: 14px;
+      font-weight: 600;
+      color: var(
+        --contents--content-primary
+      ); /* 텍스트 색상에 전역 변수 사용 */
+      white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ProfileIcon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   `;
 
   constructor() {
@@ -20,9 +56,9 @@ class ProfileContents extends LitElement {
 
   render() {
     return html`
-      <div class="profile-contents" @click=${this.handleClick}>
-        <div class="profile-text">${this.text}</div>
-        <div class="profile-icon">
+      <div class="ProfileContents" @click=${this.handleClick}>
+        <div class="ProfileText">${this.text}</div>
+        <div class="ProfileIcon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
             <path
               d="M9 18l6-6-6-6"
@@ -43,4 +79,4 @@ class ProfileContents extends LitElement {
   }
 }
 
-customElements.define('profile-contents', ProfileContents);
+customElements.define('profileLink', ProfileContents);
