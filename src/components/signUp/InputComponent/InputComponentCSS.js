@@ -1,6 +1,14 @@
 import { css } from 'lit';
 
 export const styles = css`
+  :host {
+    --border-color: 1px solid var(--contents--content-primary);
+  }
+
+  .number-input {
+    border: var(--border-color);
+  }
+
   .number-box {
     display: flex;
     justify-content: center;

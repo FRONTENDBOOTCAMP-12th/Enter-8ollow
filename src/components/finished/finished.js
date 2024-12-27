@@ -7,10 +7,25 @@ class FinishedComponent extends LitElement {
     this.cssPath = './../../components/Finished/finished.css';
   }
 
+  handleClick() {
+    this.dispatchEvent(
+      new CustomEvent('click-event', {
+        bubbles: true,
+        composed: true,
+      })
+    );
+  }
+
   render() {
     return html`
       <link rel="stylesheet" href="${this.cssPath}" />
-      <button id="completeButton" type="submit" class="inactive" disabled>
+      <button
+        id="completeButton"
+        type="submit"
+        class="inactive"
+        disabled
+        @click="${this.handleClick}"
+      >
         완료
       </button>
     `;

@@ -14,6 +14,7 @@ class qnaPage extends LitElement {
   }
 
   constructor() {
+    console.log('qnaPage 생성자 호출');
     super();
 
     this.fetchData();
@@ -53,7 +54,6 @@ class qnaPage extends LitElement {
   render() {
     return html`
       <div class="container">
-        <back-component></back-component>
         ${this.items.map(
           (item) => html`
             <text-img

@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
-import s from '/src/pages/board/board.css?inline';
+import { styles } from '/src/pages/board/boardCSS?inline';
+
 import pb from '/src/api/pocketbase';
 
 class Board extends LitElement {
@@ -8,6 +9,9 @@ class Board extends LitElement {
     postDetailArray: {},
     postId: { type: String },
   };
+
+  static styles = styles;
+
   constructor() {
     super();
     this.description = '';
@@ -172,9 +176,7 @@ class Board extends LitElement {
     }
 
     return html`
-      <style>
-        ${s}
-      </style>
+      <region-menu></region-menu>
 
       <div class="main-button-container">
         <main-button class="category" name="주제"></main-button>
@@ -210,7 +212,6 @@ class Board extends LitElement {
           `
         )}
       </ul>
-      <region-menu></region-menu>
       <header-component></header-component>
       <board-theme-list id="board-theme-list" class="hidden"></board-theme-list>
     `;

@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit';
 import { styles } from '/src/components/signUp/InputComponent/InputComponentCSS?inline';
-// import resetStyles from '/src/style/reset';
 
 class InputComponent extends LitElement {
   static properties = {
@@ -18,15 +17,6 @@ class InputComponent extends LitElement {
 
   render() {
     return html`
-      <style>
-        :host {
-          --border-color: 1px solid var(--contents--content-primary);
-        }
-
-        .number-input {
-          border: var(--border-color);
-        }
-      </style>
       <div class="number-box">
         <input
           type="${this.type === 'phoneNumber' ? 'tel' : 'text'}"

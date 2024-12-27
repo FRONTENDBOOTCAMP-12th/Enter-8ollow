@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import s from '/src/components/Main/StoryField/StoryField.css?inline';
+import { styles } from '/src/components/Main/StoryField/StoryFieldCSS?inline';
 
 export class StoryField extends LitElement {
   static properties = {
@@ -9,15 +9,14 @@ export class StoryField extends LitElement {
     author: { type: String },
   };
 
+  static styles = styles;
+
   constructor() {
     super();
   }
 
   render() {
     return html`
-      <style>
-        ${s}
-      </style>
       <div class="story-field">
         <img src="${this.image}" alt="" />
 
