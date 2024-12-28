@@ -1,0 +1,54 @@
+import { LitElement, html, css, unsafeCSS } from 'lit';
+
+class ProfileChoiceButton extends LitElement {
+  static styles = css`
+    :host {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .choice-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border: 1px solid var(--contents--content-secondary);
+      border-radius: 8px;
+      background: var(--background);
+      color: var(--contents--content-primary);
+      font-size: var(--paragraph---medium);
+      font-weight: 600;
+      cursor: pointer;
+      transition:
+        background 0.3s,
+        color 0.3s;
+    }
+
+    .choice-button:hover {
+      background: var(--tertiary);
+      color: var(--white);
+    }
+
+    .choice-button.active {
+      background: var(--secondary);
+      color: var(--white);
+    }
+
+    .icon {
+      margin-right: 8px;
+    }
+  `;
+
+  render() {
+    return html`
+      <div class="button-group">
+        <div class="button active"><span class="icon">🔍</span> text</div>
+        <div class="button"><span class="icon">🔍</span> text</div>
+        <div class="button"><span class="icon">🔍</span> text</div>
+      </div>
+    `;
+  }
+}
+
+customElements.define('profile-choice-button', ProfileChoiceButton);
