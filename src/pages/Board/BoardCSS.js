@@ -80,4 +80,9 @@ export const BoardCSS = css`
   .hidden {
     display: none;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;

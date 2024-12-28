@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BoardWith</title>
 
-    <link rel="stylesheet" href="/src/style/buttonReset.css" />
     <link rel="stylesheet" href="/src/style/variable.css" />
-    <link rel="stylesheet" href="/src/pages/Board/BoardWith/BoardWith.css" />
 
     <script type="module" src="/src/main.js"></script>
 
-    <script type="module" src="/src/pages/board/board.js"></script>
     <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/pages/Board/BoardWith/BoardWith"></script>
+    <link rel="stylesheet" href="/src/style/reset.css" />
 
     <style>
       body.modal-overlay::before {
@@ -29,5 +28,7 @@
     </style>
   </head>
 
-  <body></body>
+  <body>
+    <board-with-page></board-with-page>
+  </body>
 </html>
