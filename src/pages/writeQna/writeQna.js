@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import style from '/src/pages/writeQna/writeQna.css?inline';
+import { style } from '/src/pages/writeQna/WriteQnaCSS?inline';
 
 class WriteQna extends LitElement {
   static get properties() {
@@ -14,6 +14,8 @@ class WriteQna extends LitElement {
     this.inputTitle = '';
     this.inputContent = '';
   }
+
+  static styles = styles;
 
   updated(changedProperties) {
     if (
@@ -35,23 +37,22 @@ class WriteQna extends LitElement {
   }
 
   buttonStyleChanger(isChanged) {
-    const finishedComponent =
-      this.renderRoot.querySelector('finished-component');
+    console.log('buttonStyleChanger 메서드 실행');
+    const finishedComponent = document.querySelector('#completeButton');
+    console.log(finishedComponent);
     if (!finishedComponent) return;
 
-    const { shadowRoot } = finishedComponent;
-    if (!shadowRoot) return;
-
-    const completeButton = shadowRoot.querySelector('#completeButton');
-    if (!completeButton) return;
-
     if (isChanged) {
-      completeButton.classList.remove('inactive');
-      completeButton.classList.add('active');
+      finishedComponent.classList.remove('inactive');
+      finishedComponent.classList.add('active');
     } else {
-      completeButton.classList.remove('active');
-      completeButton.classList.add('inactive');
+      finishedComponent.classList.remove('active');
+      finishedComponent.classList.add('inactive');
     }
+  }
+
+  clickHandler() {
+    console.log('clickHandler 메서드 실행');
   }
 
   render() {
@@ -59,7 +60,17 @@ class WriteQna extends LitElement {
       <style>
         ${style}
       </style>
-      <finished-component></finished-component>
+      <finished-component @click=${this.clickHandler}></finished-component>
+
+      <button
+        id="completeButton"
+        type="submit"
+        class="inactive"
+        disabled
+        @click="${this.handleClick}"
+      >
+        완료
+      </button>
       <info-component></info-component>
 
       <input-component

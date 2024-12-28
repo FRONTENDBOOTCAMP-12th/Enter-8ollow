@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit';
 
 import { styles } from '/src/pages/main/SeniorStory/SeniorStoryCSS?inline';
-
+import pb from '/src/api/pocketbase';
 import image from '/src/assets/logo.svg';
 
 class SeniorStory extends LitElement {
@@ -25,15 +25,32 @@ class SeniorStory extends LitElement {
         `${import.meta.env.VITE_PB_API}/collections/seniorStory/records`
       );
       const data = await response.json();
-      this.items = data.items || [];
+      const itemsWithNicknames = await Promise.all(
+        (data.items || []).map(async (item) => {
+          const nickname = await this.getNickname(item.author_test);
+
+          return { ...item, nickname };
+        })
+      );
+      this.items = itemsWithNicknames;
     } catch (error) {
       console.error('데이터 가져오기 실패:', error);
     }
   }
 
+  async getNickname(uid) {
+    try {
+      const user = await pb.collection('members').getOne(uid);
+
+      return user.nickName || '';
+    } catch (error) {
+      console.error(`닉네임 가져오기 실패 (UID: ${uid}):`, error);
+      return 'Unknown User';
+    }
+  }
+
   // 이미지 URL 생성
   getImageURL(item) {
-    console.log(item.iamge);
     if (!item || !item.iamge) {
       return `${image}`;
     }
@@ -46,22 +63,28 @@ class SeniorStory extends LitElement {
 
   render() {
     return html`
-      <div class="story-container">
-        ${this.items.length > 0
-          ? this.items.map(
-              (item) => html`
-                <story-field
-                  tabindex="0"
-                  image="${this.getImageURL(item)}"
-                  title="${item.title}"
-                  content="${item.content}"
-                  author="${item.author}"
-                  @click="${() => this.handleClick(item.id)}"
-                ></story-field>
-              `
-            )
-          : html`<p>데이터가 없습니다.</p>`}
-      </div>
+      ${this.items.length > 0
+        ? html`
+            <div class="story-container">
+              ${this.items.map(
+                (item) => html`
+                  <story-field
+                    tabindex="0"
+                    image="${this.getImageURL(item)}"
+                    title="${item.title}"
+                    content="${item.content}"
+                    author="${item.nickname}"
+                    @click="${() => this.handleClick(item.id)}"
+                  ></story-field>
+                `
+              )}
+            </div>
+          `
+        : html`
+            <div class="app">
+              <span class="loader"></span>
+            </div>
+          `}
     `;
   }
 }

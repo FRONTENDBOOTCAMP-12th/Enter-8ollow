@@ -1,0 +1,82 @@
+import { LitElement, html, css } from 'lit';
+
+class FinishedComponent extends LitElement {
+  constructor() {
+    super();
+  }
+
+  static styles = css`
+    button {
+      display: inline-block;
+      width: 50px;
+      height: 21px;
+      padding: 10px;
+      font-size: 14px;
+      font-family: 'Pretendard', sans-serif;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+    }
+
+    button#completeButton.inactive {
+      color: #9da1b4;
+      cursor: not-allowed;
+    }
+
+    button#completeButton.active {
+      color: #000000;
+      cursor: pointer;
+    }
+
+    #qnaTitle {
+      width: 100%;
+      height: 34px;
+      padding: 6px 0px 6px;
+      font-size: 18.66px;
+      color: #9da1b4;
+      font-family: 'Pretendard', sans-serif;
+      font-weight: 600;
+      border: none;
+    }
+
+    #qnaContent {
+      width: 100%;
+      height: 160px;
+      resize: none;
+      padding: 12px 0px 104px;
+      font-size: 14px;
+      color: #919191;
+      font-family: 'Pretendard', sans-serif;
+      font-weight: 400;
+      border: none;
+    }
+  `;
+
+  handleClick() {
+    this.dispatchEvent(
+      new CustomEvent('click-event', {
+        bubbles: true,
+        composed: true,
+      })
+    );
+  }
+
+  render() {
+    return html`
+      <link rel="stylesheet" href="${this.cssPath}" />
+      <button
+        id="completeButton"
+        type="submit"
+        class="inactive"
+        disabled
+        @click="${this.handleClick}"
+      >
+        완료
+      </button>
+    `;
+  }
+}
+
+customElements.define('finished-component', FinishedComponent);

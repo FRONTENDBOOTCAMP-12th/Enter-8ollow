@@ -104,6 +104,14 @@ class Login extends LitElement {
 
       console.log(resultList);
 
+      localStorage.setItem(
+        'isLogin',
+        JSON.stringify({
+          phoneNumber: this.phoneNumber,
+          isLogin: true,
+        })
+      );
+
       if (resultList.items.length === 0) {
         Swal.fire({
           title: '로그인 실패',

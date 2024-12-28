@@ -1,0 +1,34 @@
+import { css } from 'lit';
+
+export const styles = css`
+  .nav-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary, #373f67);
+    height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    position: sticky;
+    top: 50px;
+    z-index: 10;
+  }
+
+  .nav-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 100%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
