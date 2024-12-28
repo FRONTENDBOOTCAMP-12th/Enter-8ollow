@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { register } from 'swiper/element/bundle';
-import {} from '/src/pages/main/exchange/exchange.js';
+import {} from '/src/pages/main/Exchange/Exchange.js';
 import {} from '/src/pages/main/SeniorStory/SeniorStory.js';
 
 register();
