@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit';
-import styles from '/src/pages/main/SeniorDetail/SeniorDetailCSS.js?inline';
+import { styles } from '/src/pages/main/SeniorDetail/SeniorDetailCSS.js?inline';
+import pb from '/src/api/pocketbase';
 
 class DetailPage extends LitElement {
   static get properties() {
@@ -16,6 +17,7 @@ class DetailPage extends LitElement {
     this.story = null;
     this.storyId = this.getStoryIdFromUrl();
     this.fetchStory();
+    this.fetchComments();
   }
 
   getStoryIdFromUrl() {
@@ -25,12 +27,20 @@ class DetailPage extends LitElement {
 
   async fetchStory() {
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_PB_API}/collections/seniorStory/records/${this.storyId}`
-      );
-      this.story = await response.json();
+      this.story = await pb.collection('seniorStory').getOne(this.storyId);
     } catch (error) {
-      console.error('스토리 가져오기 실패:', error);
+      console.error('실패:', error);
+    }
+  }
+
+  async fetchComments() {
+    try {
+      this.comments = await pb.collection('comments').getFullList({
+        filter: `SeniorPost='${this.storyId}'`,
+      });
+      console.log('댓글:', this.comments);
+    } catch (error) {
+      console.error('댓글 가져오기 실패:', error);
     }
   }
 
@@ -77,7 +87,6 @@ class DetailPage extends LitElement {
     if (!this.story) {
       return html`<p>로딩 중...</p>`;
     }
-    console.log(styles);
 
     return html`
       <div class="detail-container">
@@ -99,6 +108,8 @@ class DetailPage extends LitElement {
           <p>${this.story.contents}</p>
         </div>
       </div>
+
+      <send-message></send-message>
     `;
   }
 }

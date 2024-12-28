@@ -11,6 +11,7 @@ class BackComponent extends LitElement {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
     .back {
       padding: 15px;

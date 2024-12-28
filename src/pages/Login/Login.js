@@ -102,13 +102,16 @@ class Login extends LitElement {
         filter: `phoneNumber = "${this.phoneNumber}"`,
       });
 
-      console.log(resultList);
+      const UID = resultList.items[0].id;
+
+      console.log(UID);
 
       localStorage.setItem(
         'isLogin',
         JSON.stringify({
           phoneNumber: this.phoneNumber,
           isLogin: true,
+          UID,
         })
       );
 
