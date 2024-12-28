@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit';
 import { styles } from '/src/pages/board/boardCSS?inline';
-
 import pb from '/src/api/pocketbase';
 
 class Board extends LitElement {

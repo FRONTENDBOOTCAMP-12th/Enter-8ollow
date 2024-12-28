@@ -1,6 +1,6 @@
 // 외부 라이브러리 및 리소스 임포트
 import { LitElement, html } from 'lit';
-import pb from '/src/api/pocketbase'; // PocketBase SDK
+import {} from '/src/components/index.js';
 import defaultImage from '/src/assets/logo.svg';
 import ExchangeDetailCSS from '/src/pages/main/ExchangeDetail/ExchangeDetailCSS.js';
 import heartIcon from '/src/assets/heart.svg';

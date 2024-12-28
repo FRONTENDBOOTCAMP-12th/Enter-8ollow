@@ -11,6 +11,11 @@ class MainPage extends LitElement {
   };
 
   static styles = css`
+    .app {
+      padding-bottom: 70px;
+      padding-block-end: 70px;
+    }
+
     button {
       cursor: pointer;
       all: unset;
@@ -67,39 +72,39 @@ class MainPage extends LitElement {
     if (swiperEl && swiperEl.swiper) {
       swiperEl.swiper.slideTo(index);
     }
-
-    console.log('Tab changed to:', index);
   }
 
   render() {
     return html`
-      <div class="time-celluar"></div>
-      <region-menu></region-menu>
-      <swiper-component></swiper-component>
+      <div class="app">
+        <div class="time-celluar"></div>
+        <region-menu></region-menu>
+        <swiper-component></swiper-component>
 
-      <nav-items
-        .activeIndex="${this.activeIndex}"
-        @change-event="${this.handleTabChange}"
-      ></nav-items>
+        <nav-items
+          .activeIndex="${this.activeIndex}"
+          @change-event="${this.handleTabChange}"
+        ></nav-items>
 
-      <swiper-container>
-        <swiper-slide>
-          <senior-story></senior-story>
-        </swiper-slide>
-        <swiper-slide>
-          <exchange-layout></exchange-layout>
-        </swiper-slide>
-        <swiper-slide>
-          <qna-page></qna-page>
-        </swiper-slide>
-        <swiper-slide>Slide 4</swiper-slide>
+        <swiper-container>
+          <swiper-slide>
+            <senior-story></senior-story>
+          </swiper-slide>
+          <swiper-slide>
+            <exchange-page></exchange-page>
+          </swiper-slide>
+          <swiper-slide>
+            <qna-page></qna-page>
+          </swiper-slide>
+          <swiper-slide>Slide 4</swiper-slide>
 
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-      </swiper-container>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </swiper-container>
 
-      <base-header></base-header>
+        <base-header></base-header>
+      </div>
     `;
   }
 }
