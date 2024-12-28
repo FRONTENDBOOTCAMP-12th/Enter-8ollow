@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import styles from '/src/pages/main/SeniorDetail/SeniorDetail.css?inline';
+import styles from '/src/pages/main/SeniorDetail/SeniorDetailCSS.js?inline';
 
 class DetailPage extends LitElement {
   static get properties() {
@@ -8,6 +8,8 @@ class DetailPage extends LitElement {
       storyId: { type: String },
     };
   }
+
+  static styles = styles;
 
   constructor() {
     super();
@@ -78,10 +80,6 @@ class DetailPage extends LitElement {
     console.log(styles);
 
     return html`
-      <style>
-        ${styles}
-      </style>
-
       <div class="detail-container">
         <div class="field">
           <h2>${this.story.title}</h2>
