@@ -75,8 +75,6 @@ export default class Exchange extends LitElement {
             )
           : html`<span class="loader"></span> `}
       </div>
-
-      <plus-button></plus-button>
     `;
   }
 }
