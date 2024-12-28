@@ -59,8 +59,6 @@ class qnaPage extends LitElement {
               @click="${() => this.handleClick(item.id)}"
             >
             </text-img>
-
-            <plus-button></plus-button>
           `
         )}
       </div>
