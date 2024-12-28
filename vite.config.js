@@ -16,7 +16,7 @@ const config = defineConfig({
         register: resolve(__dirname, 'src/pages/register/index.html'),
         main: resolve(__dirname, 'src/pages/main/index.html'),
         board: resolve(__dirname, 'src/pages/Board/index.html'),
-        exchange: resolve(__dirname, 'src/pages/main/exchange/index.html'),
+        exchange: resolve(__dirname, 'src/pages/main/Exchange/index.html'),
         // profile: resolve(__dirname, 'src/components/Profile/index.html'),
         seniordetail: resolve(
           __dirname,
