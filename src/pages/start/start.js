@@ -36,7 +36,7 @@ class Start extends LitElement {
 
   handleClick(event) {
     console.log('클릭');
-    location.href = '/src/pages/cartegory/cartegory.html';
+    location.href = '/src/pages/category/index.html';
   }
 }
 

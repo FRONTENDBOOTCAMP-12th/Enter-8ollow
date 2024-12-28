@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit';
-import pb from '/src/api/pocketbase';
-import {} from '/src/components/Main/index.js';
+import {} from '/src/components/index.js';
 import defaultImage from '/src/assets/logo.svg';
 
 function elapsedTime(created) {

@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import pb from '/src/api/pocketbase';
-import {} from '/src/components/Main/index.js';
-import ListItemCSS from '/src/components/Main/ListItem/ListItemCSS';
+import {} from '/src/components/index.js';
+import ListItemCSS from '/src/components/Molecule/ListItem/ListItemCSS?inline';
 import defaultImage from '/src/assets/logo.svg';
 
 export default class Exchange extends LitElement {
@@ -10,6 +10,8 @@ export default class Exchange extends LitElement {
       items: { type: Array },
     };
   }
+
+  static styles = ListItemCSS;
 
   constructor() {
     super();
@@ -59,10 +61,7 @@ export default class Exchange extends LitElement {
     location.href = url;
   }
 
-  static styles = ListItemCSS;
-
   render() {
-    console.log('렌더링 중...');
     return html`
       <div class="exchange-container">
         ${this.items.length > 0
@@ -74,7 +73,7 @@ export default class Exchange extends LitElement {
                 ></list-item>
               `
             )
-          : html`<p>데이터를 불러오는 중입니다...</p>`}
+          : html`<span class="loader"></span> `}
       </div>
 
       <plus-button></plus-button>
