@@ -1,6 +1,6 @@
 import { css } from 'lit';
 
-export const style = css`
+export const BoardCSS = css`
   .main-button-container {
     display: grid;
 

@@ -24,6 +24,10 @@ class BackComponent extends LitElement {
       width: 20px;
       height: 20px;
     }
+    ::slotted(h1) {
+      margin: auto;
+      font-size: var(--label---medium);
+    }
   `;
 
   render() {
@@ -35,6 +39,7 @@ class BackComponent extends LitElement {
           class="back-icon"
           @click="${this.handleClick}"
         />
+        <slot></slot>
       </div>
     `;
   }
