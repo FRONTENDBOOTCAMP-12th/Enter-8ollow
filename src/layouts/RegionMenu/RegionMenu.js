@@ -17,7 +17,6 @@ class RegionMenu extends LitElement {
     this.isActive = false;
     this.placeList = [];
     this.checkPlace = '';
-    this.id = 'i1vn08611tpq5z2';
   }
 
   toggleClass = async (e) => {
@@ -71,18 +70,18 @@ class RegionMenu extends LitElement {
   }
 
   async fetchData() {
-    const records = await pb.collection('places').getOne('ptkt059wm2l8id0', {
-      expand: 'name',
-    });
+    const { UID } = JSON.parse(localStorage.getItem('isLogin'));
 
     let obj = await pb
       .collection('places')
-      .getList(1, 50, { filter: `userId = "${this.id}"` });
+      .getList(1, 50, { filter: `user = "${UID}"` });
 
     this.placeList = obj.items.map((item) => item.name);
     this.checkPlace = this.placeList[0];
+    localStorage.setItem('place', this.checkPlace);
 
-    this.place = records.name;
+    console.log(this.placeList);
+
     this.requestUpdate();
   }
 

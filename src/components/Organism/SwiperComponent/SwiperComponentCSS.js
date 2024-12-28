@@ -4,9 +4,8 @@ export const SwiperSlide = css`
   swiper-slide {
     position: relative;
     width: 100%;
+    height: 11.875rem;
     background-color: var(--contents--content-tertiary);
-    padding-top: 20px;
-    padding-block-start: 20px;
   }
 
   .text-container {
