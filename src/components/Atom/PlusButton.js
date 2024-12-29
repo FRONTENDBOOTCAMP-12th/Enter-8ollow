@@ -3,6 +3,7 @@ import { LitElement, html, css } from 'lit';
 export class PlusButton extends LitElement {
   static properties = {
     active: { type: Boolean, reflect: true },
+    items: { type: Array },
   };
 
   static styles = css`
@@ -70,7 +71,7 @@ export class PlusButton extends LitElement {
       li {
         list-style: none;
 
-        a {
+        span {
           /* 기본 설정 */
           display: flex;
           align-items: center;
@@ -97,19 +98,14 @@ export class PlusButton extends LitElement {
         }
 
         /* 리스트 항목 포커스 상태 */
-        a:focus-visible {
+        span:focus-visible {
           outline: none;
           box-shadow: 0 0 0 3px var(--tertiary, #719cf7);
-        }
-
-        /* 리스트 항목 호버 상태 */
-        a:hover {
-          background-color: var(--secondary, #5a85ee);
-          transform: translateY(-2px);
         }
       }
     }
   `;
+
   constructor() {
     super();
     this.active = false;
@@ -124,6 +120,16 @@ export class PlusButton extends LitElement {
     if (e.key === 'Enter' || e.key === ' ') {
       this.handleClick();
     }
+  }
+
+  // 클릭된 인덱스를 부모 요소로 전달
+  spanClick(index) {
+    const event = new CustomEvent('index-clicked', {
+      detail: { index },
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(event);
   }
 
   render() {
@@ -142,61 +148,19 @@ export class PlusButton extends LitElement {
 
       <!-- 리스트 -->
       <ul class="exchange-button-list ${this.active ? 'visible' : ''}">
-        <li>
-          <a
-            href="/"
-            class="exchange-button"
-            role="button"
-            tabindex="0"
-            @keydown="${this.handleKeyPress}"
-          >
-            <span>🎧 헤드셋</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/"
-            class="exchange-button"
-            role="button"
-            tabindex="0"
-            @keydown="${this.handleKeyPress}"
-          >
-            <span>⌨️ 키보드</span>
-          </a>
-        </li>
-        <li>
-          <a
-            role="button"
-            href="/"
-            class="exchange-button"
-            tabindex="0"
-            @keydown="${this.handleKeyPress}"
-          >
-            <span>🖱️ 마우스</span>
-          </a>
-        </li>
-        <li>
-          <a
-            role="button"
-            href="/"
-            class="exchange-button"
-            tabindex="0"
-            @keydown="${this.handleKeyPress}"
-          >
-            <span>💻 컴퓨터</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/"
-            class="exchange-button"
-            role="button"
-            tabindex="0"
-            @keydown="${this.handleKeyPress}"
-          >
-            <span>🎈 기타 등등</span>
-          </a>
-        </li>
+        ${this.items.map(
+          (item, index) => html`
+            <li>
+              <span
+                tabindex="0"
+                role="button"
+                @click="${() => this.spanClick(index)}"
+              >
+                ${item}
+              </span>
+            </li>
+          `
+        )}
       </ul>
     `;
   }

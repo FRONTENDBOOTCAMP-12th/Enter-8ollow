@@ -46,11 +46,18 @@ export default class Exchange extends LitElement {
         liked_count: item.liked_count?.length || 0, // 좋아요 유저 수
         image: this.getImageURL(item),
         created: item.created,
+        category: item.category,
       }));
       this.requestUpdate();
     } catch (error) {
       console.error('데이터 가져오기 실패:', error);
     }
+
+    const item = await this.items;
+    console.log(item);
+
+    const result = item.filter((i) => i.category === 'Etc');
+    console.log(result);
   }
 
   // 디테일 페이지로 이동
