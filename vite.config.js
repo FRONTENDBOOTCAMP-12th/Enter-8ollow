@@ -31,7 +31,7 @@ const config = defineConfig({
 
         exchageDetail: resolve(
           __dirname,
-          'src/pages/main/ExchageDetail/index.html'
+          'src/pages/main/ExchangeDetail/index.html'
         ),
 
         qnadetail: resolve(__dirname, 'src/pages/qnaBoard/index.html'),
