@@ -79,6 +79,14 @@ class ExchangeDetail extends LitElement {
       this.liked = record.liked_count.includes(record.author);
       this.post = record;
 
+      // 유저 정보 가져오기
+      if (record.author) {
+        const userRecord = await pb.collection('members').getOne(record.author);
+        this.post.authorNickName = userRecord.nickName || '알 수 없음';
+      } else {
+        this.post.authorNickName = '알 수 없음';
+      }
+
       // 온도 계산 및 업데이트
       this.calculateTemperature(record.status || '');
 
@@ -191,7 +199,8 @@ class ExchangeDetail extends LitElement {
       return html`<p>로딩중...</p>`;
     }
 
-    const { title, price, description, created, category, author } = this.post;
+    const { title, price, description, created, category, authorNickName } =
+      this.post;
 
     const isComplete = this.post?.status?.trim().toLowerCase() === 'complete';
     const buttonClass = isComplete ? 'chat-button disabled' : 'chat-button';
@@ -205,7 +214,7 @@ class ExchangeDetail extends LitElement {
             alt="상품 이미지"
           />
         </figure>
-        <p class="author">유저: ${author}</p>
+        <p class="author">유저: ${authorNickName}</p>
         <p class="current-temp">
           현재 온도: ${this.currentTemp.toFixed(1)}℃ 😊
         </p>
