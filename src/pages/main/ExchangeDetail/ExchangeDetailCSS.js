@@ -5,138 +5,177 @@ export default css`
     display: none;
   }
 
-  /* 연관 글 섹션 컨테이너 스타일 */
   .related-section {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-top: 2rem;
+    padding: 0px;
+    margin: 0px;
   }
 
+  /* 이 글과 함께 봤어요 */
   .related-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+    color: var(--Contents-contentPrimary, #000);
+    font-size: var(--label---large, 1.33rem;);
+    font-weight: 600;
+
+    padding-left: 12px;
   }
 
+  /* 연관 글 목록 */
   .related-list {
     display: grid;
     grid-template-columns: repeat(
       auto-fill,
       minmax(150px, 1fr)
     ); /* 반응형 그리드 */
-    gap: 1.5rem;
+    gap: 16px;
+    padding: 0 14px 0 14px; /* 위, 오른쪽, 아래, 왼쪽  */
+    margin-bottom: 75px;
   }
 
   .related-item {
     list-style: none;
-    text-align: center;
-  }
+    text-align: left;
 
-  .related-item a {
-    text-decoration: none;
-    color: inherit;
+    a {
+      text-decoration: none;
+    }
   }
 
   .related-item-image {
-    width: 100%;
-    height: 150px;
-    background-color: #c4c4c4; /* 기본 회색 배경 */
+    background: var(--Contents-contentSecondary, #919191);
     border-radius: 8px;
     object-fit: cover;
-    object-position: center;
+    object-position: right;
+
+    width: 100%;
+    height: auto; /* 이미지 높이를 자동으로 조정 */
+    aspect-ratio: 16 / 9; /* 가로 세로 비율 유지 */
+    object-fit: cover;
   }
 
   .related-item-title {
-    margin: 0.5rem 0;
-    font-size: 1rem;
-    font-weight: bold;
+    color: var(--Contents-contentPrimary, #000);
+    font-size: var(--label---medium, 1rem);
+    margin: 0;
+    font-weight: 400;
+    line-height: 160%;
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+    padding-top: 12px;
   }
 
   .related-item-price {
-    font-size: 0.9rem;
-    color: #333;
+    color: var(--Contents-contentPrimary, #000);
+    font-size: var(--label---medium, 1rem);
+    padding-bottom: 20px;
+    font-weight: 600;
   }
 
   .detail-container {
-    margin-bottom: 2rem;
+    margin: 0px;
+    padding: 12px;
   }
 
   .details-container {
     display: flex;
     justify-content: flex-start;
-    gap: 1rem;
-    font-size: 0.9rem;
-    color: #6c757d;
+
+    font-size: var(--paragraph---medium, 1rem);
+    color: var(--Contents-contentSecondary, #919191);
     margin-bottom: 1rem;
+  }
+
+  .author {
+    color: var(--Contents-contentPrimary, #000);
+    font-size: var(--label---medium, 1rem);
+    font-weight: 600;
+  }
+
+  .current-temp {
+    color: var(--secondary, #5a85ee);
+    font-size: var(--label---medium, 1rem);
+    font-weight: 600;
+  }
+
+  .post-title {
+    color: var(--Contents-contentPrimary, #000);
+    font-weight: 600;
+    font-size: var(--label---x-l, 1.78rem);
+  }
+  .description {
+    color: var(--Contents-contentPrimary, #000);
+    font-size: var(--label---medium, 1rem);
+    font-weight: 400;
+    line-height: 160%;
   }
 
   .footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
+    margin: 0px;
+    padding: 12px;
+    border-bottom: 1px solid var(--contents--content-secondary, #919191); /* 아래쪽에 1px 검정 라인 추가 */
   }
 
   .footer-left {
     display: flex;
-    gap: 1rem;
+    gap: 25px;
     align-items: center;
   }
 
-  .liked_count {
-    font-size: 0.9rem;
-    color: #ff4500;
+  .price-footer {
+    font-size: var(--label---large, 1.33rem);
+    font-weight: 600;
+    color: var(--Contents-contentPrimary, #000);
   }
 
-  .price-container {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #28a745;
+  .price-proposal {
+    color: var(--secondary, #5a85ee);
+    font-weight: 600;
   }
 
   .chat-button {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--secondary, #5a85ee);
+    color: var(--background, #fff);
     border: none;
-    padding: 0.8rem 1.2rem;
+    padding: 8px 14px;
     border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: var(--label---large, 1.33rem);
+    font-weight: 600;
     cursor: pointer;
   }
 
   .chat-button.disabled {
-    background-color: #6c757d;
-    color: #ffffff;
+    background-color: var(--contents--content-tertiary, #9da1b4);
+    color: var(--white, #ffffff);
     cursor: not-allowed;
   }
 
-  .heart-icon {
-    width: 24px;
-    height: 24px;
+  #interest-btn {
+    all: unset;
+    display: inline-block;
     cursor: pointer;
-    fill: none;
-    stroke: black;
   }
 
-  .heart-icon.liked {
-    fill: red;
-    stroke: none;
+  .heart-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
   }
 
   .detail-image {
+    background: var(--Contents-contentSecondary, #919191);
     width: 100%;
-    height: 280px;
-    object-fit: cover; /* 이미지 비율 유지하며 크기 조정 */
-    object-position: center;
-    border-radius: 8px;
-    background-color: #c4c4c4;
+    height: 26.3vh;
+    object-fit: cover;
+    margin: 0px;
+    padding: 0px;
   }
 
   .separator {
-    width: 100%; /* 가로로 화면 전체를 채움 */
-    height: 1px; /* 구분선의 두께 */
+    width: 100%;
+    height: 1px;
     background-color: #6c757d; /* 구분선 색상 */
     margin: 1rem 0; /* 위아래 여백 (필요 시 조정 가능) */
   }

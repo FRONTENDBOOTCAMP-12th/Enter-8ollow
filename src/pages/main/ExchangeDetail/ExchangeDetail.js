@@ -155,9 +155,7 @@ class ExchangeDetail extends LitElement {
                 class="related-item-image"
               />
               <h4 class="related-item-title">${item.title}</h4>
-              <strong class="related-item-price">
-                ${item.price.toLocaleString()}원
-              </strong>
+              <p class="related-item-price">${item.price.toLocaleString()}원</p>
             </a>
           </article>
         </li>
@@ -234,13 +232,11 @@ class ExchangeDetail extends LitElement {
             alt="상품 이미지"
           />
         </figure>
-        <p class="author">유저: ${authorNickName}</p>
-        <p class="current-temp">
-          현재 온도: ${this.currentTemp.toFixed(1)}℃ 😊
-        </p>
+        <p class="author">${authorNickName}</p>
+        <p class="current-temp">${this.currentTemp.toFixed(1)}℃ 😊</p>
         <h2 class="post-title">${title}</h2>
         <div class="details-container">
-          <p class="category">${translateCategory(category)} •</p>
+          <p class="category">${translateCategory(category)}•</p>
           <p class="created">
             ${created ? elapsedTime(created) : '등록일 정보 없음'}
           </p>
@@ -264,16 +260,14 @@ class ExchangeDetail extends LitElement {
               />
             </button>
             <div>
-              <p class="price-container">${price.toLocaleString()}원</p>
-              <p>가격제안하기</p>
+              <p class="price-footer">${price.toLocaleString()}원</p>
+              <p class="price-proposal">가격제안하기</p>
             </div>
           </div>
           <button class="chat-btn ${buttonClass}" ?disabled="${isComplete}">
             ${isComplete ? '거래 완료' : '채팅하기'}
           </button>
         </div>
-
-        <div class="separator" aria-hidden="true"></div>
       </div>
 
       <!-- 연관글 목록 -->

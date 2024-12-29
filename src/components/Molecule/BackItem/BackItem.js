@@ -3,7 +3,6 @@ import back from '/src/assets/common/back/direction=left.png';
 import home from '/src/assets/home.svg';
 import share from '/src/assets/share.svg';
 import more from '/src/assets/more.svg';
-
 class BackItem extends LitElement {
   static styles = css`
     * {
@@ -34,7 +33,6 @@ class BackItem extends LitElement {
       gap: 15px;
     }
   `;
-
   render() {
     return html`
       <nav class="back-item">
@@ -51,7 +49,6 @@ class BackItem extends LitElement {
             <img src="${home}" alt="기기거래" />
           </a>
         </section>
-
         <section class="right-section">
           <button
             type="button"
@@ -73,20 +70,16 @@ class BackItem extends LitElement {
       </nav>
     `;
   }
-
   handleBackClick() {
     // console.log('뒤로가기 클릭');
     window.history.back();
   }
-
   handleHomeClick() {
     // console.log('홈 클릭');
     window.location.href = '/';
   }
-
   handleShareClick() {
     const currentUrl = window.location.href;
-
     navigator.clipboard
       .writeText(currentUrl)
       .then(() => {
@@ -98,10 +91,8 @@ class BackItem extends LitElement {
         console.error('공유 링크 복사 실패:', err);
       });
   }
-
   handleMoreClick() {
     alert('더보기 메뉴 준비 중입니다🥹');
   }
 }
-
 customElements.define('back-item', BackItem);
