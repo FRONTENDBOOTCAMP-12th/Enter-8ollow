@@ -23,9 +23,15 @@ const config = defineConfig({
         ),
 
         // profile: resolve(__dirname, 'src/components/Profile/index.html'),
+
         seniordetail: resolve(
           __dirname,
           'src/pages/main/SeniorDetail/index.html'
+        ),
+
+        exchageDetail: resolve(
+          __dirname,
+          'src/pages/main/ExchageDetail/index.html'
         ),
 
         qnadetail: resolve(__dirname, 'src/pages/qnaBoard/index.html'),

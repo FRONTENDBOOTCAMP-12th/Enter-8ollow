@@ -11,6 +11,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@joeattardi/emoji-button": "^4.6.4",
     "lit": "^3.2.1",
     "pocketbase": "^0.22.1",
     "sweetalert2": "^11.14.5",
