@@ -134,7 +134,7 @@ class ExchangeDetail extends LitElement {
     }
   }
 
-  // 연관 글 목록 렌더링
+  // 연관 글 목록 렌더링2
   renderRelatedItems() {
     if (!this.relatedItems || this.relatedItems.length === 0) {
       return html`<p>연관 글이 없습니다.</p>`;
@@ -144,7 +144,7 @@ class ExchangeDetail extends LitElement {
       (item, index) => html`
         <li class="related-item">
           <article>
-            <a href="/pages/exchange-detail/index.html?post=${item.id}">
+            <a href="/src/pages/main/ExchangeDetail/index.html?post=${item.id}">
               <img
                 src=${this.getPbImagesURL(item)}
                 alt="관련 글 ${index + 1}"
