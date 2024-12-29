@@ -78,9 +78,6 @@ class RegionMenu extends LitElement {
 
     this.placeList = obj.items.map((item) => item.name);
     this.checkPlace = this.placeList[0];
-    localStorage.setItem('place', this.checkPlace);
-
-    console.log(this.placeList);
 
     this.requestUpdate();
   }

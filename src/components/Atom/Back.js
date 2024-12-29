@@ -23,7 +23,7 @@ class BackComponent extends LitElement {
     button {
       all: unset;
 
-      &:focus {
+      &:focus-visible {
         outline: solid 2px #5a85ee;
       }
     }
