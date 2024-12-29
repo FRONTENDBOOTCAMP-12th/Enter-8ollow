@@ -7,6 +7,8 @@ class DetailPage extends LitElement {
     return {
       story: { type: Object },
       storyId: { type: String },
+      nickname: { type: String },
+      comments: { type: Array },
     };
   }
 
@@ -15,6 +17,7 @@ class DetailPage extends LitElement {
   constructor() {
     super();
     this.story = null;
+    this.comments = [];
     this.storyId = this.getStoryIdFromUrl();
     this.fetchStory();
     this.fetchComments();
@@ -35,9 +38,20 @@ class DetailPage extends LitElement {
 
   async fetchComments() {
     try {
-      this.comments = await pb.collection('comments').getFullList({
+      const rawComments = await pb.collection('comments').getFullList({
         filter: `SeniorPost='${this.storyId}'`,
       });
+
+      console.log('댓글:', rawComments);
+
+      this.comments = await Promise.all(
+        rawComments.map(async (comment) => {
+          this.nickname = await this.getNickname(comment.user);
+
+          console.log({ ...comment, nickname: this.nickname });
+          return { ...comment, nickname: this.nickname };
+        })
+      );
       console.log('댓글:', this.comments);
     } catch (error) {
       console.error('댓글 가져오기 실패:', error);
@@ -51,6 +65,17 @@ class DetailPage extends LitElement {
     return `${import.meta.env.VITE_PB_API}/files/${this.story.collectionId}/${this.story.id}/${this.story.iamge}`;
   }
 
+  async getNickname(uid) {
+    try {
+      const user = await pb.collection('members').getOne(uid);
+
+      return user.nickName || '';
+    } catch (error) {
+      console.error(`닉네임 가져오기 실패 (UID: ${uid}):`, error);
+      return 'Unknown User';
+    }
+  }
+
   handleInputChange(e) {
     const { name, value } = e.target;
     this.story = { ...this.story, [name]: value };
@@ -58,19 +83,13 @@ class DetailPage extends LitElement {
 
   async handleUpdate() {
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_PB_API}/collections/seniorStory/records/${this.storyId}`,
-        {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            title: this.story.title,
-            content: this.story.content,
-            author: this.story.author,
-          }),
-        }
-      );
-      const updatedStory = await response.json();
+      const updatedStory = await pb
+        .collection('seniorStory')
+        .update(this.storyId, {
+          title: this.story.title,
+          content: this.story.content,
+          author: this.story.author,
+        });
       console.log('업데이트 성공:', updatedStory);
       alert('스토리가 수정되었습니다.');
     } catch (error) {
@@ -110,6 +129,8 @@ class DetailPage extends LitElement {
       </div>
 
       <send-message></send-message>
+
+      <comment-list .comments="${this.comments}"></comment-list>
     `;
   }
 }
