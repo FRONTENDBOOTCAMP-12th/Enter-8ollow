@@ -114,7 +114,7 @@ class DetailPage extends LitElement {
         </div>
 
         <div class="field">
-          <span class="author">작성자: ${this.story.author}</span>
+          <span class="author">작성자: ${this.nickname}</span>
         </div>
 
         <img
