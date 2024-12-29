@@ -72,11 +72,14 @@ class ExchangeDetail extends LitElement {
   // 현재 포스트 데이터 가져오기
   async fetchPost() {
     try {
+      const loginData = JSON.parse(localStorage.getItem('isLogin'));
+      const userId = loginData ? loginData.userId : null;
+
       const record = await pb.collection('exchangePosts').getOne(this.postId);
       console.log('받아온 데이터:', record);
 
-      // 좋아요 상태 설정
-      this.liked = record.liked_count.includes(record.author);
+      // 좋아요 상태 확인
+      this.liked = record.liked_count.includes(userId);
       this.post = record;
 
       // 유저 정보 가져오기
@@ -134,7 +137,7 @@ class ExchangeDetail extends LitElement {
     }
   }
 
-  // 연관 글 목록 렌더링2
+  // 연관 글 목록 렌더링
   renderRelatedItems() {
     if (!this.relatedItems || this.relatedItems.length === 0) {
       return html`<p>연관 글이 없습니다.</p>`;
@@ -171,25 +174,36 @@ class ExchangeDetail extends LitElement {
 
   // 좋아요 토글 및 업데이트
   async toggleLike() {
+    const loginData = JSON.parse(localStorage.getItem('isLogin'));
+    if (!loginData || !loginData.userId) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
+    const userId = loginData.userId;
     const likedBefore = this.liked;
+
+    // 좋아요 상태 변경
     this.liked = !likedBefore;
     this.post.liked_count = likedBefore
-      ? this.post.liked_count.filter((id) => id !== this.post.author)
-      : [...(this.post.liked_count || []), this.post.author];
+      ? this.post.liked_count.filter((id) => id !== userId) // 기존에 좋아요한 경우 제거
+      : [...(this.post.liked_count || []), userId]; // 새로운 좋아요 추가
+
     this.requestUpdate();
 
     try {
+      // PocketBase에 업데이트 요청
       await pb.collection('exchangePosts').update(this.postId, {
         liked_count: this.post.liked_count,
       });
-
       console.log(`좋아요 상태 업데이트: ${this.liked}`);
     } catch (error) {
       console.error('좋아요 업데이트 실패:', error.message);
+      // 업데이트 실패 시 상태 복구
       this.liked = likedBefore;
       this.post.liked_count = likedBefore
-        ? [...(this.post.liked_count || []), this.post.author]
-        : this.post.liked_count.filter((id) => id !== this.post.author);
+        ? [...(this.post.liked_count || []), userId]
+        : this.post.liked_count.filter((id) => id !== userId);
       this.requestUpdate();
     }
   }
