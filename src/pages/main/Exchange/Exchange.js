@@ -26,7 +26,7 @@ export default class Exchange extends LitElement {
   // 이미지 URL 생성 함수
   getImageURL(item) {
     if (!item || !item.image) {
-      return defaultImage; // 기본 이미지 경로 반환
+      return defaultImage;
     }
     return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.image}`;
   }
@@ -36,7 +36,6 @@ export default class Exchange extends LitElement {
       const records = await pb.collection('exchangePosts').getFullList({
         sort: '-created', // 최신순 정렬
       });
-      // console.log('서버에서 받은 전체 데이터:', records);
 
       this.items = records.map((item) => ({
         id: item.id,
@@ -44,7 +43,7 @@ export default class Exchange extends LitElement {
         region: item.region || '지역 없음',
         price: item.price || 0,
         state: item.status || 'available',
-        liked_count: item.liked_count || 0,
+        liked_count: item.liked_count?.length || 0, // 좋아요 유저 수
         image: this.getImageURL(item),
         created: item.created,
       }));
