@@ -180,7 +180,7 @@ class Board extends LitElement {
       <div class="main-button-container">
         <main-button class="category" name="주제"></main-button>
         <main-button name="인기글"></main-button>
-        <a href="/src/pages/Board/BoardWith/BoardWith.html"
+        <a href="/src/pages/Board/BoardWith/index.html"
           ><main-button name="같이해요"></main-button
         ></a>
         <main-button name="질의응답"> </main-button>
