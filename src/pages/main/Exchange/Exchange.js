@@ -60,6 +60,12 @@ export default class Exchange extends LitElement {
     location.href = url;
   }
 
+  handleKeyDown(e, id) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      this.handleClick(id);
+    }
+  }
+
   render() {
     return html`
       <div class="exchange-container">
@@ -68,7 +74,9 @@ export default class Exchange extends LitElement {
               (item) => html`
                 <list-item
                   .item=${item}
+                  tabindex="0"
                   @click="${() => this.handleClick(item.id)}"
+                  @keydown="${(event) => this.handleKeyDown(event, item.id)}"
                 ></list-item>
               `
             )
