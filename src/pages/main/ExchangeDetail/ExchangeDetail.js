@@ -72,14 +72,15 @@ class ExchangeDetail extends LitElement {
   // 현재 포스트 데이터 가져오기
   async fetchPost() {
     try {
+      console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
       const loginData = JSON.parse(localStorage.getItem('isLogin'));
-      const userId = loginData ? loginData.userId : null;
+      const userId = loginData ? loginData.UID : null;
 
       const record = await pb.collection('exchangePosts').getOne(this.postId);
       console.log('받아온 데이터:', record);
 
       // 좋아요 상태 확인
-      this.liked = record.liked_count.includes(userId);
+      this.liked = userId ? record.liked_count.includes(userId) : false; // liked 상태 설정
       this.post = record;
 
       // 유저 정보 가져오기
@@ -174,13 +175,18 @@ class ExchangeDetail extends LitElement {
 
   // 좋아요 토글 및 업데이트
   async toggleLike() {
+    console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
     const loginData = JSON.parse(localStorage.getItem('isLogin'));
-    if (!loginData || !loginData.userId) {
+    console.log('Parsed loginData:', loginData); // 파싱된 데이터 확인
+
+    // UID를 userId로 사용
+    const userId = loginData ? loginData.UID : null;
+    if (!userId) {
+      console.error('로그인이 필요한 상태: loginData가 유효하지 않음');
       alert('로그인이 필요합니다.');
       return;
     }
 
-    const userId = loginData.userId;
     const likedBefore = this.liked;
 
     // 좋아요 상태 변경
@@ -192,7 +198,7 @@ class ExchangeDetail extends LitElement {
     this.requestUpdate();
 
     try {
-      // PocketBase에 업데이트 요청
+      // pocketBase에 업데이트 요청
       await pb.collection('exchangePosts').update(this.postId, {
         liked_count: this.post.liked_count,
       });
