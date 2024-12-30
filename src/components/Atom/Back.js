@@ -34,7 +34,9 @@ class BackComponent extends LitElement {
       height: 20px;
     }
     ::slotted(h1) {
-      margin: auto;
+      margin: 0;
+      width: 100%;
+
       font-size: var(--label---medium);
     }
   `;
@@ -42,16 +44,16 @@ class BackComponent extends LitElement {
   render() {
     return html`
       <div class="back">
-      <button>
-        <img
-          src="${back}"
-          alt="뒤로가기"
-          class="back-icon"
-          @click="${this.handleClick}"
-        />
+        <button>
+          <img
+            src="${back}"
+            alt="뒤로가기"
+            class="back-icon"
+            @click="${this.handleClick}"
+          />
+        </button>
         <slot></slot>
       </div>
-      </button>
     `;
   }
 
