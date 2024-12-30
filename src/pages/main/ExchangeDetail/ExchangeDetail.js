@@ -243,7 +243,7 @@ class ExchangeDetail extends LitElement {
             alt="상품 이미지"
           />
         </figure>
-        <div class="profile-temperature">
+        <div class="profile-container">
           <figure>
             <img
               class="profile-image"
@@ -254,21 +254,25 @@ class ExchangeDetail extends LitElement {
           <p class="profile-author">${authorNickName}</p>
           <p class="profile-region">${region}</p>
           <p class="current-temp">${this.currentTemp.toFixed(1)}℃ 😊</p>
+          <p class="manner-label">매너온도</p>
         </div>
-        <div class="details-container">
+        <div class="post-details">
           <h2 class="post-title">${title}</h2>
-          <p class="category">${translateCategory(category)}•</p>
-          <p class="created">
-            ${created ? elapsedTime(created) : '등록일 정보 없음'}
-          </p>
+
+          <div class="post-meta">
+            <p class="post-category">${translateCategory(category)}•</p>
+            <p class="post-created">
+              ${created ? elapsedTime(created) : '등록일 정보 없음'}
+            </p>
+          </div>
         </div>
 
-        <p class="description">${description}</p>
+        <p class="post-description">${description}</p>
 
-        <div class="footer">
+        <div class="footer-container">
           <div class="footer-left">
             <button
-              id="interest-btn"
+              class="footer-btn"
               type="button"
               aria-pressed="${this.liked}"
               aria-label="관심글 등록"
@@ -281,11 +285,11 @@ class ExchangeDetail extends LitElement {
               />
             </button>
             <div>
-              <p class="price-footer">${price.toLocaleString()}원</p>
-              <p class="price-proposal">가격제안하기</p>
+              <p class="footer-price">${price.toLocaleString()}원</p>
+              <p class="footer-price-proposal">가격제안하기</p>
             </div>
           </div>
-          <button class="chat-btn ${buttonClass}" ?disabled="${isComplete}">
+          <button class="chat-button ${buttonClass}" ?disabled="${isComplete}">
             ${isComplete ? '거래 완료' : '채팅하기'}
           </button>
         </div>
