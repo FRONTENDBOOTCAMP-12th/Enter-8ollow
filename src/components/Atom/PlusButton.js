@@ -7,7 +7,6 @@ export class PlusButton extends LitElement {
   };
 
   static styles = css`
-    /* 플러스 버튼 스타일 */
     .plus-button {
       /* 기본 설정 */
       display: flex;

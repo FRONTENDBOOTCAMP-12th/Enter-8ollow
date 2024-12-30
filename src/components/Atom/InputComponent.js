@@ -5,22 +5,15 @@ class InputComponent extends LitElement {
     placeholder: { type: String },
     type: { type: String },
     maxlength: { type: Number },
-    border: { type: String },
+    borderColor: { type: String }, // 새로운 prop 추가
   };
 
   constructor() {
     super();
+    this.borderColor = '#000000'; // 기본값 설정
   }
 
   static styles = css`
-    :host {
-      --border-color: 1px solid var(--contents--content-primary);
-    }
-
-    .number-input {
-      border: var(--border-color);
-    }
-
     .number-box {
       display: flex;
       justify-content: center;
@@ -33,7 +26,6 @@ class InputComponent extends LitElement {
       border-radius: 4px;
       height: 22px;
       width: 100%;
-      border: 1px solid var(--contents--content-primary);
       font-size: var(--paragraph---medium);
     }
 
@@ -55,6 +47,7 @@ class InputComponent extends LitElement {
       display: block;
     }
   `;
+
   render() {
     return html`
       <div class="number-box">
@@ -63,6 +56,7 @@ class InputComponent extends LitElement {
           maxlength="${this.maxlength}"
           class="number-input"
           placeholder="${this.placeholder}"
+          style="border: 1px solid ${this.borderColor}"
           @input=${this.handleInput}
           @keydown=${this.handleBackSpace}
           required
@@ -88,7 +82,6 @@ class InputComponent extends LitElement {
     }
   }
 
-  /* ---------------------------- 삭제 안되는 이슈때문에 만든거 ---------------------------- */ s;
   handleBackSpace(e) {
     if (e.key === 'Backspace') {
       const value = e.target.value;
