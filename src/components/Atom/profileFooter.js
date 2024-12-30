@@ -9,7 +9,7 @@ export class ProfileFooter extends LitElement {
       gap: 1rem; /* 메뉴 사이 여백 */
       padding: 1rem;
       max-width: 400px; /* 최대 너비 설정 */
-      margin: 0 auto; /* 가운데 정렬 */
+
       font-family: Arial, sans-serif;
       font-size: 0.95rem;
       color: #333;

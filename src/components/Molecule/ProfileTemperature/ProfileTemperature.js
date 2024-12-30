@@ -24,7 +24,7 @@ class ProfileTemperature extends LitElement {
       font-size: 0.9em;
       font-weight: bold;
       margin-bottom: 5px;
-      text-align: center;
+      text-align: left;
     }
 
     /* 정보 섹션 */
@@ -134,7 +134,7 @@ class ProfileTemperature extends LitElement {
     return html`
       <div class="manner-temp-container">
         <!-- 열정 온도 헤더 -->
-        <div class="manner-header">열정온도 ℹ</div>
+        <div class="manner-header">열정온도 </div>
 
         <!-- 온도 정보 표시 -->
         <div class="manner-info">
@@ -152,11 +152,7 @@ class ProfileTemperature extends LitElement {
           ></div>
         </div>
 
-        <!-- 전체 데이터 리스트 (디버깅용 표시) -->
-        <ul class="data-list">
-          ${this.items.map(
-            (item) => html`<li>${item.id}: ${item.exchange_comment || 0}</li>`
-          )}
+        
         </ul>
       </div>
     `;
