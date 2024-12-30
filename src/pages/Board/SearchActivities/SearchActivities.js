@@ -14,6 +14,11 @@ class SearchActivities extends LitElement {
   }
 
   handleWrite() {
+    const inputComponent = this.shadowRoot.querySelector('input-component');
+    const inputValue =
+      inputComponent.shadowRoot.querySelector('.number-input').value;
+    console.log(inputValue);
+    localStorage.setItem('withTitle', inputValue); // 값 저장
     console.log('이동');
     location.href = '/src/pages/Board/WriteActivities/index.html';
   }
@@ -24,6 +29,7 @@ class SearchActivities extends LitElement {
         <input-component
           placeholder="이웃과 어떤 활동을 할까요"
           style=" --border-color: 1px solid var(--background); --text-size: var(--label---large); --font-weight:600"
+          required
         ></input-component>
 
         <section class="popular-activities">
