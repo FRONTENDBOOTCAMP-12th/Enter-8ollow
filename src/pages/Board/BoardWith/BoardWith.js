@@ -2,6 +2,7 @@ import { html, LitElement } from 'lit';
 import { BoardWithCSS } from '/src/pages/Board/BoardWith/BoardWithCSS.js';
 import buttonReset from '/src/style/buttonReset.css?inline';
 import pb from '/src/api/pocketbase';
+import { SearchActivitiesCSS } from '/src/pages/Board/SearchActivities/SearchActivitiesCSS.js';
 
 class BoardWith extends LitElement {
   static properties = {
@@ -95,6 +96,10 @@ class BoardWith extends LitElement {
   toggleRecruit() {
     this.recruiting = !this.recruiting;
     this.requestUpdate();
+  }
+
+  handleNavigation() {
+    window.location.href = '/src/pages/Board/SearchActivities/index.html'; // 이동할 URL
   }
 
   render() {
@@ -277,9 +282,9 @@ class BoardWith extends LitElement {
           )}
       </ul>
 
-      <a href="www.naver.com"> <plus-button></plus-button></a>
+      <header-component></header-component>
 
-      <header-component></header-component>`;
+      <plus-button items="[]" @click=${this.handleNavigation}></plus-button>`;
   }
 }
 

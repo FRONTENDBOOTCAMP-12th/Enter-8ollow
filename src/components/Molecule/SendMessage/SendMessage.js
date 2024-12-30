@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { styles } from '/src/components/Molecule/SendMessage/SendMessageCSS.js';
 import pb from '/src/api/pocketbase';
-import { EmojiButton } from '@joeattardi/emoji-button';
+// import { EmojiButton } from '@joeattardi/emoji-button';
 
 import {} from '/src/style/variable.css';
 
