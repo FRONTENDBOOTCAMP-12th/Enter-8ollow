@@ -85,10 +85,14 @@ class ExchangeDetail extends LitElement {
 
       // 유저 정보 가져오기
       if (record.author) {
-        const userRecord = await pb.collection('members').getOne(record.author);
-        this.post.authorNickName = userRecord.nickName || '알 수 없음';
+        const userRecord = await pb.collection('members').getOne(record.author); // members 컬렉션에서 author 정보 가져오기
+        this.post.authorNickName = userRecord.nickName || '알 수 없음'; // 닉네임 설정
+        this.post.authorProfileImage = userRecord.profileImage
+          ? pb.files.getURL(userRecord, userRecord.profileImage) // profileImage의 URL 생성
+          : defaultImage; // 기본 이미지 사용
       } else {
         this.post.authorNickName = '알 수 없음';
+        this.post.authorProfileImage = defaultImage;
       }
 
       // 온도 계산 및 업데이트
@@ -175,7 +179,7 @@ class ExchangeDetail extends LitElement {
   async toggleLike() {
     console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
     const loginData = JSON.parse(localStorage.getItem('isLogin'));
-    console.log('Parsed loginData:', loginData); // 파싱된 데이터 확인
+    console.log('Parsed loginData:', loginData); // 파싱 데이터
 
     // UID를 userId로 사용
     const userId = loginData ? loginData.UID : null;
@@ -217,8 +221,15 @@ class ExchangeDetail extends LitElement {
       return html`<p>로딩중...</p>`;
     }
 
-    const { title, price, description, created, category, authorNickName } =
-      this.post;
+    const {
+      title,
+      price,
+      description,
+      created,
+      category,
+      authorNickName,
+      region,
+    } = this.post;
 
     const isComplete = this.post?.status?.trim().toLowerCase() === 'complete';
     const buttonClass = isComplete ? 'chat-button disabled' : 'chat-button';
@@ -232,10 +243,20 @@ class ExchangeDetail extends LitElement {
             alt="상품 이미지"
           />
         </figure>
-        <p class="author">${authorNickName}</p>
-        <p class="current-temp">${this.currentTemp.toFixed(1)}℃ 😊</p>
-        <h2 class="post-title">${title}</h2>
+        <div class="profile-temperature">
+          <figure>
+            <img
+              class="profile-image"
+              src="${this.post.authorProfileImage}"
+              alt="프로필 이미지"
+            />
+          </figure>
+          <p class="profile-author">${authorNickName}</p>
+          <p class="profile-region">${region}</p>
+          <p class="current-temp">${this.currentTemp.toFixed(1)}℃ 😊</p>
+        </div>
         <div class="details-container">
+          <h2 class="post-title">${title}</h2>
           <p class="category">${translateCategory(category)}•</p>
           <p class="created">
             ${created ? elapsedTime(created) : '등록일 정보 없음'}
