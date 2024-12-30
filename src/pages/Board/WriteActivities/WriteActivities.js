@@ -22,6 +22,11 @@ class WriteActivities extends LitElement {
 
     categoryList.classList.toggle('show');
   }
+
+  handleWho() {
+    console.log('이동');
+    location.href = '/src/pages/Board/WithWho/index.html';
+  }
   render() {
     return html`
       <back-component></back-component>
@@ -83,7 +88,11 @@ class WriteActivities extends LitElement {
           />
         </div>
 
-        <common-button title="다음" type="submit"></common-button>
+        <common-button
+          title="다음"
+          type="submit"
+          @click-event="${this.handleWho}"
+        ></common-button>
       </form>
     `;
   }
