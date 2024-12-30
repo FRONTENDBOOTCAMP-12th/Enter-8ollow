@@ -34,6 +34,11 @@ const config = defineConfig({
           'src/pages/main/ExchangeDetail/index.html'
         ),
 
+        BoardDetail: resolve(
+          __dirname,
+          'src/pages/main/BoardDetail/index.html'
+        ),
+
         qnadetail: resolve(__dirname, 'src/pages/qnaBoard/index.html'),
         writeQna: resolve(__dirname, 'src/pages/writeQna/writeQna.html'),
       },

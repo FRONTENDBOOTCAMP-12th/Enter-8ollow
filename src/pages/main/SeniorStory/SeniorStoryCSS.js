@@ -3,6 +3,7 @@ import { css } from 'lit';
 export const styles = css`
   .story-container {
     display: grid;
+    gap: 1rem;
     grid-template-columns: 1fr 1fr;
   }
   .app {
