@@ -12,6 +12,12 @@ class MainPage extends LitElement {
     category: { type: String },
   };
 
+  static styles = css`
+    swiper-container {
+      padding: 16px;
+    }
+  `;
+
   constructor() {
     super();
     this.activeIndex = 0;

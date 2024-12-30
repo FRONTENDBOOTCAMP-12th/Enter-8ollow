@@ -16,7 +16,6 @@ class Board extends LitElement {
     this.description = '';
     this.postArray = [];
     this.postDetailArray = [];
-    this.connectedCallback();
     this.postId = 'no4l9i8q06plv7f';
   }
 
@@ -40,6 +39,7 @@ class Board extends LitElement {
           item.qna;
 
         this.postDetailArray.push({
+          id,
           img: `${import.meta.env.VITE_PB_API}/files/qnaPosts/${id}/${img}?thumb=100x100`,
           category,
           content,
@@ -48,10 +48,12 @@ class Board extends LitElement {
           title,
           viewCount,
           collectionName: '질의응답',
+          type: 'qna',
         });
       }
       if (item.with) {
         const {
+          id,
           category,
           created,
           description,
@@ -64,6 +66,7 @@ class Board extends LitElement {
         } = item.with;
 
         this.postDetailArray.push({
+          id,
           category,
           created,
           description,
@@ -74,11 +77,21 @@ class Board extends LitElement {
           time,
           title,
           collectionName: '같이해요',
+          type: 'with',
         });
       }
     });
 
+    console.log(this.postDetailArray);
     this.requestUpdate();
+  }
+
+  handleClick(item) {
+    if (item.type === 'qna') {
+      location.href = `/src/pages/QnaDetail/?detail=${item.id}`;
+    } else if (item.type === 'with') {
+      location.href = `/src/pages/BoardDetail/?detail=${item.id}`;
+    }
   }
 
   toggleHidden() {
@@ -206,6 +219,7 @@ class Board extends LitElement {
                 gender=${item.gender}
                 meetDay=${formatMeetDay(item.time)}
                 imgLink=${item.img}
+                @click="${() => this.handleClick(item)}"
               ></board-field>
             </li>
           `
