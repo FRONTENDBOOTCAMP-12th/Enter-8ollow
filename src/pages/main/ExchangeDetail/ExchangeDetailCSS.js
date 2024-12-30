@@ -1,22 +1,25 @@
 import { css } from 'lit';
 
 export default css`
-  .hidden {
-    display: none;
+  /* 게시글 Detail Container */
+
+  .detail-container {
+    margin: 0 15px 15px 15px;
+    padding: 0px;
   }
 
-  /* 게시글 Detail Container */
-  .detail-container {
+  p {
     margin: 0px;
-    padding: 12px;
   }
 
   .detail-image {
     background: var(--Contents-contentSecondary, #919191);
     width: 100%;
-    height: 26.3vh;
-    object-fit: cover;
-    margin: 0px;
+    height: auto;
+    object-fit: contain; /* 이미지를 컨테이너에 맞춤 */
+    margin: 0;
+
+    margin: 0px 0px 10px 0px; /* 아래쪽 여백 추가 */
     padding: 0px;
   }
 
@@ -32,7 +35,7 @@ export default css`
   .profile-info {
     display: flex;
     align-items: center; /* 세로 정렬 */
-    gap: 8px; /* 이미지와 텍스트 간 간격 */
+    gap: 15px; /* 이미지와 텍스트 간 간격 */
   }
 
   .profile-image {
@@ -46,6 +49,7 @@ export default css`
   .profile-text {
     display: flex;
     flex-direction: column; /* 닉네임과 지역을 세로로 배치 */
+    gap: 4px; /* 텍스트 간 간격 */
   }
 
   .profile-author {
@@ -115,7 +119,7 @@ export default css`
     color: var(--Contents-contentPrimary, #000);
     font-size: var(--label---medium, 1rem);
     font-weight: 400;
-    line-height: 160%;
+    line-height: 230%;
     margin: 16px 0;
   }
 
@@ -124,9 +128,8 @@ export default css`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0px;
+    margin-top: 12px;
     padding: 12px;
-    border-top: 1px solid var(--contents--content-secondary, #919191); /* 위쪽에 1px 검정 라인 추가 */
   }
 
   .footer-left {
@@ -150,6 +153,7 @@ export default css`
   .footer-price-proposal {
     color: var(--secondary, #5a85ee);
     font-weight: 600;
+    margin-top: 5px;
   }
 
   .chat-button {
@@ -175,12 +179,11 @@ export default css`
     display: block;
   }
 
-  /* 연관글 목록 Related container */
+  /* 연관글 목록 - Related container */
   .related-container {
     display: flex;
     flex-direction: column;
-    padding: 0px;
-    margin: 0px;
+    margin: 0 10px 10px 10px;
   }
 
   .related-title {
@@ -232,5 +235,12 @@ export default css`
     font-size: var(--label---medium, 1rem);
     padding-bottom: 20px;
     font-weight: 600;
+  }
+
+  .separator {
+    width: 100%;
+    height: 1px;
+    background-color: var(--contents--content-secondary, #919191);
+    margin: 0; /* 위아래 여백 (필요 시 조정 가능) */
   }
 `;

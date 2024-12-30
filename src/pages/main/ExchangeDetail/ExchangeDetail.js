@@ -236,25 +236,29 @@ class ExchangeDetail extends LitElement {
 
     return html`
       <div class="detail-container">
-        <figure>
-          <img
-            class="detail-image"
-            src="${this.getPbImagesURL(this.post)}"
-            alt="상품 이미지"
-          />
-        </figure>
+        <img
+          class="detail-image"
+          src="${this.getPbImagesURL(this.post)}"
+          alt="상품 이미지"
+        />
+
         <div class="profile-container">
-          <figure>
+          <div class="profile-info">
             <img
               class="profile-image"
               src="${this.post.authorProfileImage}"
               alt="프로필 이미지"
             />
-          </figure>
-          <p class="profile-author">${authorNickName}</p>
-          <p class="profile-region">${region}</p>
-          <p class="current-temp">${this.currentTemp.toFixed(1)}℃ 😊</p>
-          <p class="manner-label">매너온도</p>
+
+            <div class="profile-text">
+              <p class="profile-author">${authorNickName}</p>
+              <p class="profile-region">${region}</p>
+            </div>
+          </div>
+          <div class="profile-temp">
+            <p class="current-temp">${this.currentTemp.toFixed(1)}℃ 😊</p>
+            <p class="manner-label">매너온도</p>
+          </div>
         </div>
         <div class="post-details">
           <h2 class="post-title">${title}</h2>
@@ -268,7 +272,7 @@ class ExchangeDetail extends LitElement {
         </div>
 
         <p class="post-description">${description}</p>
-
+        <div class="separator" aria-hidden="true"></div>
         <div class="footer-container">
           <div class="footer-left">
             <button
@@ -296,8 +300,8 @@ class ExchangeDetail extends LitElement {
       </div>
 
       <!-- 연관글 목록 -->
-      <section class="related-section">
-        <h3 class="related-title">이 글과 함께 봤어요</h3>
+      <section class="related-container">
+        <h3 class="related-title">이 글과 함께 봤어요!</h3>
         <ul class="related-list" aria-label="연관 글 목록">
           ${this.renderRelatedItems()}
         </ul>
