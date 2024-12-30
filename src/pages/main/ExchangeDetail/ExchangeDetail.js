@@ -72,22 +72,27 @@ class ExchangeDetail extends LitElement {
   // 현재 포스트 데이터 가져오기
   async fetchPost() {
     try {
+      console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
       const loginData = JSON.parse(localStorage.getItem('isLogin'));
-      const userId = loginData ? loginData.userId : null;
+      const userId = loginData ? loginData.UID : null;
 
       const record = await pb.collection('exchangePosts').getOne(this.postId);
       console.log('받아온 데이터:', record);
 
       // 좋아요 상태 확인
-      this.liked = record.liked_count.includes(userId);
+      this.liked = userId ? record.liked_count.includes(userId) : false; // liked 상태 설정
       this.post = record;
 
       // 유저 정보 가져오기
       if (record.author) {
-        const userRecord = await pb.collection('members').getOne(record.author);
-        this.post.authorNickName = userRecord.nickName || '알 수 없음';
+        const userRecord = await pb.collection('members').getOne(record.author); // members 컬렉션에서 author 정보 가져오기
+        this.post.authorNickName = userRecord.nickName || '알 수 없음'; // 닉네임 설정
+        this.post.authorProfileImage = userRecord.profileImage
+          ? pb.files.getURL(userRecord, userRecord.profileImage) // profileImage의 URL 생성
+          : defaultImage; // 기본 이미지 사용
       } else {
         this.post.authorNickName = '알 수 없음';
+        this.post.authorProfileImage = defaultImage;
       }
 
       // 온도 계산 및 업데이트
@@ -154,9 +159,7 @@ class ExchangeDetail extends LitElement {
                 class="related-item-image"
               />
               <h4 class="related-item-title">${item.title}</h4>
-              <strong class="related-item-price">
-                ${item.price.toLocaleString()}원
-              </strong>
+              <p class="related-item-price">${item.price.toLocaleString()}원</p>
             </a>
           </article>
         </li>
@@ -174,13 +177,18 @@ class ExchangeDetail extends LitElement {
 
   // 좋아요 토글 및 업데이트
   async toggleLike() {
+    console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
     const loginData = JSON.parse(localStorage.getItem('isLogin'));
-    if (!loginData || !loginData.userId) {
+    console.log('Parsed loginData:', loginData); // 파싱 데이터
+
+    // UID를 userId로 사용
+    const userId = loginData ? loginData.UID : null;
+    if (!userId) {
+      console.error('로그인이 필요한 상태: loginData가 유효하지 않음');
       alert('로그인이 필요합니다.');
       return;
     }
 
-    const userId = loginData.userId;
     const likedBefore = this.liked;
 
     // 좋아요 상태 변경
@@ -192,7 +200,7 @@ class ExchangeDetail extends LitElement {
     this.requestUpdate();
 
     try {
-      // PocketBase에 업데이트 요청
+      // pocketBase에 업데이트 요청
       await pb.collection('exchangePosts').update(this.postId, {
         liked_count: this.post.liked_count,
       });
@@ -213,39 +221,62 @@ class ExchangeDetail extends LitElement {
       return html`<p>로딩중...</p>`;
     }
 
-    const { title, price, description, created, category, authorNickName } =
-      this.post;
+    const {
+      title,
+      price,
+      description,
+      created,
+      category,
+      authorNickName,
+      region,
+    } = this.post;
 
     const isComplete = this.post?.status?.trim().toLowerCase() === 'complete';
     const buttonClass = isComplete ? 'chat-button disabled' : 'chat-button';
 
     return html`
       <div class="detail-container">
-        <figure>
-          <img
-            class="detail-image"
-            src="${this.getPbImagesURL(this.post)}"
-            alt="상품 이미지"
-          />
-        </figure>
-        <p class="author">유저: ${authorNickName}</p>
-        <p class="current-temp">
-          현재 온도: ${this.currentTemp.toFixed(1)}℃ 😊
-        </p>
-        <h2 class="post-title">${title}</h2>
-        <div class="details-container">
-          <p class="category">${translateCategory(category)} •</p>
-          <p class="created">
-            ${created ? elapsedTime(created) : '등록일 정보 없음'}
-          </p>
+        <img
+          class="detail-image"
+          src="${this.getPbImagesURL(this.post)}"
+          alt="상품 이미지"
+        />
+
+        <div class="profile-container">
+          <div class="profile-info">
+            <img
+              class="profile-image"
+              src="${this.post.authorProfileImage}"
+              alt="프로필 이미지"
+            />
+
+            <div class="profile-text">
+              <p class="profile-author">${authorNickName}</p>
+              <p class="profile-region">${region}</p>
+            </div>
+          </div>
+          <div class="profile-temp">
+            <p class="current-temp">${this.currentTemp.toFixed(1)}℃ 😊</p>
+            <p class="manner-label">매너온도</p>
+          </div>
+        </div>
+        <div class="post-details">
+          <h2 class="post-title">${title}</h2>
+
+          <div class="post-meta">
+            <p class="post-category">${translateCategory(category)}•</p>
+            <p class="post-created">
+              ${created ? elapsedTime(created) : '등록일 정보 없음'}
+            </p>
+          </div>
         </div>
 
-        <p class="description">${description}</p>
-
-        <div class="footer">
+        <p class="post-description">${description}</p>
+        <div class="separator" aria-hidden="true"></div>
+        <div class="footer-container">
           <div class="footer-left">
             <button
-              id="interest-btn"
+              class="footer-btn"
               type="button"
               aria-pressed="${this.liked}"
               aria-label="관심글 등록"
@@ -258,21 +289,19 @@ class ExchangeDetail extends LitElement {
               />
             </button>
             <div>
-              <p class="price-container">${price.toLocaleString()}원</p>
-              <p>가격제안하기</p>
+              <p class="footer-price">${price.toLocaleString()}원</p>
+              <p class="footer-price-proposal">가격제안하기</p>
             </div>
           </div>
-          <button class="chat-btn ${buttonClass}" ?disabled="${isComplete}">
+          <button class="chat-button ${buttonClass}" ?disabled="${isComplete}">
             ${isComplete ? '거래 완료' : '채팅하기'}
           </button>
         </div>
-
-        <div class="separator" aria-hidden="true"></div>
       </div>
 
       <!-- 연관글 목록 -->
-      <section class="related-section">
-        <h3 class="related-title">이 글과 함께 봤어요</h3>
+      <section class="related-container">
+        <h3 class="related-title">이 글과 함께 봤어요!</h3>
         <ul class="related-list" aria-label="연관 글 목록">
           ${this.renderRelatedItems()}
         </ul>
