@@ -1,5 +1,4 @@
 import {} from '/src/components/index.js';
-import {} from '/src/components/Main/index.js';
 
 import { LitElement, html } from 'lit';
 
@@ -14,7 +13,6 @@ class qnaPage extends LitElement {
   }
 
   constructor() {
-    console.log('qnaPage 생성자 호출');
     super();
 
     this.fetchData();
@@ -30,10 +28,6 @@ class qnaPage extends LitElement {
       const data = await response.json();
 
       this.items = (data.items || []).reverse();
-
-      console.log(this.items);
-
-      console.log('서버에서 받은 전체 데이터:', data);
     } catch (error) {
       console.error('데이터 가져오기 실패', error);
     }
@@ -65,9 +59,6 @@ class qnaPage extends LitElement {
               @click="${() => this.handleClick(item.id)}"
             >
             </text-img>
-
-            <plus-button></plus-button>
-            <header-component></header-component>
           `
         )}
       </div>

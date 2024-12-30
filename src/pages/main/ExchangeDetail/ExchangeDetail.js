@@ -1,11 +1,25 @@
-// 외부 라이브러리 및 리소스 임포트
 import { LitElement, html } from 'lit';
-import pb from '/src/api/pocketbase'; // PocketBase SDK
+import pb from '/src/api/pocketbase';
 import defaultImage from '/src/assets/logo.svg';
 import ExchangeDetailCSS from '/src/pages/main/ExchangeDetail/ExchangeDetailCSS.js';
 import heartIcon from '/src/assets/heart.svg';
+import heartSolid from '/src/assets/heartSolid.svg';
 
-// 헬퍼 함수: 경과 시간 계산
+// 카테고리 한글 매핑
+const categoryMap = {
+  Headset: '헤드셋',
+  Keyboard: '키보드',
+  Mouse: '마우스',
+  Computer: '컴퓨터',
+  Etc: '기타등등',
+};
+
+// 카테고리를 한글로 변환하는 함수
+function translateCategory(category) {
+  return categoryMap[category] || '기타';
+}
+
+// 시간 경과 함수
 function elapsedTime(created) {
   const createTimestamp = new Date(created);
   const nowTimestamp = new Date();
@@ -24,25 +38,28 @@ function elapsedTime(created) {
   return '오래 전';
 }
 
-// LitElement 정의
 class ExchangeDetail extends LitElement {
-  // 속성 정의
   static get properties() {
     return {
       post: { type: Object },
       postId: { type: String },
       liked: { type: Boolean },
       relatedItems: { type: Array },
+      currentTemp: { type: Number },
+      initialTemp: { type: Number },
     };
   }
 
-  // 생성자
+  static styles = ExchangeDetailCSS;
+
   constructor() {
     super();
     this.post = null;
     this.postId = this.getPostIdFromUrl();
-    this.liked = false;
+    this.liked = false; // 초기 상태
     this.relatedItems = [];
+    this.initialTemp = 36.5; // 기본 초기 온도
+    this.currentTemp = this.initialTemp; // 현재 온도 초기화
     this.fetchPost();
   }
 
@@ -55,20 +72,50 @@ class ExchangeDetail extends LitElement {
   // 현재 포스트 데이터 가져오기
   async fetchPost() {
     try {
+      const loginData = JSON.parse(localStorage.getItem('isLogin'));
+      const userId = loginData ? loginData.userId : null;
+
       const record = await pb.collection('exchangePosts').getOne(this.postId);
       console.log('받아온 데이터:', record);
+
+      // 좋아요 상태 확인
+      this.liked = record.liked_count.includes(userId);
       this.post = record;
+
+      // 유저 정보 가져오기
+      if (record.author) {
+        const userRecord = await pb.collection('members').getOne(record.author);
+        this.post.authorNickName = userRecord.nickName || '알 수 없음';
+      } else {
+        this.post.authorNickName = '알 수 없음';
+      }
+
+      // 온도 계산 및 업데이트
+      this.calculateTemperature(record.status || '');
+
       this.requestUpdate();
 
       // 연관 글 데이터 렌더링
-      this.renderRelatedList(record);
+      this.fetchRelatedItems(record);
     } catch (error) {
       console.error('API 요청 에러:', error.message);
     }
   }
 
-  // 연관 글 목록 가져오기
-  async renderRelatedList({ id: postId, category }) {
+  // 온도 계산 함수
+  calculateTemperature(status) {
+    let increment = 0;
+    if (status.toLowerCase() === 'complete') {
+      increment = 1.0; // 거래 완료일 경우 증가량
+    } else if (status.toLowerCase() === 'reserved') {
+      increment = 0.5; // 예약 상태일 경우 증가량
+    }
+    this.currentTemp = this.initialTemp + increment; // 현재 온도 업데이트
+    this.requestUpdate();
+  }
+
+  // 연관 글 데이터 가져오기
+  async fetchRelatedItems({ id: postId, category }) {
     try {
       if (!category || category.trim() === '') {
         console.error('유효하지 않은 카테고리 값:', category);
@@ -76,8 +123,6 @@ class ExchangeDetail extends LitElement {
       }
       const trimmedCategory = category.trim();
       const filter = `category = "${trimmedCategory}" && id != "${postId}"`;
-
-      console.log('필터 조건:', filter);
 
       const list = await pb.collection('exchangePosts').getList(0, 6, {
         filter,
@@ -87,9 +132,8 @@ class ExchangeDetail extends LitElement {
       console.log('받아온 연관 글 목록:', list);
       this.relatedItems = list.items;
       this.requestUpdate();
-    } catch (err) {
-      console.error('연관 글 목록을 가져오는 중 에러:', err.message);
-      alert('연관 글 데이터를 불러오는데 실패했습니다.');
+    } catch (error) {
+      console.error('연관 글 목록을 가져오는 중 에러:', error.message);
     }
   }
 
@@ -103,7 +147,7 @@ class ExchangeDetail extends LitElement {
       (item, index) => html`
         <li class="related-item">
           <article>
-            <a href="/pages/exchange-detail/index.html?post=${item.id}">
+            <a href="/src/pages/main/ExchangeDetail/index.html?post=${item.id}">
               <img
                 src=${this.getPbImagesURL(item)}
                 alt="관련 글 ${index + 1}"
@@ -128,38 +172,48 @@ class ExchangeDetail extends LitElement {
     return pb.files.getURL(item, item.image);
   }
 
-  // 좋아요 토글
-  toggleLike() {
-    this.liked = !this.liked;
-    this.requestUpdate();
-  }
-
-  // 메인 이미지 URL 가져오기
-  getImageURL() {
-    if (!this.post || !this.post.image) {
-      return defaultImage;
+  // 좋아요 토글 및 업데이트
+  async toggleLike() {
+    const loginData = JSON.parse(localStorage.getItem('isLogin'));
+    if (!loginData || !loginData.userId) {
+      alert('로그인이 필요합니다.');
+      return;
     }
-    return pb.files.getURL(this.post, this.post.image);
+
+    const userId = loginData.userId;
+    const likedBefore = this.liked;
+
+    // 좋아요 상태 변경
+    this.liked = !likedBefore;
+    this.post.liked_count = likedBefore
+      ? this.post.liked_count.filter((id) => id !== userId) // 기존에 좋아요한 경우 제거
+      : [...(this.post.liked_count || []), userId]; // 새로운 좋아요 추가
+
+    this.requestUpdate();
+
+    try {
+      // PocketBase에 업데이트 요청
+      await pb.collection('exchangePosts').update(this.postId, {
+        liked_count: this.post.liked_count,
+      });
+      console.log(`좋아요 상태 업데이트: ${this.liked}`);
+    } catch (error) {
+      console.error('좋아요 업데이트 실패:', error.message);
+      // 업데이트 실패 시 상태 복구
+      this.liked = likedBefore;
+      this.post.liked_count = likedBefore
+        ? [...(this.post.liked_count || []), userId]
+        : this.post.liked_count.filter((id) => id !== userId);
+      this.requestUpdate();
+    }
   }
 
-  // 판매 상태 표시
-  get displayStatus() {
-    const status = this.post?.status?.trim().toLowerCase();
-    if (status === 'reserved') return '예약중';
-    if (status === 'complete') return '거래 완료';
-    return '판매중';
-  }
-
-  // 스타일 지정
-  static styles = ExchangeDetailCSS;
-
-  // 렌더링
   render() {
     if (!this.post) {
       return html`<p>로딩중...</p>`;
     }
 
-    const { title, price, liked_count, description, created, category } =
+    const { title, price, description, created, category, authorNickName } =
       this.post;
 
     const isComplete = this.post?.status?.trim().toLowerCase() === 'complete';
@@ -170,38 +224,37 @@ class ExchangeDetail extends LitElement {
         <figure>
           <img
             class="detail-image"
-            src="${this.getImageURL()}"
+            src="${this.getPbImagesURL(this.post)}"
             alt="상품 이미지"
           />
         </figure>
-        <p class="post-state hidden" aria-hidden="true">
-          ${this.displayStatus}
+        <p class="author">유저: ${authorNickName}</p>
+        <p class="current-temp">
+          현재 온도: ${this.currentTemp.toFixed(1)}℃ 😊
         </p>
-
+        <h2 class="post-title">${title}</h2>
         <div class="details-container">
-          <p class="category">${category} •</p>
+          <p class="category">${translateCategory(category)} •</p>
           <p class="created">
             ${created ? elapsedTime(created) : '등록일 정보 없음'}
           </p>
         </div>
 
-        <h2 class="post-title">${title}</h2>
         <p class="description">${description}</p>
 
         <div class="footer">
           <div class="footer-left">
-            <p class="liked_count">${liked_count}</p>
             <button
               id="interest-btn"
               type="button"
               aria-pressed="${this.liked}"
               aria-label="관심글 등록"
+              @click="${this.toggleLike}"
             >
               <img
-                src="${heartIcon}"
-                class="heart-icon ${this.liked ? 'liked' : ''}"
+                src="${this.liked ? heartSolid : heartIcon}"
+                class="heart-icon"
                 alt="하트 아이콘"
-                @click="${this.toggleLike}"
               />
             </button>
             <div>
@@ -213,8 +266,10 @@ class ExchangeDetail extends LitElement {
             ${isComplete ? '거래 완료' : '채팅하기'}
           </button>
         </div>
+
         <div class="separator" aria-hidden="true"></div>
       </div>
+
       <!-- 연관글 목록 -->
       <section class="related-section">
         <h3 class="related-title">이 글과 함께 봤어요</h3>
@@ -226,5 +281,4 @@ class ExchangeDetail extends LitElement {
   }
 }
 
-// 컴포넌트 등록
 customElements.define('exchange-detail', ExchangeDetail);

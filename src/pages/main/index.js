@@ -1,5 +1,4 @@
-import {} from '/src/pages/main/exchange/exchange.js';
+import {} from '/src/pages/main/Exchange/Exchange.js';
 import {} from '/src/pages/main/SeniorStory/SeniorStory.js';
-
-console.log('main.js');
 import {} from '/src/pages/qna/QnaPage.js';
+import {} from '/src/pages/main/ExchangeDetail/ExchangeDetail.js';

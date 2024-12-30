@@ -11,16 +11,27 @@ const config = defineConfig({
     rollupOptions: {
       input: {
         start: resolve(__dirname, 'index.html'),
-        cartegory: resolve(__dirname, 'src/pages/cartegory/cartegory.html'),
+        category: resolve(__dirname, 'src/pages/Category/index.html'),
         login: resolve(__dirname, 'src/pages/Login/index.html'),
         register: resolve(__dirname, 'src/pages/register/index.html'),
         main: resolve(__dirname, 'src/pages/main/index.html'),
-        board: resolve(__dirname, 'src/pages/board/board.html'),
-        exchange: resolve(__dirname, 'src/pages/main/exchange/exchange.html'),
-        profile: resolve(__dirname, 'src/components/Profile/index1.html'),
+        board: resolve(__dirname, 'src/pages/Board/index.html'),
+        exchange: resolve(__dirname, 'src/pages/main/Exchange/index.html'),
+        exchangedetail: resolve(
+          __dirname,
+          'src/pages/main/ExchangeDetail/index.html'
+        ),
+
+        // profile: resolve(__dirname, 'src/components/Profile/index.html'),
+
         seniordetail: resolve(
           __dirname,
           'src/pages/main/SeniorDetail/index.html'
+        ),
+
+        exchageDetail: resolve(
+          __dirname,
+          'src/pages/main/ExchangeDetail/index.html'
         ),
 
         qnadetail: resolve(__dirname, 'src/pages/qnaBoard/index.html'),
