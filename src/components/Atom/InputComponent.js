@@ -15,6 +15,8 @@ class InputComponent extends LitElement {
   static styles = css`
     :host {
       --border-color: 1px solid var(--contents--content-primary);
+      --text-size: var(--paragraph---medium);
+      --font-weight: 500;
     }
 
     .number-input {
@@ -33,8 +35,9 @@ class InputComponent extends LitElement {
       border-radius: 4px;
       height: 22px;
       width: 100%;
-      border: 1px solid var(--contents--content-primary);
-      font-size: var(--paragraph---medium);
+      border: var(--border-color);
+      font-size: var(--text-size);
+      font-weight: var(--font-weight);
     }
 
     .number-input::placeholder {
