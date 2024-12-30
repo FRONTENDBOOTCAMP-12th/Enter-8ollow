@@ -3,6 +3,8 @@ import { register } from 'swiper/element/bundle';
 import { SwiperSlide } from '/src/components/Organism/SwiperComponent/SwiperComponentCSS?inline';
 
 import mainImage from '/src/assets/MainSwiper.png';
+import likeLion from '/src/assets/likelion.webp';
+import follow from '/src/assets/8ollow.png';
 
 register();
 
@@ -50,7 +52,7 @@ class SwiperComponent extends LitElement {
 
   render() {
     return html`
-      <swiper-container loop="true">
+      <swiper-container loop="true" autoplay>
         <swiper-slide>
           <div class="text-container">
             <p class="title">
@@ -72,8 +74,16 @@ class SwiperComponent extends LitElement {
             />
           </div>
         </swiper-slide>
-        <swiper-slide>Slide 2</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
+        <swiper-slide>
+          <div>
+            <img src="${likeLion}" alt="" />
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div>
+            <img src="${follow}" alt="" />
+          </div>
+        </swiper-slide>
         <swiper-slide>Slide 4</swiper-slide>
       </swiper-container>
 

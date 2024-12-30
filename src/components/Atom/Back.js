@@ -11,12 +11,21 @@ class BackComponent extends LitElement {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
     .back {
       padding: 15px;
       display: flex;
       align-items: center;
       height: 100%;
+    }
+
+    button {
+      all: unset;
+
+      &:focus-visible {
+        outline: solid 2px #5a85ee;
+      }
     }
 
     .back-icon {
@@ -29,6 +38,7 @@ class BackComponent extends LitElement {
   render() {
     return html`
       <div class="back">
+      <button>
         <img
           src="${back}"
           alt="뒤로가기"
@@ -36,6 +46,7 @@ class BackComponent extends LitElement {
           @click="${this.handleClick}"
         />
       </div>
+      </button>
     `;
   }
 

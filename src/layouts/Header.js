@@ -81,6 +81,8 @@ export class Header extends LitElement {
     link.rel = 'stylesheet';
     link.href = '/src/components/Header.css';
 
+    console.log(link);
+
     shadowRoot.appendChild(link);
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -110,7 +112,7 @@ export class Header extends LitElement {
             </a>
           </li>
           <li @click=${() => this.toggleClass(1)}>
-            <a href="/src/pages/board/index.html?checked=${this.checked}">
+            <a href="/src/pages/Board/index.html?checked=${this.checked}">
               <img
                 alt="게시판"
                 src="${this.checked === 1 ? `${fullBoard}` : `${board}`}"
@@ -120,7 +122,7 @@ export class Header extends LitElement {
           </li>
           <li @click=${() => this.toggleClass(2)}>
             <a
-              href="/src/pages/main/exchange/index.html?checked=${this.checked}"
+              href="/src/pages/main/Exchange/index.html?checked=${this.checked}"
             >
               <img
                 alt="내 근처"

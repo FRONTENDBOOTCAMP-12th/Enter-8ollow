@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit';
 import { styles } from '/src/pages/main/SeniorDetail/SeniorDetailCSS.js?inline';
 import pb from '/src/api/pocketbase';
 
-class DetailPage extends LitElement {
+class BoardDetail extends LitElement {
   static get properties() {
     return {
       story: { type: Object },
@@ -25,12 +25,12 @@ class DetailPage extends LitElement {
 
   getStoryIdFromUrl() {
     const urlParams = new URLSearchParams(location.search);
-    return urlParams.get('story');
+    return urlParams.get('detail');
   }
 
   async fetchStory() {
     try {
-      this.story = await pb.collection('seniorStory').getOne(this.storyId);
+      this.story = await pb.collection('withPosts').getOne(this.storyId);
     } catch (error) {
       console.error('실패:', error);
     }
@@ -81,23 +81,6 @@ class DetailPage extends LitElement {
     this.story = { ...this.story, [name]: value };
   }
 
-  async handleUpdate() {
-    try {
-      const updatedStory = await pb
-        .collection('seniorStory')
-        .update(this.storyId, {
-          title: this.story.title,
-          content: this.story.content,
-          author: this.story.author,
-        });
-      console.log('업데이트 성공:', updatedStory);
-      alert('스토리가 수정되었습니다.');
-    } catch (error) {
-      console.error('스토리 수정 실패:', error);
-      alert('스토리 수정에 실패했습니다.');
-    }
-  }
-
   handleCancel() {
     history.back();
   }
@@ -108,6 +91,7 @@ class DetailPage extends LitElement {
     }
 
     return html`
+      <with-us text="📝 함께해요"></with-us>
       <div class="detail-container">
         <div class="field">
           <h2>${this.story.title}</h2>
@@ -135,4 +119,4 @@ class DetailPage extends LitElement {
   }
 }
 
-customElements.define('detail-page', DetailPage);
+customElements.define('board-detail', BoardDetail);
