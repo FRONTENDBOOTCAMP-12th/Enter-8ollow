@@ -24,10 +24,14 @@ class WriteActivities extends LitElement {
   }
 
   handleWho() {
-    console.log('이동');
     location.href = '/src/pages/Board/WithWho/index.html';
   }
   render() {
+    window.onload = () => {
+      this.title = sessionStorage.getItem('withTitle');
+      console.log(this.title);
+    };
+
     return html`
       <back-component></back-component>
       <form class="with-post-form" action="submit">

@@ -18,10 +18,10 @@ class SearchActivities extends LitElement {
     const inputValue =
       inputComponent.shadowRoot.querySelector('.number-input').value;
     console.log(inputValue);
-    localStorage.setItem('withTitle', inputValue); // 값 저장
-    console.log('이동');
+    sessionStorage.setItem('withTitle', inputValue); // 값 저장
     location.href = '/src/pages/Board/WriteActivities/index.html';
   }
+
   render() {
     return html`
       <back-component></back-component>
