@@ -17,13 +17,30 @@ const config = defineConfig({
         main: resolve(__dirname, 'src/pages/main/index.html'),
         board: resolve(__dirname, 'src/pages/Board/index.html'),
         exchange: resolve(__dirname, 'src/pages/main/Exchange/index.html'),
+        exchangedetail: resolve(
+          __dirname,
+          'src/pages/main/ExchangeDetail/index.html'
+        ),
+
         // profile: resolve(__dirname, 'src/components/Profile/index.html'),
+
         seniordetail: resolve(
           __dirname,
           'src/pages/main/SeniorDetail/index.html'
         ),
 
+        exchageDetail: resolve(
+          __dirname,
+          'src/pages/main/ExchangeDetail/index.html'
+        ),
+
+        BoardDetail: resolve(
+          __dirname,
+          'src/pages/main/BoardDetail/index.html'
+        ),
+
         qnadetail: resolve(__dirname, 'src/pages/qnaBoard/index.html'),
+        writeQna: resolve(__dirname, 'src/pages/writeQna/writeQna.html'),
       },
     },
   },

@@ -20,6 +20,14 @@ class BackComponent extends LitElement {
       height: 100%;
     }
 
+    button {
+      all: unset;
+
+      &:focus-visible {
+        outline: solid 2px #5a85ee;
+      }
+    }
+
     .back-icon {
       cursor: pointer;
       width: 20px;
@@ -34,6 +42,7 @@ class BackComponent extends LitElement {
   render() {
     return html`
       <div class="back">
+      <button>
         <img
           src="${back}"
           alt="뒤로가기"
@@ -42,6 +51,7 @@ class BackComponent extends LitElement {
         />
         <slot></slot>
       </div>
+      </button>
     `;
   }
 

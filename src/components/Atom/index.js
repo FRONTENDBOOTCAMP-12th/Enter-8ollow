@@ -12,3 +12,4 @@ import {} from '/src/components/Atom/ProfileUnclosed.js';
 import {} from '/src/components/Atom/StoryField.js';
 import {} from '/src/components/Atom/WithUs.js';
 import {} from '/src/components/Atom/BoardTheme.js';
+import {} from '/src/components/Atom/CommentList.js';

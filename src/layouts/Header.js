@@ -81,6 +81,8 @@ export class Header extends LitElement {
     link.rel = 'stylesheet';
     link.href = '/src/components/Header.css';
 
+    console.log(link);
+
     shadowRoot.appendChild(link);
 
     const urlParams = new URLSearchParams(window.location.search);
