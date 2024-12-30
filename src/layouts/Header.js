@@ -136,15 +136,13 @@ export class Header extends LitElement {
                 src="${this.checked == 3 ? `${fullChat}` : `${chat}`}"
               />
               <p>채팅</p>
-            </a>
-          </li>
-          <li @click=${() => this.toggleClass(4)}>
-            <a target="_blank" rel="noreferrer noopener">
-              <img
-                alt="내 근처"
-                src="${this.checked === 4 ? `${fullProfile}` : `${profile}`}"
-              />
-              <p>나의 이듬</p>
+              </li><li @click=${() => this.toggleClass(4)}>
+          <a href="/src/pages/profile/index.html?checked=${this.checked}">
+            <img
+              alt="나의 이듬"
+              src="${this.checked === 4 ? `${fullProfile}` : `${profile}`}"
+            />
+            <p>나의 이듬</p>
             </a>
           </li>
         </ul>
