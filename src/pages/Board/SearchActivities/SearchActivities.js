@@ -12,6 +12,11 @@ class SearchActivities extends LitElement {
     super();
     this.place = '남가좌제2동';
   }
+
+  handleWrite() {
+    console.log('이동');
+    location.href = '/src/pages/Board/WriteActivities/index.html';
+  }
   render() {
     return html`
       <back-component></back-component>
@@ -31,7 +36,11 @@ class SearchActivities extends LitElement {
             <main-button name="🦕오프라인으로 만나요"></main-button>
           </div>
         </section>
-        <common-button title="다음"></common-button>
+        <common-button
+          title="다음"
+          type="submit"
+          @click-event="${this.handleWrite}"
+        ></common-button>
       </form>
     `;
   }
