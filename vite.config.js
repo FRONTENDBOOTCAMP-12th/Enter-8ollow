@@ -35,6 +35,7 @@ const config = defineConfig({
         ),
 
         qnadetail: resolve(__dirname, 'src/pages/qnaBoard/index.html'),
+        writeQna: resolve(__dirname, 'src/pages/writeQna/writeQna.html'),
       },
     },
   },
