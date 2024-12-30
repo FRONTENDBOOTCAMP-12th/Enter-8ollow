@@ -75,7 +75,7 @@ export const WriteActivitiesCSS = css`
 
   .activity-content {
     width: 100%;
-
+    box-sizing: border-box;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
     padding-inline: 0.75rem;
@@ -260,10 +260,10 @@ export const WriteActivitiesCSS = css`
 
   common-button {
     position: fixed;
-    left: 5%;
 
     bottom: 10%;
     width: 90%;
-    height: inherit;
+    left: 50%;
+    transform: translate(-50%);
   }
 `;

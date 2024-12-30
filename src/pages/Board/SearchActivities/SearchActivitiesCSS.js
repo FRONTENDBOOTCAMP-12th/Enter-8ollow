@@ -37,5 +37,7 @@ export const SearchActivitiesCSS = css`
     position: fixed;
     bottom: 10%;
     width: 90%;
+    left: 50%;
+    transform: translate(-50%);
   }
 `;
