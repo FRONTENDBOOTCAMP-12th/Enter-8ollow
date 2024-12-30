@@ -1,104 +1,90 @@
 import { LitElement, html, css } from 'lit';
+import { styles } from '/src/pages/qnaBoard/qnaBoardCSS.js';
 
-class QnaDetail extends LitElement {
+class QnaBoard extends LitElement {
   static get properties() {
     return {
-      story: { type: Object },
-      storyId: { type: String },
+      article: { type: Object },
+      articleId: { type: String },
     };
   }
 
+  static styles = styles;
+
   constructor() {
     super();
-    this.story = null;
-    this.storyId = this.getStoryIdFromUrl();
-    this.fetchStory();
+    this.article = null;
+    this.articleId = this.getArticleIdFromUrl();
+    this.fetchArticle();
   }
 
-  getStoryIdFromUrl() {
+  getArticleIdFromUrl() {
     const urlParams = new URLSearchParams(location.search);
     return urlParams.get('qnadetail');
   }
 
-  async fetchStory() {
+  async fetchArticle() {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_PB_API}/collections/qnaPosts/records/${this.storyId}`
+        `${import.meta.env.VITE_PB_API}/collections/qnaPosts/records/${this.articleId}`
       );
-      this.story = await response.json();
+      this.article = await response.json();
     } catch (error) {
-      console.error('스토리 가져오기 실패:', error);
+      console.error('가져오기 실패:', error);
     }
-  }
-
-  getImageURL() {
-    if (!this.story || !this.story.iamge) {
-      return '/src/assets/test/test2.png';
-    }
-    return `${import.meta.env.VITE_PB_API}/files/${this.story.collectionId}/${this.story.id}/${this.story.iamge}`;
-  }
-
-  handleInputChange(e) {
-    const { name, value } = e.target;
-    this.story = { ...this.story, [name]: value };
-  }
-
-  async handleUpdate() {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_PB_API}/collections/seniorStory/records/${this.storyId}`,
-        {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            title: this.story.title,
-            content: this.story.content,
-            author: this.story.author,
-          }),
-        }
-      );
-      const updatedStory = await response.json();
-      console.log('업데이트 성공:', updatedStory);
-      alert('스토리가 수정되었습니다.');
-    } catch (error) {
-      console.error('스토리 수정 실패:', error);
-      alert('스토리 수정에 실패했습니다.');
-    }
-  }
-
-  handleCancel() {
-    history.back();
   }
 
   render() {
-    if (!this.story) {
+    if (!this.article) {
       return html`<p>로딩 중...</p>`;
     }
 
-    console.log(this.story);
+    const comments = Array.isArray(this.article.comment)
+      ? this.article.comment
+      : [];
 
     return html`
       <div class="detail-container">
-        <div class="field">
-          <h2>${this.story.title}</h2>
+        <with-us></with-us>
+        <div class="organizer-profile">
+          <span class="sss">사진 ${this.article.ssss}</span>
+          <span class="author">이름${this.article.author}</span>
+          <span class="ddd">인증횟수 ${this.article.dddd}</span>
+          <span class="created">• ${this.article.created}</span>
         </div>
+      </div>
 
-        <div class="field">
-          <span class="author">작성자: ${this.story.author}</span>
-        </div>
-
+      <div class="field">
+        <h2><span class="question">Q. </span>${this.article.title}</h2>
+        <p>${this.article.content}</p>
         <img
-          class="story-image"
-          src="${this.getImageURL()}"
+          class="article-image"
+          src=${this.article.img}
           alt="스토리 이미지"
         />
+      </div>
 
-        <div class="field">
-          <p>${this.story.content}</p>
-        </div>
+      <div class="comments-section">
+        <input
+          id="comment-input"
+          class="comment-input"
+          type="text"
+          placeholder="댓글을 입력해주세요."
+        />
+        <button type="submit" class="comment-submit">추가</button>
+
+        ${comments.length === 0
+          ? html`<p class="no-comments">
+              아직 댓글이 없어요. 가장 먼저 댓글을 남겨보세요.
+            </p>`
+          : html`
+              <ul>
+                ${comments.map((comment) => html`<li>${comment.comment}</li>`)}
+              </ul>
+            `}
       </div>
     `;
   }
 }
 
-customElements.define('qna-detail', QnaDetail);
+customElements.define('qna-board', QnaBoard);
