@@ -1,7 +1,18 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
+import viteCompression from 'vite-plugin-compression';
 
 const config = defineConfig({
+  plugins: [
+    viteCompression({
+      algorithm: 'gzip',
+      ext: '.gz',
+    }),
+    imageFiles({
+      extensions: ['png', 'jpg', 'jpeg', 'gif', 'svg'],
+      limit: 8192,
+    }),
+  ],
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
   },
@@ -21,6 +32,7 @@ const config = defineConfig({
           __dirname,
           'src/pages/main/ExchangeDetail/index.html'
         ),
+
 
         profile: resolve(__dirname, 'src/pages/Profile/index.html'),
         profileDetail: resolve(__dirname, 'src/pages/ProfileDetail/index.html'),
