@@ -2,8 +2,12 @@ import { LitElement, html } from 'lit';
 import pb from '/src/api/pocketbase';
 import defaultImage from '/src/assets/logo.svg';
 import ExchangeDetailCSS from '/src/pages/main/ExchangeDetail/ExchangeDetailCSS.js';
+import 'swiper/css';
+import { register } from 'swiper/element/bundle';
 import heartIcon from '/src/assets/heart.svg';
 import heartSolid from '/src/assets/heartSolid.svg';
+
+register();
 
 // 카테고리 한글 매핑
 const categoryMap = {
@@ -47,6 +51,7 @@ class ExchangeDetail extends LitElement {
       relatedItems: { type: Array },
       currentTemp: { type: Number },
       initialTemp: { type: Number },
+      image: { type: Array }, // 추가된 부분
     };
   }
 
@@ -95,6 +100,15 @@ class ExchangeDetail extends LitElement {
         this.post.authorProfileImage = defaultImage;
       }
 
+      // Swiper 이미지 처리
+      if (Array.isArray(this.post?.image) && this.post.image.length > 0) {
+        this.post.image = this.post.image.map((image) =>
+          pb.files.getURL(this.post, image)
+        );
+      } else {
+        this.post.image = [defaultImage]; // 기본 이미지
+      }
+
       // 온도 계산 및 업데이트
       this.calculateTemperature(record.status || '');
 
@@ -117,6 +131,32 @@ class ExchangeDetail extends LitElement {
     }
     this.currentTemp = this.initialTemp + increment; // 현재 온도 업데이트
     this.requestUpdate();
+  }
+
+  // 스와이퍼 렌더링
+  renderSwiper() {
+    if (!this.post?.image || this.post.image.length === 0) {
+      return html`<p>No images available</p>`;
+    }
+
+    return html`
+      <swiper-container
+        class="custom-swiper-container"
+        pagination="true"
+        navigation="true"
+      >
+        ${this.post.image.map(
+          (image) =>
+            html`<swiper-slide class="custom-swiper-slide">
+              <img
+                src="${image}"
+                alt="상품 이미지"
+                style="width: 100%; height: auto;"
+              />
+            </swiper-slide>`
+        )}
+      </swiper-container>
+    `;
   }
 
   // 연관 글 데이터 가져오기
@@ -236,12 +276,8 @@ class ExchangeDetail extends LitElement {
 
     return html`
       <div class="detail-container">
-        <img
-          class="detail-image"
-          src="${this.getPbImagesURL(this.post)}"
-          alt="상품 이미지"
-        />
-
+        ${this.renderSwiper()}
+        <!-- 작성자 프로필 -->
         <div class="profile-container">
           <div class="profile-info">
             <img
@@ -270,7 +306,7 @@ class ExchangeDetail extends LitElement {
             </p>
           </div>
         </div>
-
+        <!-- 작성글 -->
         <p class="post-description">${description}</p>
         <div class="separator" aria-hidden="true"></div>
         <div class="footer-container">
