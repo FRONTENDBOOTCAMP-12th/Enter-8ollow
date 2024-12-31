@@ -104,7 +104,7 @@ export class Header extends LitElement {
           <li @click="${() => this.toggleClass(0)}">
             <a href="/src/pages/main/?checked=${this.checked}">
               <img
-                alt="홈"
+                alt=""
                 src="${this.checked === 0 ? `${fullHome}` : `${home}`}"
               />
               <p>홈</p>
@@ -114,7 +114,7 @@ export class Header extends LitElement {
           <li @click=${() => this.toggleClass(1)}>
             <a href="/src/pages/Board/index.html?checked=${this.checked}">
               <img
-                alt="게시판"
+                alt=""
                 src="${this.checked === 1 ? `${fullBoard}` : `${board}`}"
               />
               <p>게시판</p>
@@ -125,7 +125,7 @@ export class Header extends LitElement {
               href="/src/pages/main/Exchange/index.html?checked=${this.checked}"
             >
               <img
-                alt="내 근처"
+                alt=""
                 src="${this.checked === 2 ? `${fullMap}` : `${map}`}"
               />
               <p>내 근처</p>
@@ -134,7 +134,7 @@ export class Header extends LitElement {
           <li @click=${() => this.toggleClass(3)}>
             <a target="_blank" rel="noreferrer noopener">
               <img
-                alt="채팅"
+                alt=""
                 src="${this.checked == 3 ? `${fullChat}` : `${chat}`}"
               />
               <p>채팅</p>
@@ -143,7 +143,7 @@ export class Header extends LitElement {
           <li @click=${() => this.toggleClass(4)}>
             <a target="_blank" rel="noreferrer noopener">
               <img
-                alt="내 근처"
+                alt=""
                 src="${this.checked === 4 ? `${fullProfile}` : `${profile}`}"
               />
               <p>나의 이듬</p>
