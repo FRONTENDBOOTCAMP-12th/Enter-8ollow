@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import profileImageSrc from '/src/assets/MainSwiper.png';
 
 class SimpleProfileHeader extends LitElement {
   static properties = {
@@ -60,7 +61,7 @@ class SimpleProfileHeader extends LitElement {
   constructor() {
     super();
     this.username = 'EUID***';
-    this.profileImage = '/src/assets/MainSwiper.png';
+    this.profileImage = profileImageSrc;
     this.level = 4;
   }
 

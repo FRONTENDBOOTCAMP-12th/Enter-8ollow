@@ -1,12 +1,12 @@
 import { LitElement, html, css } from 'lit';
 import pb from '/src/api/pocketbase'; // PocketBase 연결
+import peopleIcon from '/src/assets/people.svg'; // SVG 아이콘 불러오기
 
 class ProfileContents extends LitElement {
   static properties = {
     text: { type: String }, // 텍스트 내용
     comments: { type: Array }, // 표시할 댓글 리스트
     isVisible: { type: Boolean }, // 댓글 표시 여부
-    svgIcon: { type: String }, // SVG 파일 경로
   };
 
   static styles = css`
@@ -15,21 +15,21 @@ class ProfileContents extends LitElement {
       justify-content: center;
       flex-direction: column;
       align-items: center;
-
       box-sizing: border-box;
     }
 
     .ProfileContents {
-      width: 91.3%; /* 화면 사이즈에 따라 크기 조정 */
-      height: 21px;
-      padding: 20px; /* 상하좌우 여백을 모두 20px로 설정 */
+      width: 100%;
+      box-sizing: border-box;
+      height: 62px;
+      padding: 20px;
       background: var(--background);
-      border: 0.1px solid var(--contents--content-secondary); /* 전체 테두리 적용 */
+      border: 0.1px solid var(--contents--content-secondary);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 5px;
-      cursor: pointer; /* 마우스 오버 시 포인터 표시 */
+      cursor: pointer;
     }
 
     .ProfileText {
@@ -53,7 +53,7 @@ class ProfileContents extends LitElement {
       margin-top: 10px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start; /* 왼쪽 정렬 */
+      align-items: flex-start;
     }
 
     .comment-item {
@@ -63,7 +63,7 @@ class ProfileContents extends LitElement {
     }
 
     .comment-icon {
-      margin-right: 10px; /* 아이콘과 말풍선 간격 */
+      margin-right: 10px;
       width: 24px;
       height: 24px;
     }
@@ -74,24 +74,21 @@ class ProfileContents extends LitElement {
       padding: 10px;
       border-radius: 10px;
       font-size: 14px;
-      max-width: fit-content; /* 글자 길이에 따라 너비 조정 */
+      max-width: fit-content;
     }
   `;
 
   constructor() {
     super();
-    this.text = '받은 매너 평가'; // 기본 텍스트
-    this.comments = []; // 댓글 리스트
-    this.isVisible = false; // 댓글 표시 여부 초기값
-    this.svgIcon = '/src/assets/people.svg'; // SVG 파일 경로 기본값
+    this.text = '받은 매너 평가';
+    this.comments = [];
+    this.isVisible = false;
   }
 
-  // 클릭 이벤트로 댓글 표시/숨기기
   async handleClick() {
     if (!this.isVisible) {
-      // PocketBase에서 데이터 가져오기
       try {
-        const record = await pb.collection('profile').getOne('no4l9i8q06plv7f'); // 사용자 ID에 맞게 변경
+        const record = await pb.collection('profile').getOne('no4l9i8q06plv7f');
 
         if (Array.isArray(record.manner_comment)) {
           this.comments = record.manner_comment;
@@ -103,7 +100,7 @@ class ProfileContents extends LitElement {
         console.error('Failed to fetch comments:', error);
       }
     }
-    this.isVisible = !this.isVisible; // 표시 여부 토글
+    this.isVisible = !this.isVisible;
   }
 
   render() {
@@ -130,11 +127,7 @@ class ProfileContents extends LitElement {
               ${this.comments.map(
                 (comment) => html`
                   <div class="comment-item">
-                    <img
-                      class="comment-icon"
-                      src="${this.svgIcon}"
-                      alt="icon"
-                    />
+                    <img class="comment-icon" src="${peopleIcon}" alt="icon" />
                     <div class="comment-bubble">${comment}</div>
                   </div>
                 `
