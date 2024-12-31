@@ -1,5 +1,11 @@
 import { LitElement, html, css } from 'lit';
 
+// 이미지 import
+import profileImage from '/src/assets/MainSwiper.png';
+import qnaIcon from '/src/assets/profile/Q&A.svg';
+import profileIcon from '/src/assets/profile/profile.svg';
+import bellIcon from '/src/assets/profile/alramBell.svg';
+
 class ProfileHeader extends LitElement {
   static styles = css`
     /* 전체 컨테이너 */
@@ -43,6 +49,7 @@ class ProfileHeader extends LitElement {
       justify-content: center;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       font-size: 12px;
+      cursor: pointer;
     }
 
     /* 사용자 정보 */
@@ -60,6 +67,7 @@ class ProfileHeader extends LitElement {
       border: 1px solid var(--secondary);
       border-radius: 12px;
       padding: 2px 6px;
+      background-color: #ffffff;
     }
 
     .UserStats {
@@ -90,13 +98,18 @@ class ProfileHeader extends LitElement {
       height: 50px;
       margin-bottom: 5px;
     }
+
+    .Icon img {
+      cursor: pointer;
+    }
   `;
 
   navigateToProfile() {
     window.location.href = '/src/pages/ProfileDetail/index.html'; // 이동할 HTML 페이지 경로
   }
-  navigateToQnA() {
-    window.location.href = '/src/pages/qna/index.html'; // 이동할 "나의 Q&A" 페이지
+
+  navigateToQandA() {
+    window.location.href = '/src/pages/qna/index.html'; // 나의 Q&A 페이지 경로
   }
 
   render() {
@@ -105,11 +118,18 @@ class ProfileHeader extends LitElement {
         <!-- 프로필 이미지 -->
         <div class="ProfileImageContainer">
           <img
-            src="/src/assets/MainSwiper.png"
-            alt="Profile Image"
+            src="${profileImage}"
+            alt="사용자의 프로필 사진"
             class="ProfileImage"
           />
-          <div class="EditIcon">✏️</div>
+          <div
+            class="EditIcon"
+            role="button"
+            tabindex="0"
+            aria-label="프로필 이미지 수정"
+          >
+            ✏️
+          </div>
         </div>
 
         <!-- 사용자 정보 -->
@@ -118,19 +138,28 @@ class ProfileHeader extends LitElement {
 
         <!-- 아이콘 섹션 -->
         <div class="IconSection">
-          <div class="Icon" @click=${this.navigateToQnA}>
-            <img src="/src/assets/profile/Q&A.svg" alt="나의 Q&A 아이콘" />
+          <div
+            class="Icon"
+            tabindex="0"
+            role="button"
+            aria-label="나의 Q&A 보기"
+            @click=${this.navigateToQandA}
+          >
+            <img src="${qnaIcon}" alt="나의 Q&A 아이콘" />
             <span>나의 Q&A</span>
           </div>
-          <div class="Icon" @click=${this.navigateToProfile}>
-            <img
-              src="/src/assets/profile/profile.svg"
-              alt="나의 프로필 아이콘"
-            />
+          <div
+            class="Icon"
+            tabindex="0"
+            role="button"
+            aria-label="나의 프로필 보기"
+            @click=${this.navigateToProfile}
+          >
+            <img src="${profileIcon}" alt="나의 프로필 아이콘" />
             <span>나의 프로필</span>
           </div>
-          <div class="Icon">
-            <img src="/src/assets/profile/alramBell.svg" alt="내소식 아이콘" />
+          <div class="Icon" tabindex="0" role="button" aria-label="내소식 보기">
+            <img src="${bellIcon}" alt="내소식 아이콘" />
             <span>내소식</span>
           </div>
         </div>
