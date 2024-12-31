@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="/src/style/variable.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 프로필 헤더 -->
+      <div class="ProfileHeader">
+        <profile-photo></profile-photo>
+      </div>
+
+      <!-- 매너 온도 및 리뷰 섹션 -->
+      <div class="ProfileComponents">
+        <profile-temperature></profile-temperature>
+
+        <!-- 각기 다른 속성으로 변형된 컴포넌트 -->
+        <profile-Link
+          text="활동 배지"
+          link="https://example.com/qna"
+        ></profile-Link>
+        <profile-link
+          text="판매 상품"
+          link="https://example.com/settings"
+        ></profile-link>
+        <profile-link
+        text="받은 거래 후기"
+        link="https://example.com/notices"
+      ></profile-link>
+        <trade-review-component>
+        </trade-review-component>
+      </div>
+    </div>
+
+      <!-- 푸터 -->
+      <div class="footer">
+        <profile-footer></profile-footer>
+        <p>profile page for test</p>
+      </div>
+    </div>
+
+    <script type="module" src="/src/pages/profile/ProfilePage.js"></script>
+  </body>
+</html>
