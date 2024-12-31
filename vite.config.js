@@ -33,7 +33,6 @@ const config = defineConfig({
           'src/pages/main/ExchangeDetail/index.html'
         ),
 
-
         profile: resolve(__dirname, 'src/pages/Profile/index.html'),
         profileDetail: resolve(__dirname, 'src/pages/ProfileDetail/index.html'),
 
