@@ -22,7 +22,7 @@ const config = defineConfig({
           'src/pages/main/ExchangeDetail/index.html'
         ),
 
-        // profile: resolve(__dirname, 'src/components/Profile/index.html'),
+        profile: resolve(__dirname, 'src/pages/profile/index.html'),
 
         seniordetail: resolve(
           __dirname,
@@ -34,10 +34,7 @@ const config = defineConfig({
           'src/pages/main/ExchangeDetail/index.html'
         ),
 
-        BoardDetail: resolve(
-          __dirname,
-          'src/pages/main/BoardDetail/index.html'
-        ),
+        BoardDetail: resolve(__dirname, 'src/pages/BoardDetail/index.html'),
 
         qnadetail: resolve(__dirname, 'src/pages/qnaBoard/index.html'),
         writeQna: resolve(__dirname, 'src/pages/writeQna/writeQna.html'),
