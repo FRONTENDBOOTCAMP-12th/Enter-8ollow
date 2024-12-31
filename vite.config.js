@@ -22,7 +22,7 @@ const config = defineConfig({
           'src/pages/main/ExchangeDetail/index.html'
         ),
 
-        // profile: resolve(__dirname, 'src/components/Profile/index.html'),
+        profile: resolve(__dirname, 'src/components/Profile/index.html'),
 
         seniordetail: resolve(
           __dirname,

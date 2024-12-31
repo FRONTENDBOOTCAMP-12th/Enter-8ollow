@@ -19,7 +19,7 @@ class ProfileContents extends LitElement {
     .ProfileContents {
       width: 100%; /* 화면 사이즈에 따라 크기 조정 */
       height: 21px;
-      padding: 20px; /* 상하좌우 여백을 모두 16px로 설정 */
+      padding: 20px; /* 상하좌우 여백을 모두 20px로 설정 */
       background: var(--background);
       border: 0.1px solid var(--contents--content-secondary); /* 전체 테두리 적용 */
       display: flex;
@@ -79,4 +79,4 @@ class ProfileContents extends LitElement {
   }
 }
 
-customElements.define('profileLink', ProfileContents);
+customElements.define('profile-link', ProfileContents);

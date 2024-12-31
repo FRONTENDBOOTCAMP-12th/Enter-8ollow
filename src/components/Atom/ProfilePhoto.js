@@ -82,6 +82,7 @@ class ProfileHeader extends LitElement {
       align-items: center;
       font-size: var(--label---medium);
       color: var(--contents--content-primary);
+      cursor: pointer;
     }
 
     .Icon svg {
@@ -90,6 +91,13 @@ class ProfileHeader extends LitElement {
       margin-bottom: 5px;
     }
   `;
+
+  navigateToProfile() {
+    window.location.href = '/src/pages/ProfileDetail/index.html'; // 이동할 HTML 페이지 경로
+  }
+  navigateToQnA() {
+    window.location.href = '/src/pages/qna/index.html'; // 이동할 "나의 Q&A" 페이지
+  }
 
   render() {
     return html`
@@ -110,11 +118,11 @@ class ProfileHeader extends LitElement {
 
         <!-- 아이콘 섹션 -->
         <div class="IconSection">
-          <div class="Icon">
+          <div class="Icon" @click=${this.navigateToQnA}>
             <img src="/src/assets/profile/Q&A.svg" alt="나의 Q&A 아이콘" />
             <span>나의 Q&A</span>
           </div>
-          <div class="Icon">
+          <div class="Icon" @click=${this.navigateToProfile}>
             <img
               src="/src/assets/profile/profile.svg"
               alt="나의 프로필 아이콘"
