@@ -1,13 +1,16 @@
-import { LitElement, html } from 'lit';
-import { styles } from '/src/pages/writeQna/WriteQnaCSS?inline';
+import { LitElement, html, css } from 'lit';
+import { styles } from '/src/pages/writeQna/WriteQnaCSS.js';
 import pb from '/src/api/pocketbase';
 
 class WriteQna extends LitElement {
+  static styles = [styles];
+
   static get properties() {
     return {
       inputTitle: { type: String },
       inputContent: { type: String },
       author: { type: String },
+      pbPath: { type: String }, // 부모로부터 전달받을 경로
     };
   }
 
@@ -16,10 +19,10 @@ class WriteQna extends LitElement {
     this.inputTitle = '';
     this.inputContent = '';
     this.author = '';
+    this.pbPath = ''; // 초기값 설정
+
     this.getUid();
   }
-
-  static styles = styles;
 
   updated(changedProperties) {
     if (
@@ -30,25 +33,24 @@ class WriteQna extends LitElement {
     }
   }
 
-  checkInput() {
-    console.log('checkInput 메서드 실행');
-    console.log(this.inputTitle);
-    console.log(this.inputContent);
+  getUid() {
+    const data = JSON.parse(localStorage.getItem('isLogin'));
 
-    if (this.inputTitle !== '' && this.inputContent !== '') {
-      this.buttonStyleChanger(true);
-    } else {
-      this.buttonStyleChanger(false);
-    }
+    console.log(typeof data);
+
+    const { UID } = data;
+
+    this.author = UID;
   }
 
-  buttonStyleChanger(isChanged) {
-    console.log('buttonStyleChanger 메서드 실행');
-
+  checkInput() {
+    const completeButton = this.shadowRoot.querySelector('#completeButton');
     const finishedComponent = this.renderRoot.querySelector('#completeButton');
-    if (!finishedComponent) return;
+    console.log(finishedComponent);
+    console.log(this.inputContent);
+    console.log(this.pbPath);
 
-    if (isChanged) {
+    if (this.inputTitle && this.inputContent && this.pbPath) {
       finishedComponent.classList.remove('inactive');
       finishedComponent.classList.add('active');
       finishedComponent.removeAttribute('disabled');
@@ -59,15 +61,6 @@ class WriteQna extends LitElement {
     }
   }
 
-  getUid() {
-    const data = JSON.parse(localStorage.getItem('isLogin'));
-    if (data) {
-      this.author = data.UID;
-    } else {
-      console.warn('사용자가 로그인하지 않았습니다.');
-    }
-  }
-
   async _onSubmit(e) {
     e.preventDefault();
 
@@ -75,7 +68,6 @@ class WriteQna extends LitElement {
       console.error('작성자 정보가 없습니다.');
       return;
     }
-
     const data = {
       title: this.inputTitle,
       contents: this.inputContent,
@@ -84,7 +76,7 @@ class WriteQna extends LitElement {
     };
 
     try {
-      const record = await pb.collection('seniorStory').create(data);
+      const record = await pb.collection(this.pbPath).create(data);
       console.log('게시물 생성 성공:', record);
       alert('게시물이 성공적으로 생성되었습니다.');
     } catch (error) {
@@ -97,21 +89,24 @@ class WriteQna extends LitElement {
     return html`
       <h1 class="sr-only">질문 작성</h1>
 
-      <back-component></back-component>
-
-      <button id="completeButton" type="submit" class="inactive" disabled>
+      <button
+        id="completeButton"
+        type="submit"
+        class="inactive"
+        disabled
+        @click="${this._onSubmit}"
+      >
         완료
       </button>
       <info-component></info-component>
 
-      <form @submit=${this._onSubmit}>
+      <form>
         <input-component
           placeholder="제목"
           borderColor="transparent"
           @input="${(e) => {
             const input = e.composedPath().find((el) => el.tagName === 'INPUT');
             if (!input) return;
-
             this.inputTitle = input.value;
           }}"
         ></input-component>
@@ -125,7 +120,6 @@ class WriteQna extends LitElement {
               .composedPath()
               .find((el) => el.tagName === 'TEXTAREA');
             if (!input) return;
-
             this.inputContent = input.value;
           }}"
         ></textarea>
