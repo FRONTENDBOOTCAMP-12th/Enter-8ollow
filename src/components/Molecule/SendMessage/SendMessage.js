@@ -79,8 +79,16 @@ class SendMessage extends LitElement {
           @input="${this.handleInput}"
           placeholder="메세지를 입력해주세요"
         />
-        <button class="smile" @click="${this.handleEmoji}"></button>
-        <button class="send" @click="${this.handelClick}"></button>
+        <button
+          class="smile"
+          @click="${this.handleEmoji}"
+          aria-label="이모지"
+        ></button>
+        <button
+          class="send"
+          @click="${this.handelClick}"
+          aria-label="전송"
+        ></button>
       </div>
     `;
   }

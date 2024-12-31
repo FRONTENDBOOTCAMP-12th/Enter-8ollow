@@ -8,10 +8,10 @@ export class MainButton extends LitElement {
   static styles = css`
     button {
       background-color: var(--white);
-      height: 27px;
-      padding-left: 8px;
-      padding-right: 8px;
-      padding-inline: 8px;
+      height: var(--button-height, 27px);
+      padding-left: var(--button-padding, 8px);
+      padding-right: var(--button-padding, 8px);
+      padding-inline: var(--button-padding, 8px);
 
       padding-top: 4px;
       padding-bottom: 4px;
@@ -77,6 +77,7 @@ export class MainButton extends LitElement {
         class="category"
         onclick="this.classList.toggle('checked')"
       >
+        <slot></slot>
         <svg
           width="14"
           height="10"
