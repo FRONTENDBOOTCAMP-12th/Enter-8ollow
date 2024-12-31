@@ -263,7 +263,7 @@ class BoardWith extends LitElement {
                   · <span>${item.category}</span> ·
                   <span>${item.place}</span>
                 </div>
-                <h3 class="title">${item.title}</h3>
+                <h2 class="title">${item.title}</h2>
                 <board-info-items
                   gender="${item.gender}"
                   meetDay="${formatMeetDay(item.time, item.lastTime)}"
