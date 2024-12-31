@@ -85,7 +85,7 @@ class RegionMenu extends LitElement {
   render() {
     return html`
       <nav>
-        <button type="button" class="region">
+        <button type="button" class="region" aria-label="region">
           <span class="region-name">${this.checkPlace}</span>
           <span class="svg-icon ${this.isActive ? 'active' : 'inactive'}">
             ${this.isActive

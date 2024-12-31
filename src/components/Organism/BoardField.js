@@ -94,7 +94,7 @@ export class BoardField extends LitElement {
         </div>
         ${this.text === '같이해요'
           ? html` <board-person text="${this.personCount}"></board-person>`
-          : html`<img src="${this.imgLink}" />`}
+          : html`<img src="${this.imgLink}" alt="" />`}
       </div>
     `;
   }
