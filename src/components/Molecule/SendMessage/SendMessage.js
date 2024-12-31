@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { styles } from '/src/components/Molecule/SendMessage/SendMessageCSS.js';
 import pb from '/src/api/pocketbase';
-// import { EmojiButton } from '@joeattardi/emoji-button';
+import { EmojiButton } from '@joeattardi/emoji-button';
 
 import {} from '/src/style/variable.css';
 
@@ -79,8 +79,16 @@ class SendMessage extends LitElement {
           @input="${this.handleInput}"
           placeholder="메세지를 입력해주세요"
         />
-        <button class="smile" @click="${this.handleEmoji}"></button>
-        <button class="send" @click="${this.handelClick}"></button>
+        <button
+          class="smile"
+          @click="${this.handleEmoji}"
+          aria-label="이모지"
+        ></button>
+        <button
+          class="send"
+          @click="${this.handelClick}"
+          aria-label="전송"
+        ></button>
       </div>
     `;
   }
