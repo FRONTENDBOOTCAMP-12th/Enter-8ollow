@@ -7,7 +7,7 @@ class WithUs extends LitElement {
 
   static styles = css`
     .withUs {
-      background-color: #c4c7d2;
+      background-color: var(--contents--content-tertiary);
       width: 50px;
       height: 17px;
       border-radius: 4px;
