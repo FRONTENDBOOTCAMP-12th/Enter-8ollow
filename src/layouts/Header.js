@@ -24,8 +24,8 @@ export class Header extends LitElement {
       background-color: var(--background);
 
       display: flex;
-      justify-content: center; /* 수평 가운데 정렬 */
-      align-items: center; /* 수직 가운데 정렬 */
+      justify-content: center;
+      align-items: center;
       padding-top: 0.5rem;
       padding-bottom: 1.5rem;
 
@@ -42,8 +42,8 @@ export class Header extends LitElement {
         padding: 0;
         margin: 0;
 
-        display: grid; /* Grid 레이아웃 사용 */
-        grid-template-columns: repeat(5, 1fr); /* 5개의 동일한 너비 열을 설정 */
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
         gap: 25px;
       }
 
@@ -104,7 +104,7 @@ export class Header extends LitElement {
           <li @click="${() => this.toggleClass(0)}">
             <a href="/src/pages/main/?checked=${this.checked}">
               <img
-                alt="홈"
+                alt=""
                 src="${this.checked === 0 ? `${fullHome}` : `${home}`}"
               />
               <p>홈</p>
@@ -114,7 +114,7 @@ export class Header extends LitElement {
           <li @click=${() => this.toggleClass(1)}>
             <a href="/src/pages/Board/index.html?checked=${this.checked}">
               <img
-                alt="게시판"
+                alt=""
                 src="${this.checked === 1 ? `${fullBoard}` : `${board}`}"
               />
               <p>게시판</p>
@@ -125,7 +125,7 @@ export class Header extends LitElement {
               href="/src/pages/main/Exchange/index.html?checked=${this.checked}"
             >
               <img
-                alt="내 근처"
+                alt=""
                 src="${this.checked === 2 ? `${fullMap}` : `${map}`}"
               />
               <p>내 근처</p>
@@ -134,19 +134,20 @@ export class Header extends LitElement {
           <li @click=${() => this.toggleClass(3)}>
             <a target="_blank" rel="noreferrer noopener">
               <img
-                alt="채팅"
+                alt=""
                 src="${this.checked == 3 ? `${fullChat}` : `${chat}`}"
               />
               <p>채팅</p>
             </a>
           </li>
+
           <li @click=${() => this.toggleClass(4)}>
-            <a target="_blank" rel="noreferrer noopener">
-              <img
-                alt="내 근처"
-                src="${this.checked === 4 ? `${fullProfile}` : `${profile}`}"
-              />
-              <p>나의 이듬</p>
+          <a href="/src/pages/profile/index.html?checked=${this.checked}">
+            <img
+              alt="나의 이듬"
+              src="${this.checked === 4 ? `${fullProfile}` : `${profile}`}"
+            />
+            <p>나의 이듬</p>
             </a>
           </li>
         </ul>

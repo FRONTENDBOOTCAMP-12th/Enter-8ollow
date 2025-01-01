@@ -6,3 +6,4 @@ import {} from '/src/components/Molecule/ProfileTemperature/ProfileTemperature';
 import {} from '/src/components/Molecule/TextImg/TextImg';
 import {} from '/src/components/Molecule/BoardPerson.js';
 import {} from '/src/components/Molecule/SendMessage/SendMessage.js';
+import {} from '/src/components/Molecule/BackItem/BackItem.js';

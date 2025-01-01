@@ -9,9 +9,13 @@ export class StoryField extends LitElement {
   };
 
   static styles = css`
+    .container {
+      display: flex;
+      gap: 1rem;
+    }
+
     .story-field {
       display: inline-block;
-      margin: 10px;
       font-size: var(--paragraph---small);
 
       img {

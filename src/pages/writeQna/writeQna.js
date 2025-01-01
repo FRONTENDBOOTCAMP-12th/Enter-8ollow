@@ -22,6 +22,7 @@ class WriteQna extends LitElement {
     this.pbPath = ''; // 초기값 설정
   }
 
+
   updated(changedProperties) {
     if (
       changedProperties.has('inputTitle') ||
@@ -56,8 +57,9 @@ class WriteQna extends LitElement {
       console.error('저장 경로가 설정되지 않았습니다.');
       alert('저장 경로를 확인해주세요.');
       return;
-    }
 
+    }
+    
     const data = {
       title: this.inputTitle,
       contents: this.inputContent,
@@ -67,6 +69,7 @@ class WriteQna extends LitElement {
 
     try {
       const record = await pb.collection(this.savePath).create(data);
+
       console.log('게시물 생성 성공:', record);
       alert('게시물이 성공적으로 생성되었습니다.');
     } catch (error) {
@@ -87,7 +90,7 @@ class WriteQna extends LitElement {
       <form @submit=${this._onSubmit}>
         <input-component
           placeholder="제목"
-          style="--border-color: transparent"
+          borderColor="transparent"
           @input="${(e) => {
             const input = e.composedPath().find((el) => el.tagName === 'INPUT');
             if (!input) return;

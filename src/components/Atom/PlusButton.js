@@ -7,7 +7,6 @@ export class PlusButton extends LitElement {
   };
 
   static styles = css`
-    /* 플러스 버튼 스타일 */
     .plus-button {
       /* 기본 설정 */
       display: flex;
@@ -29,10 +28,9 @@ export class PlusButton extends LitElement {
 
       /* 위치 설정 */
       position: fixed;
-      bottom: 20vh;
-      right: 5vw;
+      bottom: 77px;
+      right: 16px;
       z-index: 1010;
-      margin-bottom: 12px; /* 버튼 아래 간격 */
 
       /* 전환 효과 */
       transition:
@@ -58,9 +56,10 @@ export class PlusButton extends LitElement {
       /* 기본 설정 */
       display: none;
       position: fixed;
-      bottom: calc(20vh + 4rem); /* 버튼 기준 위로 이동 */
+      bottom: 141px; /* 버튼 기준 위로 이동 */
       right: 5vw;
       z-index: 1005;
+      margin: 0;
 
       /* 리스트 보이기 */
       &.visible {

@@ -1,6 +1,6 @@
 import { css } from 'lit';
 
-export const styles = css`
+export const BoardCSS = css`
   .main-button-container {
     display: grid;
 
@@ -79,5 +79,10 @@ export const styles = css`
 
   .hidden {
     display: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 `;

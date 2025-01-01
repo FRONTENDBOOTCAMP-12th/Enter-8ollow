@@ -13,6 +13,8 @@ class QnaBoard extends LitElement {
   }
   static styles = styles;
 
+  static styles = styles;
+
   constructor() {
     super();
     this.article = null;
@@ -73,6 +75,7 @@ class QnaBoard extends LitElement {
   getImageURL() {
     if (!this.article || !this.article.img) {
       return '/src/assets/test/test2.png';
+
     }
     return `${import.meta.env.VITE_PB_API}/files/${this.article.collectionId}/${this.article.id}/${this.article.img}`;
   }
@@ -96,17 +99,13 @@ class QnaBoard extends LitElement {
   }
   
 
-  render() {
-    if (!this.article) {
-      return html`<p>로딩 중...</p>`;
-    }
-
     return html`
       <div class="detail-container">
         <with-us></with-us>
         <div class="organizer-profile">
           <span class="sss">사진 ${this.article.ssss}</span>
           <span class="author"> ${this.article.author}</span>
+
           <span class="ddd">인증횟수 ${this.article.dddd}</span>
           <span class="created">• ${this.article.created}</span>
         </div>

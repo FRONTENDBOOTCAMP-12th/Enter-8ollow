@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { styles } from '/src/pages/Board/BoardCSS?inline';
+import { BoardCSS } from '/src/pages/Board/BoardCSS';
 import pb from '/src/api/pocketbase';
 
 class Board extends LitElement {
@@ -9,21 +9,15 @@ class Board extends LitElement {
     postId: { type: String },
   };
 
-  static styles = styles;
+  static styles = BoardCSS;
 
   constructor() {
     super();
     this.description = '';
     this.postArray = [];
     this.postDetailArray = [];
-    this.connectedCallback();
     this.postId = 'no4l9i8q06plv7f';
-  }
-
-  async connectedCallback() {
-    super.connectedCallback();
-    await this.fetchData();
-    this.toggleHidden();
+    this.fetchData();
   }
 
   async fetchData() {
@@ -32,7 +26,11 @@ class Board extends LitElement {
       expand: 'with,qna',
     });
 
+    console.log(records);
+
     let postArray = records.items.map((item) => item.expand);
+
+    console.log(postArray);
 
     postArray.forEach((item) => {
       if (item.qna) {
@@ -40,6 +38,7 @@ class Board extends LitElement {
           item.qna;
 
         this.postDetailArray.push({
+          id,
           img: `${import.meta.env.VITE_PB_API}/files/qnaPosts/${id}/${img}?thumb=100x100`,
           category,
           content,
@@ -48,10 +47,12 @@ class Board extends LitElement {
           title,
           viewCount,
           collectionName: '질의응답',
+          type: 'qna',
         });
       }
       if (item.with) {
         const {
+          id,
           category,
           created,
           description,
@@ -64,6 +65,7 @@ class Board extends LitElement {
         } = item.with;
 
         this.postDetailArray.push({
+          id,
           category,
           created,
           description,
@@ -74,11 +76,21 @@ class Board extends LitElement {
           time,
           title,
           collectionName: '같이해요',
+          type: 'with',
         });
       }
     });
 
+    console.log(this.postDetailArray);
     this.requestUpdate();
+  }
+
+  handleClick(item) {
+    if (item.type === 'qna') {
+      location.href = `/src/pages/QnaDetail/?detail=${item.id}`;
+    } else if (item.type === 'with') {
+      location.href = `/src/pages/BoardDetail/?detail=${item.id}`;
+    }
   }
 
   toggleHidden() {
@@ -94,31 +106,33 @@ class Board extends LitElement {
     console.log(button);
     console.log(close);
 
-    setTimeout(() => {
-      const closeTheme = boardThemeList
-        ? boardThemeList.shadowRoot.querySelector('.close')
-        : null;
-      const innerButton = button
-        ? button.shadowRoot.querySelector('button')
-        : null;
+    const closeTheme = boardThemeList
+      ? boardThemeList.shadowRoot.querySelector('.close')
+      : null;
+    const innerButton = button
+      ? button.shadowRoot.querySelector('button')
+      : null;
 
-      //닫기 버튼이 클릭되면 hidden과 button의 checked 클래스를 토글
-      if (closeTheme && innerButton) {
-        innerButton.addEventListener('click', () => {
-          boardThemeList.classList.toggle('hidden');
-        });
+    //닫기 버튼이 클릭되면 hidden과 button의 checked 클래스를 토글
+    if (closeTheme && innerButton) {
+      innerButton.addEventListener('click', () => {
+        boardThemeList.classList.toggle('hidden');
+      });
 
-        closeTheme.addEventListener('click', () => {
-          boardThemeList.classList.toggle('hidden');
-          innerButton.classList.toggle('checked');
-        });
-      } else {
-        console.error('dom 요소들을 찾지 못했습니다.');
-      }
-    }, 100); // 100ms 후에 중첩된 두 번째 shadowRoot에 접근
+      closeTheme.addEventListener('click', () => {
+        boardThemeList.classList.toggle('hidden');
+        innerButton.classList.toggle('checked');
+      });
+    } else {
+      console.error('dom 요소들을 찾지 못했습니다.');
+    }
   }
 
   render() {
+    document.addEventListener('DOMContentLoaded', () => {
+      this.toggleHidden();
+    });
+
     function formatTimeDifference(time) {
       const currentTime = new Date();
       const targetTime = new Date(time);
@@ -176,11 +190,12 @@ class Board extends LitElement {
 
     return html`
       <region-menu></region-menu>
-
       <div class="main-button-container">
         <main-button class="category" name="주제"></main-button>
         <main-button name="인기글"></main-button>
-        <main-button name="같이해요"></main-button>
+        <a href="/src/pages/Board/BoardWith/index.html"
+          ><main-button name="같이해요"></main-button
+        ></a>
         <main-button name="질의응답"> </main-button>
         <main-button name="자유게시판"></main-button>
       </div>
@@ -206,6 +221,7 @@ class Board extends LitElement {
                 gender=${item.gender}
                 meetDay=${formatMeetDay(item.time)}
                 imgLink=${item.img}
+                @click="${() => this.handleClick(item)}"
               ></board-field>
             </li>
           `

@@ -1,7 +1,14 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
+import viteCompression from 'vite-plugin-compression';
 
 const config = defineConfig({
+  plugins: [
+    viteCompression({
+      algorithm: 'gzip',
+      ext: '.gz',
+    }),
+  ],
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
   },
@@ -22,7 +29,8 @@ const config = defineConfig({
           'src/pages/main/ExchangeDetail/index.html'
         ),
 
-        // profile: resolve(__dirname, 'src/components/Profile/index.html'),
+        profile: resolve(__dirname, 'src/pages/Profile/index.html'),
+        profileDetail: resolve(__dirname, 'src/pages/ProfileDetail/index.html'),
 
         seniordetail: resolve(
           __dirname,
@@ -34,7 +42,10 @@ const config = defineConfig({
           'src/pages/main/ExchangeDetail/index.html'
         ),
 
+        BoardDetail: resolve(__dirname, 'src/pages/BoardDetail/index.html'),
+
         qnadetail: resolve(__dirname, 'src/pages/qnaBoard/index.html'),
+        writeQna: resolve(__dirname, 'src/pages/writeQna/writeQna.html'),
       },
     },
   },

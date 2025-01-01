@@ -1,5 +1,4 @@
 import { LitElement, html, css } from 'lit';
-import { styles } from '/src/components/Molecule/ProfileTemperature/ProfileTemperatureCSS?inline';
 import pb from '/src/api/pocketbase';
 
 class ProfileTemperature extends LitElement {
@@ -7,78 +6,112 @@ class ProfileTemperature extends LitElement {
     userId: { type: String }, // 사용자 ID
     initialTemp: { type: Number }, // 초기 온도
     currentTemp: { type: Number }, // 현재 온도
+    items: { type: Array }, // 전체 데이터 리스트
   };
 
-  static styles = styles;
+  static styles = css`
+    .manner-temp-container {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      max-width: 400px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    .manner-header {
+      font-size: 0.9em;
+      font-weight: bold;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    .manner-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9em;
+      color: #555; /* 대비 강화 */
+      margin-bottom: 5px;
+    }
+
+    .current-temp {
+      color: #006400; /* 대비 강화 */
+      font-weight: bold;
+    }
+
+    .manner-bar {
+      width: 100%;
+      height: 10px;
+      background-color: #d3d3d3; /* 대비 강화 */
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .manner-progress {
+      height: 100%;
+      background-color: #006400; /* 대비 강화 */
+      border-radius: 5px;
+    }
+  `;
 
   constructor() {
     super();
-    this.userId = 'no4l9i8q06plv7f'; // 예시 사용자 ID
-    this.initialTemp = 36.5; // 초기 온도
-    this.currentTemp = this.initialTemp; // 현재 온도 초기화
+    this.userId = 'no4l9i8q06plv7f';
+    this.initialTemp = 36.5;
+    this.currentTemp = this.initialTemp;
+    this.items = [];
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this.fetchDataById();
+    this.fetchUserData();
+    this.fetchAllData();
   }
 
-  // 특정 사용자 ID로 데이터 가져오기
-  async fetchDataById() {
+  async fetchUserData() {
     try {
-      const record = await pb.collection('profile').getOne('no4l9i8q06plv7f');
-
-      console.log(record);
-
+      const record = await pb.collection('profile').getOne(this.userId);
       const exchangeComment = record?.exchange_comment || 0;
-
-      // 온도 계산 및 업데이트
       this.calculateTemperature(exchangeComment);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching user data:', error);
     }
   }
 
-  async fetchData() {
+  async fetchAllData() {
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_PB_API}/collections/profile/records`
-      );
-      const data = await response.json();
-      console.log('서버에서 받은 전체 데이터:', data);
+      const records = await pb.collection('profile').getFullList({
+        sort: '-created',
+      });
 
-      // 클라이언트에서 역순 정렬
-      this.items = (data.items || []).reverse();
+      this.items = records.reverse();
     } catch (error) {
-      console.error('데이터 가져오기 실패:', error);
+      console.error('Error fetching all data:', error);
     }
   }
 
-  // 온도 계산 함수
   calculateTemperature(exchangeComment) {
-    const increment = exchangeComment * 0.1; // 교환 댓글 수에 따른 온도 증가량
-    this.currentTemp = this.initialTemp + increment; // 현재 온도 업데이트
-    this.requestUpdate(); // LitElement 화면 업데이트 요청
+    const increment = exchangeComment * 0.1;
+    this.currentTemp = this.initialTemp + increment;
+    this.requestUpdate();
   }
 
-  // 진행 바 너비 계산
   get progressWidth() {
-    const maxTemp = 40; // 최대 온도 기준
+    const maxTemp = 40;
     return Math.min(
       ((this.currentTemp - this.initialTemp) / (maxTemp - this.initialTemp)) *
         100,
       100
-    ); // 100%를 초과하지 않도록 제한
+    );
   }
 
   render() {
     return html`
-      <div class="manner-temp-container">
+      <div class="manner-temp-container" aria-labelledby="manner-header">
         <!-- 열정 온도 헤더 -->
-        <div class="manner-header">열정온도 ℹ</div>
+        <div class="manner-header" id="manner-header">열정 온도</div>
 
         <!-- 온도 정보 표시 -->
-        <div class="manner-info">
+        <div class="manner-info" aria-describedby="temperature-info">
           <span>첫 온도: ${this.initialTemp.toFixed(1)}℃</span>
           <span class="current-temp">
             현재 온도: ${this.currentTemp.toFixed(1)}℃ 😊
@@ -86,7 +119,14 @@ class ProfileTemperature extends LitElement {
         </div>
 
         <!-- 게이지 바 -->
-        <div class="manner-bar">
+        <div
+          class="manner-bar"
+          role="progressbar"
+          aria-valuenow="${this.currentTemp.toFixed(1)}"
+          aria-valuemin="${this.initialTemp}"
+          aria-valuemax="40"
+          aria-label="현재 온도 진행 상태"
+        >
           <div
             class="manner-progress"
             style="width: ${this.progressWidth}%;"

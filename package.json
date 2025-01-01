@@ -24,6 +24,8 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.4.2",
-    "vite": "^6.0.1"
+    "rollup-plugin-image-files": "^1.4.2",
+    "vite": "^6.0.1",
+    "vite-plugin-compression": "^0.5.1"
   }
 }

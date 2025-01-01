@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="/" href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>main page</title>
+    <!-- <link rel="stylesheet" href="/src/style/index.css" /> -->
+    <link rel="stylesheet" href="/src/style/variable.css" />
+    <link rel="stylesheet" href="/src/style/reset.css" />
+    <script type="module" src="./ProfileDetail.js"></script>
+    <script type="module" src="/src/layouts/Header.js"></script>
+    <script
+      type="module"
+      src="/src/components/Atom/ProfileDetailHeader.js"
+    ></script>
+    <script type="module" src="/src/components/Atom/ProfilePhoto.js"></script>
+
+    <style>
+      :root {
+        --primary: #373f67;
+        --secondary: #5a85ee;
+        --tertiary: #719cf7;
+        --background: #ffffff;
+        --contents--content-primary: #000000;
+        --contents--content-secondary: #919191;
+        --border-radius---large: 20px;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Pretendard, sans-serif;
+        background-color: #f9f9f9;
+      }
+
+      .page-container {
+        padding: 16px;
+      }
+    </style>
+    <profile-photo></profile-photo>
+  </head>
+  <body>
+    <div class="page-container">
+      <profile-info-section
+        id="basic-info"
+        title="기본 정보"
+      ></profile-info-section>
+      <profile-info-section
+        id="additional-info"
+        title="추가 정보"
+      ></profile-info-section>
+    </div>
+    <script>
+      // JavaScript에서 데이터를 컴포넌트에 전달
+      document.getElementById('basic-info').fields = [
+        {
+          label: '프로필 사진',
+          value: '/src/assets/MainSwiper.png',
+          editable: false,
+        },
+        { label: '이름(별명)', value: 'EUID***', editable: false },
+        { label: '하는일', value: '미입력', editable: true },
+        { label: '프로필 키워드', value: '미입력', editable: true },
+        { label: '성별', value: '미입력', editable: true },
+        { label: '연령', value: '미입력', editable: true },
+        { label: '회사', value: '미입력', editable: true },
+        { label: '학교', value: '미입력', editable: true },
+      ];
+
+      document.getElementById('additional-info').fields = [
+        { label: '소개', value: '미입력', editable: true },
+        { label: '연관 링크', value: '미입력', editable: true },
+        { label: '활동 분야', value: '미입력', editable: true },
+        { label: '업체 정보', value: '미입력', editable: true },
+      ];
+    </script>
+    <!-- 헤더 컴포넌트 -->
+    <header-component></header-component>
+  </body>
+</html>

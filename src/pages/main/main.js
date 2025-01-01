@@ -9,7 +9,14 @@ class MainPage extends LitElement {
   static properties = {
     activeIndex: { type: Number },
     menuItems: { type: Array },
+    category: { type: String },
   };
+
+  static styles = css`
+    swiper-container {
+      padding: 16px;
+    }
+  `;
 
   constructor() {
     super();
@@ -44,6 +51,32 @@ class MainPage extends LitElement {
   handleIndexClicked(event) {
     const index = event.detail.index;
     console.log('클릭된 인덱스:', index);
+
+    if (this.activeIndex === 0) {
+      if (index === 0) {
+        location.href = '/src/pages/main/writeSenior/';
+      }
+    } else if (this.activeIndex === 1) {
+      if (index === 0) {
+        this.category = 'Headset';
+        console.log('카테고리:', this.category);
+      }
+      if (index === 1) {
+        this.category = 'Keyboard';
+        console.log('카테고리:', this.category);
+      }
+      if (index === 2) {
+        this.category = 'Computer';
+        console.log('카테고리:', this.category);
+      }
+      if (index === 3) {
+        this.category = 'Etc';
+        console.log('카테고리:', this.category);
+      }
+    }
+
+    if (this.activeIndex === 1) {
+    }
   }
 
   render() {
@@ -63,7 +96,7 @@ class MainPage extends LitElement {
             <senior-story></senior-story>
           </swiper-slide>
           <swiper-slide>
-            <exchange-page></exchange-page>
+            <exchange-page category="${this.category}"></exchange-page>
           </swiper-slide>
           <swiper-slide>
             <qna-page></qna-page>

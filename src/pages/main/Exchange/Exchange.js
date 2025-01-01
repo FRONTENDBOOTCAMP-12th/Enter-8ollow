@@ -8,6 +8,8 @@ export default class Exchange extends LitElement {
   static get properties() {
     return {
       items: { type: Array },
+      filteredItems: { type: Array },
+      category: { type: String },
     };
   }
 
@@ -16,6 +18,7 @@ export default class Exchange extends LitElement {
   constructor() {
     super();
     this.items = [];
+    this.filteredItems = [];
   }
 
   async connectedCallback() {
@@ -23,18 +26,24 @@ export default class Exchange extends LitElement {
     await this.fetchData();
   }
 
-  // 이미지 URL 생성 함수
   getImageURL(item) {
-    if (!item || !item.image) {
-      return defaultImage;
+    if (!item || !item.image || item.image.length === 0) {
+      return defaultImage; // 이미지가 없을 경우 기본 이미지 반환
     }
+
+    if (Array.isArray(item.image)) {
+      // 여러 이미지 중 첫 번째 이미지 반환
+      return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.image[0]}`;
+    }
+
+    // 단일 이미지 처리
     return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.image}`;
   }
 
   async fetchData() {
     try {
       const records = await pb.collection('exchangePosts').getFullList({
-        sort: '-created', // 최신순 정렬
+        sort: '-created',
       });
 
       this.items = records.map((item) => ({
@@ -43,43 +52,67 @@ export default class Exchange extends LitElement {
         region: item.region || '지역 없음',
         price: item.price || 0,
         state: item.status || 'available',
-        liked_count: item.liked_count?.length || 0, // 좋아요 유저 수
+        liked_count: item.liked_count?.length || 0,
         image: this.getImageURL(item),
         created: item.created,
         category: item.category,
       }));
-      this.requestUpdate();
+
+      this.filterItemsByCategory();
     } catch (error) {
       console.error('데이터 가져오기 실패:', error);
     }
-
-    const item = await this.items;
-    console.log(item);
-
-    const result = item.filter((i) => i.category === 'Etc');
-    console.log(result);
   }
 
-  // 디테일 페이지로 이동
+  filterItemsByCategory() {
+    console.log('현재 카테고리:', this.category);
+
+    if (!this.category) {
+      this.filteredItems = this.items;
+    } else {
+      this.filteredItems = this.items.filter(
+        (item) => item.category === this.category
+      );
+      console.log(this.filteredItems.length);
+    }
+
+    this.requestUpdate();
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has('category')) {
+      this.filterItemsByCategory();
+    }
+  }
+
   handleClick(id) {
     const url = `/src/pages/main/exchangeDetail/?post=${id}`;
     console.log('Navigating to:', url);
     location.href = url;
   }
 
+  handleKeyDown(e, id) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      this.handleClick(id);
+    }
+  }
+
   render() {
     return html`
       <div class="exchange-container">
-        ${this.items.length > 0
-          ? this.items.map(
+        ${this.filteredItems.length > 0
+          ? this.filteredItems.map(
               (item) => html`
                 <list-item
                   .item=${item}
+                  tabindex="0"
                   @click="${() => this.handleClick(item.id)}"
+                  @keydown="${(event) => this.handleKeyDown(event, item.id)}"
                 ></list-item>
               `
             )
-          : html`<span class="loader"></span> `}
+          : html`<span n class="loader"></span>`}
+        <div style="height: 70px;"></div>
       </div>
     `;
   }
