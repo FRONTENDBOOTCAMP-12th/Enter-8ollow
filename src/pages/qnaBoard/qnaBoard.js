@@ -106,7 +106,7 @@ class QnaBoard extends LitElement {
         <with-us></with-us>
         <div class="organizer-profile">
           <span class="sss">사진 ${this.article.ssss}</span>
-          <span class="author">이름 ${this.article.author}</span>
+          <span class="author"> ${this.article.author}</span>
           <span class="ddd">인증횟수 ${this.article.dddd}</span>
           <span class="created">• ${this.article.created}</span>
         </div>
