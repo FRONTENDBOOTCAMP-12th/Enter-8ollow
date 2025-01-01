@@ -10,7 +10,7 @@ class WithWho extends LitElement {
       <form class="with-post-form" action="submit">
         <div class="gender-container">
           <label for="gender" class="gender-label">성별</label>
-          <input class="gender-input" type="text" placeholder="" />
+          <input class="gender-input" id="gender" type="text" placeholder="" />
         </div>
         <span>누구나 또는 같은 성별 모임으로 설정해주세요</span>
         <div class="button-container">
@@ -23,6 +23,7 @@ class WithWho extends LitElement {
           <label for="age" class="age-label">나이</label>
           <input
             type="text"
+            id="age"
             class="age-input"
             placeholder="숫자 또는 '누구나'"
           />

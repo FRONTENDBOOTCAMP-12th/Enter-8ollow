@@ -19,7 +19,7 @@ class RegionMenu extends LitElement {
     this.checkPlace = '';
   }
 
-  toggleClass = async (e) => {
+  toggleClass = async () => {
     const button = this.shadowRoot.querySelector('button');
 
     button.disabled = true; // 버튼 비활성화

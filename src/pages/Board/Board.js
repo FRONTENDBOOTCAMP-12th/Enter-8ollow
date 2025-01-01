@@ -81,7 +81,6 @@ class Board extends LitElement {
       }
     });
 
-    console.log(this.postDetailArray);
     this.requestUpdate();
   }
 

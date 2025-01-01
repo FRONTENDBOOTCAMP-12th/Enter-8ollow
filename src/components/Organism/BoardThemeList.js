@@ -17,7 +17,7 @@ export class BoardThemeList extends LitElement {
       padding-top: 16px;
       padding-bottom: 14px;
     }
-    h4 {
+    h1 {
       margin: 0;
 
       padding-bottom: 4px;
@@ -35,7 +35,7 @@ export class BoardThemeList extends LitElement {
       margin: 0;
 
       font-size: var(--paragraph---small);
-      color: var(--contents--content-secondary);
+      color: var(--components--component-theme);
     }
 
     .join::after {
@@ -73,7 +73,7 @@ export class BoardThemeList extends LitElement {
     return html`
       <div class="board-theme-container">
         <hgroup>
-          <h4>주제목록</h4>
+          <h1>주제목록</h1>
           <p>주제에 참여하고 관심있는 게시글을 둘러보세요</p>
         </hgroup>
 

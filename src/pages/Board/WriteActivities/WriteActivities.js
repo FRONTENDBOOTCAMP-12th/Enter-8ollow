@@ -5,6 +5,7 @@ class WriteActivities extends LitElement {
   static properties = {
     title: { type: String },
     participationNum: { type: Number },
+    Category: { type: Array },
   };
 
   static styles = WriteActivitiesCSS;
@@ -23,6 +24,10 @@ class WriteActivities extends LitElement {
     categoryList.classList.toggle('show');
   }
 
+  chooseCategory(index) {
+    this.checked = index;
+    console.log(this.checked);
+  }
   handleWho() {
     location.href = '/src/pages/Board/WithWho/index.html';
   }
@@ -41,15 +46,16 @@ class WriteActivities extends LitElement {
         <div class="category-container">
           <label for="category" class="category">카테고리를 선택해주세요</label>
           <ul class="category-list">
-            <li>🖊 스터디</li>
-            <li>💻프로젝트</li>
-            <li>✨오프라인</li>
-            <li>🏆공모전</li>
+            <li @click="${this.chooseCategory(0)}">🖊 스터디</li>
+            <li @click="${this.chooseCategory(1)}">💻프로젝트</li>
+            <li @click="${this.chooseCategory(2)}">✨오프라인</li>
+            <li @click="${this.chooseCategory(3)}">🏆공모전</li>
           </ul>
           <button
             class="category-open"
             type="button"
             @click="${this.toggleCategoryList}"
+            aria-label="category-list"
           ></button>
         </div>
 
@@ -66,20 +72,20 @@ class WriteActivities extends LitElement {
             >인원</label
           >
           <div class="participation-container">
-            <button class="decrease"></button>
+            <div class="decrease"></div>
             <span>${this.participationNum}명</span>
-            <button class="increase"></button>
+            <div class="increase"></div>
           </div>
         </div>
 
         <div class="date-container">
           <label for="date" class="date">날짜</label>
-          <input type="date" class="date-input" required />
+          <input type="date" id="date" class="date-input" required />
         </div>
 
         <div class="time-container">
           <label for="time" class="time">시간</label>
-          <input type="time" class="time-input" required />
+          <input type="time" id="time" class="time-input" required />
         </div>
 
         <div class="place-container">
