@@ -44,7 +44,7 @@ const config = defineConfig({
 
         BoardDetail: resolve(__dirname, 'src/pages/BoardDetail/index.html'),
 
-        qnadetail: resolve(__dirname, 'src/pages/qnaBoard/index.html'),
+        QnaDetail: resolve(__dirname, 'src/pages/QnaDetail/index.html'),
         writeQna: resolve(__dirname, 'src/pages/writeQna/writeQna.html'),
       },
     },
