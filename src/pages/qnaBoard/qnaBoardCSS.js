@@ -9,6 +9,14 @@ export const styles = css`
     color: #000;
   }
 
+
+  .article-image{
+    width : 294px;
+    height : 367px;
+    border-radius: 8px;
+  }
+  
+
   .organizer-profile .ddd,
   .organizer-profile .created {
     color: #9da1b4;

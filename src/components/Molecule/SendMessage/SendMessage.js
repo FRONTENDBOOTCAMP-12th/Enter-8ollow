@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 import { styles } from '/src/components/Molecule/SendMessage/SendMessageCSS.js';
 import pb from '/src/api/pocketbase';
 import { EmojiButton } from '@joeattardi/emoji-button';
@@ -10,6 +10,7 @@ class SendMessage extends LitElement {
     return {
       postId: { type: String },
       message: { type: String },
+      data: {type: Object}
     };
   }
 
@@ -43,24 +44,56 @@ class SendMessage extends LitElement {
 
   getStoryIdFromUrl() {
     const urlParams = new URLSearchParams(location.search);
-    return urlParams.get('story' || 'post' || 'qnadetail');
+    
+    return urlParams.get('story') || urlParams.get('post') || urlParams.get('qnadetail');
   }
 
   async handelClick() {
     const { UID } = JSON.parse(localStorage.getItem('isLogin'));
 
     console.log('click');
-    const data = {
-      SeniorPost: this.postId,
-      user: UID,
-      contents: this.message,
-    };
+
+    const urlParams = new URLSearchParams(location.search);
+
+    console.log(urlParams.has('story'));
+    console.log(urlParams.has('post'));
+    console.log(urlParams.has('qnadetail'));
+
+    
+
+    if(urlParams.has('story')){
+      this.data = {
+        SeniorPost: this.postId,
+        user: UID,
+        contents: this.message,
+      };
+    }
+
+    else if(urlParams.has('post')){
+      this.data = {
+        qnaPost: this.postId,
+        user: UID,
+        contents: this.message,
+      };
+    }
+
+    else if(urlParams.has('qnadetail')){
+      
+      console.log(this.postId);
+      
+      this.data = {
+        user: UID,
+        contents: this.message,
+        qnadetail: this.postId,
+
+      };
+    }
 
     try {
       if (this.message === '') {
         throw new Error('메세지를 입력해주세요');
       } else {
-        const record = await pb.collection('comments').create(data);
+        const record = await pb.collection('comments').create(this.data);
         console.log(record);
         this.message = '';
       }
