@@ -1,12 +1,36 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
 import viteCompression from 'vite-plugin-compression';
+import viteImagemin from 'vite-plugin-imagemin';
 
 const config = defineConfig({
   plugins: [
     viteCompression({
       algorithm: 'gzip',
       ext: '.gz',
+    }),
+
+    viteImagemin({
+      gifsicle: {
+        optimizationLevel: 7,
+        interlaced: false,
+      },
+      optipng: {
+        optimizationLevel: 7,
+      },
+      mozjpeg: {
+        quality: 80,
+      },
+      pngquant: {
+        quality: [0.7, 0.9],
+        speed: 4,
+      },
+      svgo: {
+        plugins: [
+          { name: 'removeViewBox' },
+          { name: 'removeEmptyAttrs', active: false },
+        ],
+      },
     }),
   ],
   resolve: {
