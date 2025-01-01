@@ -29,6 +29,11 @@ export const SwiperSlide = css`
     float: right;
   }
 
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
   .page2 {
     width: 100%;
     background-color: var(--contents--content-tertiary);

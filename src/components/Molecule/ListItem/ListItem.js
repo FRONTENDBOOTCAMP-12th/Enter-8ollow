@@ -48,7 +48,7 @@ class ListItem extends LitElement {
     const statusClass = isAvailable ? 'hidden' : `status ${this.item.state}`;
 
     return html`
-      <section class="list-item" tabindex="0">
+      <section class="list-item">
         <div class="item-img-container">
           <img src="${this.item.image}" alt="기기거래 상품 이미지" />
         </div>
