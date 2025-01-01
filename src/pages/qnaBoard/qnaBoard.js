@@ -8,10 +8,8 @@ class QnaBoard extends LitElement {
       article: { type: Object },
       articleId: { type: String },
       comments: { type: Array },
-      renderImgHtml: {type: String}
     };
   }
-  static styles = styles;
 
   static styles = styles;
 
@@ -71,11 +69,9 @@ class QnaBoard extends LitElement {
     return urlParams.get('qnadetail');
   }
 
-
   getImageURL() {
     if (!this.article || !this.article.img) {
       return '/src/assets/test/test2.png';
-
     }
     return `${import.meta.env.VITE_PB_API}/files/${this.article.collectionId}/${this.article.id}/${this.article.img}`;
   }
@@ -85,40 +81,41 @@ class QnaBoard extends LitElement {
   }
 
   isImageTrue() {
-    if (this.article.img !== "") {
+    if (this.article && this.article.img) {
       return html`
-        <img
-          class="article-image"
-          src="${this.getImageURL()}"
-          alt="이미지"
-        />
+        <img class="article-image" src="${this.getImageURL()}" alt="이미지" />
       `;
-    } else {
-      return null;
     }
+    return null;
   }
-  
+
+  render() {
+    if (!this.article) {
+      return html`<p>Loading...</p>`;
+    }
 
     return html`
-      <div class="detail-container">
-        <with-us></with-us>
-        <div class="organizer-profile">
-          <span class="sss">사진 ${this.article.ssss}</span>
-          <span class="author"> ${this.article.author}</span>
-
-          <span class="ddd">인증횟수 ${this.article.dddd}</span>
-          <span class="created">• ${this.article.created}</span>
+      <back-component></back-component>
+      <div class="app">
+        <div class="detail-container">
+          <with-us text="📝 질의응답"></with-us>
+          <div class="organizer-profile">
+            <span class="sss">사진 ${this.article.ssss || ''}</span>
+            <span class="author">${this.article.author || ''}</span>
+            <span class="ddd">인증횟수 ${this.article.dddd || ''}</span>
+            <span class="created">• ${this.article.created || ''}</span>
+          </div>
         </div>
-      </div>
 
-      <div class="field">
-        <h2><span class="question">Q. </span>${this.article.title}</h2>
-        <p>${this.article.content}</p>
-        ${this.isImageTrue()}
-      </div>
+        <div class="field">
+          <h2><span class="question">Q. </span>${this.article.title}</h2>
+          <p>${this.article.content}</p>
+          ${this.isImageTrue()}
+        </div>
 
-      <send-message></send-message>
-      <comment-list .comments="${this.comments}"></comment-list>
+        <send-message></send-message>
+        <comment-list .comments="${this.comments}"></comment-list>
+      </div>
     `;
   }
 }
