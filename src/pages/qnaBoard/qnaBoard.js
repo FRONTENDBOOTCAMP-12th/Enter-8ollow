@@ -8,6 +8,7 @@ class QnaBoard extends LitElement {
       article: { type: Object },
       articleId: { type: String },
       comments: { type: Array },
+      renderImgHtml: {type: String}
     };
   }
   static styles = styles;
@@ -68,9 +69,32 @@ class QnaBoard extends LitElement {
     return urlParams.get('qnadetail');
   }
 
+
+  getImageURL() {
+    if (!this.article || !this.article.img) {
+      return '/src/assets/test/test2.png';
+    }
+    return `${import.meta.env.VITE_PB_API}/files/${this.article.collectionId}/${this.article.id}/${this.article.img}`;
+  }
+
   firstUpdated() {
     this.fetchArticle();
   }
+
+  isImageTrue() {
+    if (this.article.img !== "") {
+      return html`
+        <img
+          class="article-image"
+          src="${this.getImageURL()}"
+          alt="이미지"
+        />
+      `;
+    } else {
+      return null;
+    }
+  }
+  
 
   render() {
     if (!this.article) {
@@ -91,11 +115,7 @@ class QnaBoard extends LitElement {
       <div class="field">
         <h2><span class="question">Q. </span>${this.article.title}</h2>
         <p>${this.article.content}</p>
-        <img
-          class="article-image"
-          src=${this.article.img}
-          alt="스토리 이미지"
-        />
+        ${this.isImageTrue()}
       </div>
 
       <send-message></send-message>
