@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html } from 'lit';
 import { styles } from '/src/pages/main/SeniorDetail/SeniorDetailCSS.js?inline';
 import pb from '/src/api/pocketbase';
 
