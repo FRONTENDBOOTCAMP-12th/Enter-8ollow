@@ -1,4 +1,10 @@
 import { LitElement, html, css } from 'lit';
+
+// 이미지 import
+import profileImage from '/src/assets/MainSwiper.png';
+import qnaIcon from '/src/assets/profile/QnA.svg';
+import profile from '/src/assets/profile/profile.svg';
+import bellIcon from '/src/assets/profile/alramBell.svg';
 import pb from '/src/api/pocketbase.js'; // PocketBase 인스턴스 import
 
 class ProfileHeader extends LitElement {
@@ -97,7 +103,36 @@ class ProfileHeader extends LitElement {
         </div>
 
         <!-- 사용자 정보 -->
-        <div class="UserInfo">${this.userInfo}</div>
+        <div class="UserInfo">EUID*** <span class="UserLevel">4기</span></div>
+        <div class="UserStats">답변 35</div>
+
+        <!-- 아이콘 섹션 -->
+        <div class="IconSection">
+          <div
+            class="Icon"
+            tabindex="0"
+            role="button"
+            aria-label="나의 Q&A 보기"
+            @click=${this.navigateToQandA}
+          >
+            <img src="${qnaIcon}" alt="나의 Q&A 아이콘" />
+            <span>나의 Q&A</span>
+          </div>
+          <div
+            class="Icon"
+            tabindex="0"
+            role="button"
+            aria-label="나의 프로필 보기"
+            @click=${this.navigateToProfile}
+          >
+            <img src="${profile}" alt="나의 프로필 아이콘" />
+            <span>나의 프로필</span>
+          </div>
+          <div class="Icon" tabindex="0" role="button" aria-label="내소식 보기">
+            <img src="${bellIcon}" alt="내소식 아이콘" />
+            <span>내소식</span>
+          </div>
+        </div>
       </div>
     `;
   }

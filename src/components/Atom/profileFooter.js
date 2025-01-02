@@ -26,6 +26,11 @@ export class ProfileFooter extends LitElement {
       color: #0078ff;
     }
 
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
     /* 로그아웃 링크 스타일 */
     .logout {
       color: #5865f2; /* 블루 색상 */
@@ -50,6 +55,7 @@ export class ProfileFooter extends LitElement {
   render() {
     return html`
       <div class="footer-container">
+
         <div class="menu-item">보관 질문</div>
         <div class="menu-item">설정</div>
         <div class="menu-item">지식 iN 공식 블로그</div>

@@ -56,7 +56,7 @@ class ProfileContents extends LitElement {
 
   render() {
     return html`
-      <div class="ProfileContents" @click=${this.handleClick}>
+      <div class="ProfileContents" @click=${this.handleClick} tabindex="0">
         <div class="ProfileText">${this.text}</div>
         <div class="ProfileIcon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
