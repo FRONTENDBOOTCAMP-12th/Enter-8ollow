@@ -1,8 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
 
-import plus from '/src/assets/common/cartegory/plus.svg';
-import check from '/src/assets/common/cartegory/check.svg';
-
 class CommonCartegory extends LitElement {
   static properties = {
     title: { type: String },
@@ -66,7 +63,7 @@ class CommonCartegory extends LitElement {
         height: 18px;
         border-radius: 50%;
         background-color: var(--contents--content-secondary);
-        background-image: url(${unsafeCSS(plus)});
+        background-image: url('/public/plus.svg');
         background-size: contain;
         align-self: center;
         right: 12px;
@@ -79,7 +76,7 @@ class CommonCartegory extends LitElement {
 
       [type='checkbox']:checked + .content .check-icon {
         background-color: white;
-        background-image: url(${unsafeCSS(check)});
+        background-image: url('/public/check.svg');
       }
 
       [type='checkbox']:focus + .content {

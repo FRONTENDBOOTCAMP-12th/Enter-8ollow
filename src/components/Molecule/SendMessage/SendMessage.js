@@ -98,6 +98,8 @@ class SendMessage extends LitElement {
     } catch (e) {
       console.error('에러발생', e);
     }
+
+    location.reload();
   }
 
   render() {
