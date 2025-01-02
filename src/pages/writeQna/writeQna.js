@@ -22,7 +22,6 @@ class WriteQna extends LitElement {
     this.pbPath = ''; // 초기값 설정
   }
 
-
   updated(changedProperties) {
     if (
       changedProperties.has('inputTitle') ||
@@ -57,9 +56,8 @@ class WriteQna extends LitElement {
       console.error('저장 경로가 설정되지 않았습니다.');
       alert('저장 경로를 확인해주세요.');
       return;
-
     }
-    
+
     const data = {
       title: this.inputTitle,
       contents: this.inputContent,
@@ -82,12 +80,18 @@ class WriteQna extends LitElement {
     return html`
       <h1 class="sr-only">질문 작성</h1>
 
-      <button id="completeButton" type="submit" class="inactive" disabled>
+      <button
+        id="completeButton"
+        type="submit"
+        class="inactive"
+        disabled
+        @click="${this._onSubmit}"
+      >
         완료
       </button>
       <info-component></info-component>
 
-      <form @submit=${this._onSubmit}>
+      <form>
         <input-component
           placeholder="제목"
           borderColor="transparent"
