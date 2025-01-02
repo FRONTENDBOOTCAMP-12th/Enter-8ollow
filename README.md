@@ -2,6 +2,7 @@
 [![Enter-8ollow 바로가기](src/assets/8ollow.png)](https://euid-8ollow.netlify.app/) <br>
 *👆 Enter-8ollow 바로가기 👆*
 
+👉 [배포링크 바로가기](https://euid-8ollow.netlify.app)
 
 ## 👀 목차 
 1. [프로젝트 소개](#프로젝트-소개)
@@ -11,6 +12,9 @@
 
 
 ## 1️⃣ 프로젝트 소개
+![그레이 블랙 심플한 마케터 포트폴리오 프레젠테이션 (28)](https://github.com/user-attachments/assets/fd86120a-b6a9-4644-a574-082260ad3af7)
+
+
 - 페이지 구성 (👉 [피그마 시안](https://www.figma.com/design/kw6F0ieWRmXHYdqNu1Xmc2/EnterEuid-(Copy)?node-id=2-60&p=f&t=C3ZyldLQiF6jcSp0-0))
   - 회원가입 및 로그인
   - 게시판: 선배님 이야기 / 같이해요(스터디 모집) / 기기거래 / Q&A
@@ -22,22 +26,36 @@
 
 
 ## 2️⃣ 팀 정보
-- 팀원
-  | 👑 명재휘 | 🍦 성유진 | 😎 박윤경 | 🍑 김수정 | 🥹 정성민 |
-  |---|---|---|---|---|
+
+| 👑 명재휘 | 🍦 성유진 | 😎 박윤경 | 🍑 김수정 | 🥹 정성민 |
+| :------: | :------: | :------: | :------: | :------: |
+| [<img src="https://github.com/user-attachments/assets/92c10b25-aeb4-4190-9952-964483033bc5" height=100 width=100> <br/> @myeong-jae-hwi](https://github.com/myeong-jae-hwi) |[<img src="https://github.com/user-attachments/assets/f4c0c2cc-cfa9-4cfe-951f-71f3d9583e9f" height=100 width=100> <br/> @akman12914](https://github.com/akman12914) | [<img src="https://github.com/user-attachments/assets/5e70bee6-ddc9-434c-af8a-80d41e8b6ab9" height=100 width=100> <br/> @photoby64](https://github.com/photoby64) | [<img src="https://github.com/user-attachments/assets/a26c2942-1ad2-46e8-8d62-af7871f9d336" height=100 width=100> <br/> @peachily](https://github.com/peachily) | [<img src="https://github.com/user-attachments/assets/43d6edf2-55cd-418e-9c7a-a2c2a132be23" height=100 width=100> <br/> @karrpp](https://github.com/karrpp) | 
   | 로그인 페이지 | 게시판 페이지 | 메인 페이지 | Q&A 페이지 | 프로필 페이지 |
 
-- 팀 목표
-  1. 싸우지 말기
-  2. 목표 3개 있었는데
-  3. 뭐지
+
+
+- 팀 목표 🎯
+  1. 싸우지 말기 ```!important ``` ```!important ``` ```!important ```
+  2. 접근성 & 성능
+  3. 문서화 열심히 하기
 
 
 ## 3️⃣ 기술 스택
-- **Frontend**: `HTML`, `CSS`, `JavaScript`
-- **Backend**: 뭐 써야 하는지 모르겠어요
-- **Database**: `PocketHost` 이건 맞나요
-- **Others**: 고쳐주세요
+### Frontend
+  [![Frontend](https://skillicons.dev/icons?i=html,css,js,lit)](https://skillicons.dev)
+
+### Database
+<img width = "5%" src = "https://github.com/user-attachments/assets/b1c31a0d-2ede-4f11-bc1c-8f6a06f5e607"/>  
+
+### Version Control Systems
+  [![Version control](https://skillicons.dev/icons?i=git,github)](https://skillicons.dev)
+
+### CI/CD
+  [![Version control](https://skillicons.dev/icons?i=vite,netlify)](https://skillicons.dev)
+
+### Etc...
+  [![Version control](https://skillicons.dev/icons?i=figma,discord,npm)](https://skillicons.dev) <img width = "46px" src = "https://github.com/user-attachments/assets/4290db27-3b35-42c4-90c4-487369b734ae"/>  
+
 
   
 ## 4️⃣ 주요 기능
