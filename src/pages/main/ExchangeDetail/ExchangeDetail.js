@@ -2,8 +2,12 @@ import { LitElement, html } from 'lit';
 import pb from '/src/api/pocketbase';
 import defaultImage from '/src/assets/logo.svg';
 import ExchangeDetailCSS from '/src/pages/main/ExchangeDetail/ExchangeDetailCSS.js';
+import 'swiper/css';
+import { register } from 'swiper/element/bundle';
 import heartIcon from '/src/assets/heart.svg';
 import heartSolid from '/src/assets/heartSolid.svg';
+
+register();
 
 // 카테고리 한글 매핑
 const categoryMap = {
@@ -47,6 +51,7 @@ class ExchangeDetail extends LitElement {
       relatedItems: { type: Array },
       currentTemp: { type: Number },
       initialTemp: { type: Number },
+      image: { type: Array }, // 추가된 부분
     };
   }
 
@@ -72,12 +77,12 @@ class ExchangeDetail extends LitElement {
   // 현재 포스트 데이터 가져오기
   async fetchPost() {
     try {
-      console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
+      // console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
       const loginData = JSON.parse(localStorage.getItem('isLogin'));
       const userId = loginData ? loginData.UID : null;
 
       const record = await pb.collection('exchangePosts').getOne(this.postId);
-      console.log('받아온 데이터:', record);
+      // console.log('받아온 데이터:', record);
 
       // 좋아요 상태 확인
       this.liked = userId ? record.liked_count.includes(userId) : false; // liked 상태 설정
@@ -93,6 +98,15 @@ class ExchangeDetail extends LitElement {
       } else {
         this.post.authorNickName = '알 수 없음';
         this.post.authorProfileImage = defaultImage;
+      }
+
+      // Swiper 이미지 처리
+      if (Array.isArray(this.post?.image) && this.post.image.length > 0) {
+        this.post.image = this.post.image.map((image) =>
+          pb.files.getURL(this.post, image)
+        );
+      } else {
+        this.post.image = [defaultImage]; // 기본 이미지
       }
 
       // 온도 계산 및 업데이트
@@ -119,13 +133,38 @@ class ExchangeDetail extends LitElement {
     this.requestUpdate();
   }
 
+  // 스와이퍼 렌더링
+  renderSwiper() {
+    if (!this.post?.image || this.post.image.length === 0) {
+      return html`<p>No images available</p>`;
+    }
+    return html`
+      <swiper-container pagination="true" navigation="true">
+        ${this.post.image.map(
+          (image) => html`
+            <swiper-slide>
+              <picture>
+                <source
+                  srcset="${image}?thumb=320x284&format=webp"
+                  type="image/webp"
+                />
+                <img
+                  src="${image}?thumb=320x284"
+                  alt="상품 이미지"
+                  loading="lazy"
+                  style="width: 100%; height: auto;"
+                />
+              </picture>
+            </swiper-slide>
+          `
+        )}
+      </swiper-container>
+    `;
+  }
+
   // 연관 글 데이터 가져오기
   async fetchRelatedItems({ id: postId, category }) {
     try {
-      if (!category || category.trim() === '') {
-        console.error('유효하지 않은 카테고리 값:', category);
-        return;
-      }
       const trimmedCategory = category.trim();
       const filter = `category = "${trimmedCategory}" && id != "${postId}"`;
 
@@ -134,7 +173,9 @@ class ExchangeDetail extends LitElement {
         sort: '-created',
       });
 
-      console.log('받아온 연관 글 목록:', list);
+      // console.log('받아온 연관 글 목록:', list.items);
+
+      // 연관 글 데이터 그대로 유지
       this.relatedItems = list.items;
       this.requestUpdate();
     } catch (error) {
@@ -148,38 +189,44 @@ class ExchangeDetail extends LitElement {
       return html`<p>연관 글이 없습니다.</p>`;
     }
 
-    return this.relatedItems.map(
-      (item, index) => html`
+    return this.relatedItems.map((item, index) => {
+      const imageUrl = this.getPbImagesURL(item);
+      // console.log(`렌더링 중 연관 글 ${index + 1} 이미지 URL:`, imageUrl);
+
+      return html`
         <li class="related-item">
           <article>
             <a href="/src/pages/main/ExchangeDetail/index.html?post=${item.id}">
               <img
-                src=${this.getPbImagesURL(item)}
+                src="${imageUrl}"
                 alt="관련 글 ${index + 1}"
                 class="related-item-image"
+                style="width: 100%; height: auto;"
               />
               <h4 class="related-item-title">${item.title}</h4>
               <p class="related-item-price">${item.price.toLocaleString()}원</p>
             </a>
           </article>
         </li>
-      `
-    );
+      `;
+    });
   }
 
   // 이미지 URL 가져오기
   getPbImagesURL(item) {
-    if (!item.image) {
+    if (!item.image || !Array.isArray(item.image) || item.image.length === 0) {
       return defaultImage;
     }
-    return pb.files.getURL(item, item.image);
+
+    // 이미지 배열의 첫 번째 항목 반환
+    return pb.files.getURL(item, item.image[0]);
   }
 
   // 좋아요 토글 및 업데이트
   async toggleLike() {
-    console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
+    // console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
     const loginData = JSON.parse(localStorage.getItem('isLogin'));
-    console.log('Parsed loginData:', loginData); // 파싱 데이터
+    // console.log('Parsed loginData:', loginData); // 파싱 데이터
 
     // UID를 userId로 사용
     const userId = loginData ? loginData.UID : null;
@@ -204,7 +251,7 @@ class ExchangeDetail extends LitElement {
       await pb.collection('exchangePosts').update(this.postId, {
         liked_count: this.post.liked_count,
       });
-      console.log(`좋아요 상태 업데이트: ${this.liked}`);
+      // console.log(`좋아요 상태 업데이트: ${this.liked}`);
     } catch (error) {
       console.error('좋아요 업데이트 실패:', error.message);
       // 업데이트 실패 시 상태 복구
@@ -236,18 +283,15 @@ class ExchangeDetail extends LitElement {
 
     return html`
       <div class="detail-container">
-        <img
-          class="detail-image"
-          src="${this.getPbImagesURL(this.post)}"
-          alt="상품 이미지"
-        />
-
+        ${this.renderSwiper()}
+        <!-- 작성자 프로필 -->
         <div class="profile-container">
           <div class="profile-info">
             <img
               class="profile-image"
               src="${this.post.authorProfileImage}"
               alt="프로필 이미지"
+              loading="lazy"
             />
 
             <div class="profile-text">
@@ -270,7 +314,7 @@ class ExchangeDetail extends LitElement {
             </p>
           </div>
         </div>
-
+        <!-- 작성글 -->
         <p class="post-description">${description}</p>
         <div class="separator" aria-hidden="true"></div>
         <div class="footer-container">

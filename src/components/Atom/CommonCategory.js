@@ -1,4 +1,7 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, unsafeCSS } from 'lit';
+
+import plus from '/src/assets/common/cartegory/plus.svg';
+import check from '/src/assets/common/cartegory/check.svg';
 
 class CommonCartegory extends LitElement {
   static properties = {
@@ -42,7 +45,7 @@ class CommonCartegory extends LitElement {
 
       .title {
         font-size: var(--label---small);
-        color: #e9e9e9;
+        color: white;
         margin-bottom: 8px;
         margin-block-end: 8px;
       }
@@ -63,7 +66,7 @@ class CommonCartegory extends LitElement {
         height: 18px;
         border-radius: 50%;
         background-color: var(--contents--content-secondary);
-        background-image: url('/src/assets/common/cartegory/plus.svg');
+        background-image: url(${unsafeCSS(plus)});
         background-size: contain;
         align-self: center;
         right: 12px;
@@ -76,7 +79,7 @@ class CommonCartegory extends LitElement {
 
       [type='checkbox']:checked + .content .check-icon {
         background-color: white;
-        background-image: url('/src/assets/common/cartegory/check.svg');
+        background-image: url(${unsafeCSS(check)});
       }
 
       [type='checkbox']:focus + .content {

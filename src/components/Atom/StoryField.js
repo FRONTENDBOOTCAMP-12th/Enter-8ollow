@@ -15,6 +15,7 @@ export class StoryField extends LitElement {
     }
 
     .story-field {
+      width: 100%;
       display: inline-block;
       font-size: var(--paragraph---small);
 

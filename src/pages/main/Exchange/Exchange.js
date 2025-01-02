@@ -27,9 +27,16 @@ export default class Exchange extends LitElement {
   }
 
   getImageURL(item) {
-    if (!item || !item.image) {
-      return defaultImage;
+    if (!item || !item.image || item.image.length === 0) {
+      return defaultImage; // 이미지가 없을 경우 기본 이미지 반환
     }
+
+    if (Array.isArray(item.image)) {
+      // 여러 이미지 중 첫 번째 이미지 반환
+      return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.image[0]}`;
+    }
+
+    // 단일 이미지 처리
     return `${import.meta.env.VITE_PB_API}/files/${item.collectionId}/${item.id}/${item.image}`;
   }
 
@@ -100,11 +107,14 @@ export default class Exchange extends LitElement {
                   .item=${item}
                   tabindex="0"
                   @click="${() => this.handleClick(item.id)}"
-                  @keydown="${(event) => this.handleKeyDown(event, item.id)}"
+                  @keydown="${(e) => this.handleKeyDown(e, item.id)}"
+                  loading="lazy"
+                  aria-label="${item.title} (가격: ${item.price.toLocaleString()}원)"
                 ></list-item>
               `
             )
-          : html`<span class="loader"></span> `}
+          : html`<span n class="loader"></span>`}
+        <div style="height: 70px;"></div>
       </div>
     `;
   }
