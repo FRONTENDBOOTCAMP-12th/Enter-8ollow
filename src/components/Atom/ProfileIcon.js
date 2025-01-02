@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit';
 
 // 이미지 import
 import qnaIcon from '/src/assets/profile/Q&A.svg';
-import profileIcon from '/src/assets/profile/profile.svg';
+import profileImg from '/src/assets/profile/profile.svg';
 import bellIcon from '/src/assets/profile/alramBell.svg';
 
 class ProfileHeader extends LitElement {
@@ -71,7 +71,7 @@ class ProfileHeader extends LitElement {
             aria-label="프로필 페이지로 이동"
             @click=${this.navigateToProfile}
           >
-            <img src="${profileIcon}" alt="프로필 보기" />
+            <img src="${profileImg}" alt="프로필 보기" />
             <span>나의 프로필</span>
           </div>
           <div
