@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/src/style/variable.css" />
     <link rel="stylesheet" href="/src/style/reset.css" />
     <script type="module" src="./ProfileDetail.js"></script>
+    <script type="module" src="/src/components/Atom/ProfileIcon.js"></script>
     <script type="module" src="/src/layouts/Header.js"></script>
     <script
       type="module"
@@ -38,7 +39,8 @@
         padding: 16px;
       }
     </style>
-    <profile-photo></profile-photo>
+    <profile-header></profile-header>
+    <profile-icon></profile-icon>
   </head>
   <body>
     <div class="page-container">
@@ -54,12 +56,6 @@
     <script>
       // JavaScript에서 데이터를 컴포넌트에 전달
       document.getElementById('basic-info').fields = [
-        {
-          label: '프로필 사진',
-          value: '/src/assets/MainSwiper.png',
-          editable: false,
-        },
-        { label: '이름(별명)', value: 'EUID***', editable: false },
         { label: '하는일', value: '미입력', editable: true },
         { label: '프로필 키워드', value: '미입력', editable: true },
         { label: '성별', value: '미입력', editable: true },
