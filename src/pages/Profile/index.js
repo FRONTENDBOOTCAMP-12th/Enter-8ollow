@@ -4,4 +4,4 @@ import '/src/components/Atom/profileFooter';
 import '/src/components/Molecule/ProfileIconballons/ProfileIconBalloon';
 import '/src/components/Molecule/ProfileTemperature/ProfileTemperature';
 import '/src/components/Molecule/ProfileIconballons/ProfileChatBallon';
-import '/src/components/atom/ProfileIcon';
+import '/src/components/Atom/ProfileIcon';
