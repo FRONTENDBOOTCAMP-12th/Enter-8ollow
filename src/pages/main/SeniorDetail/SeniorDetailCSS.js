@@ -1,6 +1,9 @@
 import { css } from 'lit';
 
 export const styles = css`
+  p {
+    white-space: pre-wrap;
+  }
   .detail-container {
     padding: 20px;
   }
