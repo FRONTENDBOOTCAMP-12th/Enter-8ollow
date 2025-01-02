@@ -40,12 +40,14 @@ export const WriteActivitiesCSS = css`
       padding-bottom: 10px;
       padding-block: 10px;
       color: var(--contents--content-tertiary);
+      cursor: pointer;
     }
 
-    & li:hover {
+    & .checked {
       color: var(--black);
     }
   }
+
   .show {
     display: grid;
   }

@@ -5,7 +5,8 @@ class WriteActivities extends LitElement {
   static properties = {
     title: { type: String },
     participationNum: { type: Number },
-    Category: { type: Array },
+    categoryList: { type: Array },
+    category: { type: String },
   };
 
   static styles = WriteActivitiesCSS;
@@ -13,6 +14,8 @@ class WriteActivities extends LitElement {
   constructor() {
     super();
     this.title = 'EUID 피그마 스터디 하실분!';
+    this.categoryList = ['스터디', '프로젝트', '오프라인', '공모전'];
+    this.category = '카테고리를 선택해주세요';
   }
 
   toggleCategoryList(e) {
@@ -26,7 +29,13 @@ class WriteActivities extends LitElement {
 
   chooseCategory(index) {
     this.checked = index;
-    console.log(this.checked);
+
+    this.category = this.categoryList[index];
+  }
+
+  handleWrite() {
+    const inputCategory = this.category;
+    sessionStorage.setItem('boardCategory', inputCategory);
   }
   handleWho() {
     location.href = '/src/pages/Board/WithWho/index.html';
@@ -44,12 +53,32 @@ class WriteActivities extends LitElement {
         <h1>${this.title}</h1>
 
         <div class="category-container">
-          <label for="category" class="category">카테고리를 선택해주세요</label>
+          <label for="category" class="category">${this.category}</label>
           <ul class="category-list">
-            <li @click="${this.chooseCategory(0)}">🖊 스터디</li>
-            <li @click="${this.chooseCategory(1)}">💻프로젝트</li>
-            <li @click="${this.chooseCategory(2)}">✨오프라인</li>
-            <li @click="${this.chooseCategory(3)}">🏆공모전</li>
+            <li
+              class=${this.checked == 0 ? 'checked' : ''}
+              @click="${() => this.chooseCategory(0)}"
+            >
+              🖊 스터디
+            </li>
+            <li
+              class=${this.checked == 1 ? 'checked' : ''}
+              @click="${() => this.chooseCategory(1)}"
+            >
+              💻프로젝트
+            </li>
+            <li
+              class=${this.checked == 2 ? 'checked' : ''}
+              @click="${() => this.chooseCategory(2)}"
+            >
+              ✨오프라인
+            </li>
+            <li
+              class=${this.checked == 3 ? 'checked' : ''}
+              @click="${() => this.chooseCategory(3)}"
+            >
+              🏆공모전
+            </li>
           </ul>
           <button
             class="category-open"
