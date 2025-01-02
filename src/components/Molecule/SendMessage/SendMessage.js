@@ -4,13 +4,15 @@ import pb from '/src/api/pocketbase';
 import { EmojiButton } from '@joeattardi/emoji-button';
 
 import {} from '/src/style/variable.css';
+import send from '/src/assets/send.png';
+import smile from '/src/assets/smile.png';
 
 class SendMessage extends LitElement {
   static get properties() {
     return {
       postId: { type: String },
       message: { type: String },
-      data: {type: Object}
+      data: { type: Object },
     };
   }
 
@@ -44,8 +46,12 @@ class SendMessage extends LitElement {
 
   getStoryIdFromUrl() {
     const urlParams = new URLSearchParams(location.search);
-    
-    return urlParams.get('story') || urlParams.get('post') || urlParams.get('qnadetail');
+
+    return (
+      urlParams.get('story') ||
+      urlParams.get('post') ||
+      urlParams.get('qnadetail')
+    );
   }
 
   async handelClick() {
@@ -59,33 +65,25 @@ class SendMessage extends LitElement {
     console.log(urlParams.has('post'));
     console.log(urlParams.has('qnadetail'));
 
-    
-
-    if(urlParams.has('story')){
+    if (urlParams.has('story')) {
       this.data = {
         SeniorPost: this.postId,
         user: UID,
         contents: this.message,
       };
-    }
-
-    else if(urlParams.has('post')){
+    } else if (urlParams.has('post')) {
       this.data = {
         qnaPost: this.postId,
         user: UID,
         contents: this.message,
       };
-    }
-
-    else if(urlParams.has('qnadetail')){
-      
+    } else if (urlParams.has('qnadetail')) {
       console.log(this.postId);
-      
+
       this.data = {
         user: UID,
         contents: this.message,
         qnadetail: this.postId,
-
       };
     }
 
@@ -112,16 +110,12 @@ class SendMessage extends LitElement {
           @input="${this.handleInput}"
           placeholder="메세지를 입력해주세요"
         />
-        <button
-          class="smile"
-          @click="${this.handleEmoji}"
-          aria-label="이모지"
-        ></button>
-        <button
-          class="send"
-          @click="${this.handelClick}"
-          aria-label="전송"
-        ></button>
+        <button class="smile" @click="${this.handleEmoji}" aria-label="이모지">
+          <img src="${smile}" alt="" />
+        </button>
+        <button class="send" @click="${this.handelClick}" aria-label="전송">
+          <img src="${send}" alt="" />
+        </button>
       </div>
     `;
   }
