@@ -54,7 +54,7 @@ export default css`
 
   .profile-author {
     color: var(--Contents-contentPrimary, #000);
-    font-size: var(--label---large, 1.33rem);
+    font-size: var(--label---medium, 1rem);
     font-weight: 600;
     margin: 0;
   }
@@ -74,7 +74,7 @@ export default css`
 
   .current-temp {
     color: var(--secondary, #5a85ee);
-    font-size: var(--label---large, 1.33rem);
+    font-size: var(--label---medium, 1rem);
     font-weight: 600;
   }
 
@@ -93,7 +93,7 @@ export default css`
   .post-title {
     color: var(--Contents-contentPrimary, #000);
     font-weight: 600;
-    font-size: var(--label---x-l, 1.78rem);
+    font-size: var(--label---large, 1.33rem);
     margin-bottom: 4px; /* 제목과 메타 정보 간 간격 */
   }
 
@@ -101,6 +101,7 @@ export default css`
     display: flex;
     gap: 4px; /* 카테고리와 등록일 사이의 간격을 조정 */
     align-items: center; /* 세로 중앙 정렬 */
+    font-size: var(--paragraph--underline, 0.71rem);
   }
 
   .post-category {
@@ -145,7 +146,7 @@ export default css`
   }
 
   .footer-price {
-    font-size: var(--label---large, 1.33rem);
+    font-size: var(--label---medium, 1rem);
     font-weight: 600;
     color: var(--Contents-contentPrimary, #000);
   }
@@ -162,7 +163,7 @@ export default css`
     border: none;
     padding: 8px 14px;
     border-radius: 8px;
-    font-size: var(--label---large, 1.33rem);
+    font-size: var(--label---medium, 1rem);
     font-weight: 600;
     cursor: pointer;
   }
