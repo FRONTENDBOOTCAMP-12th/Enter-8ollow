@@ -7,6 +7,7 @@ class WithWho extends LitElement {
     approved: { type: Boolean },
     genderList: { type: Array },
     gender: { type: String },
+    post: { type: Object },
   };
 
   static styles = WithWhoCSS;
@@ -57,7 +58,11 @@ class WithWho extends LitElement {
       maxAge: sessionStorage.getItem('boardAge'),
     };
 
-    await pb.collection('withPosts').create(data);
+    this.post = await pb.collection('withPosts').create(data);
+
+    sessionStorage.clear();
+
+    window.location.href = `/src/pages/BoardDetail/?detail=${this.post.id}`;
   }
 
   render() {
