@@ -87,7 +87,7 @@ class Board extends LitElement {
 
   handleClick(item) {
     if (item.type === 'qna') {
-      location.href = `/src/pages/QnaDetail/?detail=${item.id}`;
+      location.href = `/src/pages/qnaBoard/?qnadetail=${item.id}`;
     } else if (item.type === 'with') {
       location.href = `/src/pages/BoardDetail/?detail=${item.id}`;
     }
@@ -189,7 +189,6 @@ class Board extends LitElement {
     }
 
     return html`
-      <region-menu></region-menu>
       <div class="main-button-container">
         <main-button class="category" name="주제"></main-button>
         <main-button name="인기글"></main-button>
@@ -227,7 +226,6 @@ class Board extends LitElement {
           `
         )}
       </ul>
-      <header-component></header-component>
       <board-theme-list id="board-theme-list" class="hidden"></board-theme-list>
     `;
   }
