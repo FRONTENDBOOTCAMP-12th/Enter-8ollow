@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit';
 
 // 이미지 import
-import qnaIcon from '/src/assets/profile/Q&A.svg';
+import qnaIcon from '/src/assets/profile/QnA.svg';
 import profileImg from '/src/assets/profile/profile.svg';
 import bellIcon from '/src/assets/profile/alramBell.svg';
 
