@@ -30,7 +30,7 @@ class MainPage extends LitElement {
       0: ['📝 글쓰기', '🧩 카테고리'],
       1: ['🎧 헤드셋', '⌨️ 키보드', '🖱️ 마우스', '💻 컴퓨터', '🎈 기타 등등'],
       2: ['❓ 질문하기', '💡 답변하기', '🔍 검색하기', '📌 스크랩'],
-      3: [],
+      3: ['❓ 질의응답', '🤝 같이해요'],
     };
 
     this.menuItems = menuConfigs[index] || [];
@@ -101,7 +101,9 @@ class MainPage extends LitElement {
           <swiper-slide>
             <qna-page></qna-page>
           </swiper-slide>
-          <swiper-slide>Slide 4</swiper-slide>
+          <swiper-slide>
+            <board-page></board-page>
+          </swiper-slide>
 
           <div class="swiper-pagination"></div>
           <div class="swiper-button-prev"></div>

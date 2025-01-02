@@ -78,6 +78,11 @@ const config = defineConfig({
           'src/pages/main/SeniorDetail/index.html'
         ),
 
+        WriteSenior: resolve(
+          __dirname,
+          'src/pages/main/WriteSenior/index.html'
+        ),
+
         qna: resolve(__dirname, 'src/pages/qna/index.html'),
         qnaBoard: resolve(__dirname, 'src/pages/qnaBoard/index.html'),
 

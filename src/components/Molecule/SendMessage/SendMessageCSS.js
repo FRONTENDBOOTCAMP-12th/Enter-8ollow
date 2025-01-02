@@ -32,23 +32,29 @@ export const styles = css`
     .smile {
       width: 1.125rem;
       height: 1.125rem;
-      background-image: url('/src/assets/smile.png');
       background-size: contain;
       background-repeat: no-repeat;
       padding: 0.25rem;
       position: absolute;
-      right: 60px;
+      right: 45px;
 
       &:focus-visible {
         outline: solid 2px #5a85ee;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
       }
     }
     .send {
       width: 1.125rem;
       height: 1.125rem;
-      background-image: url('/src/assets/send.png');
-      background-size: contain;
-      background-repeat: no-repeat;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
 
       padding: 0.25rem;
 

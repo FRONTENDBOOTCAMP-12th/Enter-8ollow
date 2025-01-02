@@ -15,7 +15,8 @@
     "lit": "^3.2.1",
     "pocketbase": "^0.22.1",
     "sweetalert2": "^11.14.5",
-    "swiper": "^11.1.15"
+    "swiper": "^11.1.15",
+    "vite-plugin-compression": "^0.5.1"
   },
   "devDependencies": {
     "@vheemstra/vite-plugin-imagemin": "^2.0.0",
