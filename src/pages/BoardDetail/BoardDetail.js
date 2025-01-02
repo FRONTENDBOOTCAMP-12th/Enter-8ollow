@@ -39,7 +39,7 @@ class BoardDetail extends LitElement {
   async fetchComments() {
     try {
       const rawComments = await pb.collection('comments').getFullList({
-        filter: `SeniorPost='${this.storyId}'`,
+        filter: `WithPost='${this.storyId}'`,
       });
 
       console.log('댓글:', rawComments);
@@ -60,7 +60,7 @@ class BoardDetail extends LitElement {
 
   getImageURL() {
     if (!this.story || !this.story.iamge) {
-      return '/src/assets/test/test2.png';
+      return '';
     }
     return `${import.meta.env.VITE_PB_API}/files/${this.story.collectionId}/${this.story.id}/${this.story.iamge}`;
   }
@@ -86,6 +86,9 @@ class BoardDetail extends LitElement {
   }
 
   render() {
+    const imageUrl = this.getImageURL();
+    console.log(imageUrl);
+
     if (!this.story) {
       return html`<p>로딩 중...</p>`;
     }
@@ -97,18 +100,14 @@ class BoardDetail extends LitElement {
           <h2>${this.story.title}</h2>
         </div>
 
-        <div class="field">
-          <span class="author">작성자: ${this.nickname}</span>
-        </div>
-
-        <img
-          class="story-image"
-          src="${this.getImageURL()}"
-          alt="스토리 이미지"
-        />
+        ${imageUrl
+          ? html`
+              <img class="story-image" src="${imageUrl}" alt="스토리 이미지" />
+            `
+          : ''}
 
         <div class="field">
-          <p>${this.story.contents}</p>
+          <p>${this.story.description}</p>
         </div>
       </div>
 

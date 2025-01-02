@@ -34,6 +34,7 @@ class BoardWith extends LitElement {
 
     postArray.forEach((item) => {
       const {
+        id,
         category,
         allCategory = ['전체', ...category],
         created,
@@ -48,6 +49,7 @@ class BoardWith extends LitElement {
       } = item;
 
       this.postDetailArray.push({
+        id,
         category,
         allCategory,
         created,
@@ -99,6 +101,10 @@ class BoardWith extends LitElement {
 
   handleNavigation() {
     window.location.href = '/src/pages/Board/SearchActivities/index.html'; // 이동할 URL
+  }
+
+  handleClick(item) {
+    location.href = `/src/pages/BoardDetail/?detail=${item.id}`;
   }
 
   render() {
@@ -253,7 +259,7 @@ class BoardWith extends LitElement {
           })
           .map(
             (item) => html`
-              <li>
+              <li @click="${() => this.handleClick(item)}">
                 <div class="board-status">
                   <span class="recruite"
                     >${item.peoples == item.people
