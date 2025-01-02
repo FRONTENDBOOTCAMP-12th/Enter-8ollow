@@ -54,6 +54,8 @@ class ListItem extends LitElement {
             src="${this.item.image}"
             alt="기기거래 상품 이미지"
             loading="lazy"
+            width="90"
+            height="90"
           />
         </div>
         <ul>
