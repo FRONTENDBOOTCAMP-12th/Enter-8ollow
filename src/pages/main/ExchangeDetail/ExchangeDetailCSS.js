@@ -10,6 +10,7 @@ export default css`
 
   p {
     margin: 0px;
+    white-space: pre-wrap;
   }
 
   .detail-image {
@@ -114,6 +115,7 @@ export default css`
     color: var(--Contents-contentSecondary, #919191);
     font-size: var(--label---medium, 1rem);
     margin: 0;
+    text-align: left;
   }
 
   .post-description {
