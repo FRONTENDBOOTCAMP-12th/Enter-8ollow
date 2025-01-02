@@ -138,22 +138,25 @@ class ExchangeDetail extends LitElement {
     if (!this.post?.image || this.post.image.length === 0) {
       return html`<p>No images available</p>`;
     }
-
     return html`
-      <swiper-container
-        class="custom-swiper-container"
-        pagination="true"
-        navigation="true"
-      >
+      <swiper-container pagination="true" navigation="true">
         ${this.post.image.map(
-          (image) =>
-            html`<swiper-slide class="custom-swiper-slide">
-              <img
-                src="${image}"
-                alt="상품 이미지"
-                style="width: 100%; height: auto;"
-              />
-            </swiper-slide>`
+          (image) => html`
+            <swiper-slide>
+              <picture>
+                <source
+                  srcset="${image}?thumb=320x284&format=webp"
+                  type="image/webp"
+                />
+                <img
+                  src="${image}?thumb=320x284"
+                  alt="상품 이미지"
+                  loading="lazy"
+                  style="width: 100%; height: auto;"
+                />
+              </picture>
+            </swiper-slide>
+          `
         )}
       </swiper-container>
     `;
@@ -288,6 +291,7 @@ class ExchangeDetail extends LitElement {
               class="profile-image"
               src="${this.post.authorProfileImage}"
               alt="프로필 이미지"
+              loading="lazy"
             />
 
             <div class="profile-text">

@@ -1,14 +1,9 @@
 import { LitElement, html, css } from 'lit';
 
-// 이미지 import
-import profileImage from '/src/assets/MainSwiper.png';
-import qnaIcon from '/src/assets/profile/QnA.svg';
-import profileIcon from '/src/assets/profile/profile.svg';
-import bellIcon from '/src/assets/profile/alramBell.svg';
+import pb from '/src/api/pocketbase.js'; // PocketBase 인스턴스 import
 
 class ProfileHeader extends LitElement {
   static styles = css`
-    /* 전체 컨테이너 */
     .ProfileHeader {
       display: flex;
       flex-direction: column;
@@ -20,7 +15,6 @@ class ProfileHeader extends LitElement {
       padding: 0 1rem;
     }
 
-    /* 프로필 이미지 */
     .ProfileImageContainer {
       position: relative;
       width: 80px;
@@ -31,85 +25,64 @@ class ProfileHeader extends LitElement {
     .ProfileImage {
       width: 100%;
       height: 100%;
-      border-radius: var(--border-radius---large);
+      border-radius: 50%;
       object-fit: cover;
     }
 
-    /* 수정 아이콘 */
-    .EditIcon {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 20px;
-      height: 20px;
-      background-color: var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    /* 사용자 정보 */
     .UserInfo {
-      font-size: var(--heading---medium);
+      font-size: 1.2rem;
       font-weight: bold;
-      display: flex;
-      align-items: center;
-    }
-
-    .UserLevel {
-      font-size: var(--label---small);
-      color: var(--secondary);
-      margin-left: 5px;
-      border: 1px solid var(--secondary);
-      border-radius: 12px;
-      padding: 2px 6px;
-      background-color: #ffffff;
-    }
-
-    .UserStats {
-      font-size: var(--paragraph---medium);
-      color: var(--contents--content-secondary);
-      margin-bottom: 1rem;
-    }
-
-    /* 아이콘 섹션 */
-    .IconSection {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-      margin-top: 1rem;
-    }
-
-    .Icon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: var(--label---medium);
-      color: var(--contents--content-primary);
-      cursor: pointer;
-    }
-
-    .Icon svg {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 5px;
-    }
-
-    .Icon img {
-      cursor: pointer;
     }
   `;
 
-  navigateToProfile() {
-    window.location.href = '/src/pages/ProfileDetail/index.html'; // 이동할 HTML 페이지 경로
+  static properties = {
+    profileImage: { type: String },
+    userInfo: { type: String },
+  };
+
+  constructor() {
+    super();
+    this.profileImage = '/default-avatar.png'; // 기본 프로필 이미지
+    this.userInfo = '사용자 정보 없음'; // 기본 닉네임
   }
 
-  navigateToQandA() {
-    window.location.href = '/src/pages/qna/index.html'; // 나의 Q&A 페이지 경로
+  async connectedCallback() {
+    super.connectedCallback();
+    await this.loadUserData();
+  }
+
+  async loadUserData() {
+    try {
+      // localStorage에서 UID 가져오기
+      const data = JSON.parse(localStorage.getItem('isLogin'));
+      const UID = data?.UID; // UID 추출
+
+      if (!UID) {
+        console.warn('UID를 찾을 수 없습니다.');
+        return;
+      }
+
+      console.log('UID:', UID);
+
+      // PocketBase에서 UID에 해당하는 데이터 가져오기
+      const record = await pb.collection('members').getOne(UID);
+
+      if (record) {
+        console.log('가져온 데이터:', record);
+
+        // 프로필 이미지 URL 생성
+        this.profileImage = record.profileImage
+          ? pb.getFileUrl(record, record.profileImage)
+          : '/default-avatar.png'; // 기본 이미지 설정
+
+        // 사용자 정보 설정
+        this.userInfo = record.nickName || '닉네임 없음';
+      } else {
+        console.warn('UID에 해당하는 데이터를 찾을 수 없습니다.');
+      }
+    } catch (error) {
+      console.error('유저 데이터를 가져오는 중 오류 발생:', error);
+    }
   }
 
   render() {
@@ -118,54 +91,17 @@ class ProfileHeader extends LitElement {
         <!-- 프로필 이미지 -->
         <div class="ProfileImageContainer">
           <img
-            src="${profileImage}"
-            alt="사용자의 프로필 사진"
+            src="${this.profileImage}"
+            alt="프로필 이미지"
             class="ProfileImage"
           />
-          <div
-            class="EditIcon"
-            role="button"
-            tabindex="0"
-            aria-label="프로필 이미지 수정"
-          >
-            ✏️
-          </div>
         </div>
 
         <!-- 사용자 정보 -->
-        <div class="UserInfo">EUID*** <span class="UserLevel">4기</span></div>
-        <div class="UserStats">답변 35</div>
-
-        <!-- 아이콘 섹션 -->
-        <div class="IconSection">
-          <div
-            class="Icon"
-            tabindex="0"
-            role="button"
-            aria-label="나의 Q&A 보기"
-            @click=${this.navigateToQandA}
-          >
-            <img src="${qnaIcon}" alt="나의 Q&A 아이콘" />
-            <span>나의 Q&A</span>
-          </div>
-          <div
-            class="Icon"
-            tabindex="0"
-            role="button"
-            aria-label="나의 프로필 보기"
-            @click=${this.navigateToProfile}
-          >
-            <img src="${profileIcon}" alt="나의 프로필 아이콘" />
-            <span>나의 프로필</span>
-          </div>
-          <div class="Icon" tabindex="0" role="button" aria-label="내소식 보기">
-            <img src="${bellIcon}" alt="내소식 아이콘" />
-            <span>내소식</span>
-          </div>
-        </div>
+        <div class="UserInfo">${this.userInfo}</div>
       </div>
     `;
   }
 }
 
-customElements.define('profile-photo', ProfileHeader);
+customElements.define('profile-header', ProfileHeader);
