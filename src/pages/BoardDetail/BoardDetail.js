@@ -94,7 +94,10 @@ class BoardDetail extends LitElement {
     }
 
     return html`
-      <with-us text="📝 함께해요"></with-us>
+      <with-us
+        style="--padding-left:30px;  --padding-right:30px"
+        text="📝 함께해요"
+      ></with-us>
       <div class="detail-container">
         <div class="field">
           <h2>${this.story.title}</h2>
