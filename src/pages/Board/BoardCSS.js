@@ -13,7 +13,7 @@ export const BoardCSS = css`
     padding-left: 0.3125rem;
     padding-right: 0.3125rem;
     padding-inline: 0.3125rem;
-    padding-top: 4.75rem;
+    padding-top: 1.25rem;
 
     position: sticky;
     top: 0;
