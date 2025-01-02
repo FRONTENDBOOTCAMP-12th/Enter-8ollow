@@ -62,9 +62,9 @@ class ProfileHeader extends LitElement {
 
     .UserLevel {
       font-size: var(--label---small);
-      color: var(--secondary);
+      color: #1a73e8; /* 대비를 높인 파란색 */
       margin-left: 5px;
-      border: 1px solid var(--secondary);
+      border: 1px solid #1a73e8;
       border-radius: 12px;
       padding: 2px 6px;
       background-color: #ffffff;
@@ -72,7 +72,7 @@ class ProfileHeader extends LitElement {
 
     .UserStats {
       font-size: var(--paragraph---medium);
-      color: var(--contents--content-secondary);
+      color: #333333; /* 대비를 높인 어두운 회색 */
       margin-bottom: 1rem;
     }
 
@@ -91,12 +91,6 @@ class ProfileHeader extends LitElement {
       font-size: var(--label---medium);
       color: var(--contents--content-primary);
       cursor: pointer;
-    }
-
-    .Icon svg {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 5px;
     }
 
     .Icon img {
@@ -142,24 +136,29 @@ class ProfileHeader extends LitElement {
             class="Icon"
             tabindex="0"
             role="button"
-            aria-label="나의 Q&A 보기"
+            aria-label="Q&A 페이지로 이동"
             @click=${this.navigateToQandA}
           >
-            <img src="${qnaIcon}" alt="나의 Q&A 아이콘" />
+            <img src="${qnaIcon}" alt="Q&A 보기" />
             <span>나의 Q&A</span>
           </div>
           <div
             class="Icon"
             tabindex="0"
             role="button"
-            aria-label="나의 프로필 보기"
+            aria-label="프로필 페이지로 이동"
             @click=${this.navigateToProfile}
           >
-            <img src="${profileIcon}" alt="나의 프로필 아이콘" />
+            <img src="${profileIcon}" alt="프로필 보기" />
             <span>나의 프로필</span>
           </div>
-          <div class="Icon" tabindex="0" role="button" aria-label="내소식 보기">
-            <img src="${bellIcon}" alt="내소식 아이콘" />
+          <div
+            class="Icon"
+            tabindex="0"
+            role="button"
+            aria-label="알림 확인하기"
+          >
+            <img src="${bellIcon}" alt="알림 보기" />
             <span>내소식</span>
           </div>
         </div>

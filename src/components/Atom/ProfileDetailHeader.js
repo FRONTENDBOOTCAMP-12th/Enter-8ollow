@@ -60,7 +60,7 @@ class SimpleProfileHeader extends LitElement {
 
   constructor() {
     super();
-    this.username = 'EUID***';
+    this.username = 'EUID';
     this.profileImage = profileImageSrc;
     this.level = 4;
   }
