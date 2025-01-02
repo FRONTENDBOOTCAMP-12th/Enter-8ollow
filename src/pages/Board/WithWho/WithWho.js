@@ -1,5 +1,6 @@
 import { html, LitElement } from 'lit';
 import { WithWhoCSS } from '/src/pages/Board/WithWho/WithWhoCSS.js';
+import pb from '/src/api/pocketbase';
 
 class WithWho extends LitElement {
   static properties = {
@@ -39,13 +40,24 @@ class WithWho extends LitElement {
     sessionStorage.setItem('boardGender', inputGender);
     sessionStorage.setItem('boardAge', inputAge);
     sessionStorage.setItem('boardApprove', inputApprove);
+
+    this.fetchData();
   }
 
-  firstUpdated() {
-    console.log(
-      this.shadowRoot.querySelector('.with-post-form').querySelector('#approve')
-        .value
-    );
+  async fetchData() {
+    const data = {
+      title: sessionStorage.getItem('withTitle'),
+      description: sessionStorage.getItem('boardDescription'),
+      time: sessionStorage.getItem('boardTime'),
+      place: sessionStorage.getItem('boardPlace'),
+      gender: sessionStorage.getItem('boardGender'),
+      approve: sessionStorage.getItem('boardApprove'),
+      peoples: sessionStorage.getItem('boardPeople'),
+      category: sessionStorage.getItem('boardCategory'),
+      maxAge: sessionStorage.getItem('boardAge'),
+    };
+
+    await pb.collection('withPosts').create(data);
   }
 
   render() {
@@ -61,6 +73,7 @@ class WithWho extends LitElement {
             type="text"
             placeholder="버튼을 클릭하세요"
             readonly
+            required
           />
         </div>
         <span>누구나 또는 같은 성별 모임으로 설정해주세요</span>
@@ -94,7 +107,8 @@ class WithWho extends LitElement {
             type="text"
             id="age"
             class="age-input"
-            placeholder="숫자 또는 '누구나'"
+            placeholder="최대 나이 또는 '누구나'"
+            required
           />
         </div>
 

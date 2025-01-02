@@ -62,7 +62,7 @@ class WriteActivities extends LitElement {
     sessionStorage.setItem('boardDescription', inputDescription);
     sessionStorage.setItem('boardPeople', inputParticipationNum);
     sessionStorage.setItem('boardDate', inputDate);
-    sessionStorage.setItem('boardTime', inputTime);
+    sessionStorage.setItem('boardTime', `${inputDate} ${inputTime}:00`);
     sessionStorage.setItem('boardPlace', inputPlace);
     location.href = '/src/pages/Board/WithWho/index.html';
   }
