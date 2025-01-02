@@ -1,4 +1,9 @@
-import { css } from 'lit';
+import { css, unsafeCSS } from 'lit';
+import people from '/src/assets/board/people.svg';
+import time from '/src/assets/board/time.svg';
+import map from '/src/assets/map.svg';
+import down from '/src/assets/common/direction/down.svg';
+import date from '/src/assets/board/calender.svg';
 
 export const WriteActivitiesCSS = css`
   h1 {
@@ -61,7 +66,7 @@ export const WriteActivitiesCSS = css`
 
     width: 11px;
     height: 11px;
-    background-image: url('/src/assets/common/direction/down.svg');
+    background-image: url(${unsafeCSS(down)});
     background-size: cover;
     background-position: center;
 
@@ -109,7 +114,7 @@ export const WriteActivitiesCSS = css`
     background-position: center;
 
     background-color: var(--black);
-    mask: url('/src/assets/board/people.svg') no-repeat center;
+    mask: url(${unsafeCSS(people)}) no-repeat center;
   }
 
   .participation-container {
@@ -190,7 +195,7 @@ export const WriteActivitiesCSS = css`
     background-position: center;
 
     background-color: var(--black);
-    mask: url('/src/assets/board/calender.svg') no-repeat center;
+    mask: url(${unsafeCSS(date)}) no-repeat center;
   }
 
   .date-input {
@@ -221,7 +226,7 @@ export const WriteActivitiesCSS = css`
     background-position: center;
 
     background-color: var(--black);
-    mask: url('/src/assets/board/time.svg') no-repeat center;
+    mask: url(${unsafeCSS(time)}) no-repeat center;
   }
 
   .time-input {
@@ -252,7 +257,7 @@ export const WriteActivitiesCSS = css`
     background-position: center;
 
     background-color: var(--black);
-    mask: url('/src/assets/map.svg') no-repeat center;
+    mask: url(${unsafeCSS(map)}) no-repeat center;
   }
 
   .place-input {

@@ -1,4 +1,7 @@
-import { css } from 'lit';
+import { css, unsafeCSS } from 'lit';
+import people from '/src/assets/board/people.svg';
+import password from '/src/assets/password.svg';
+import sex from '/src/assets/board/sex.svg';
 
 export const WithWhoCSS = css`
   h1 {
@@ -26,7 +29,7 @@ export const WithWhoCSS = css`
     background-position: center;
 
     background-color: var(--black);
-    mask: url('/src/assets/board/sex.svg') no-repeat center;
+    mask: url(${unsafeCSS(sex)}) no-repeat center;
   }
 
   .gender-input {
@@ -77,7 +80,7 @@ export const WithWhoCSS = css`
     background-position: center;
 
     background-color: var(--black);
-    mask: url('/src/assets/board/people.svg') no-repeat center;
+    mask: url(${unsafeCSS(people)}) no-repeat center;
   }
 
   .age-input {
@@ -103,7 +106,7 @@ export const WithWhoCSS = css`
     background-position: center;
 
     background-color: var(--black);
-    mask: url('/src/assets/password.svg') no-repeat center;
+    mask: url(${unsafeCSS(password)}) no-repeat center;
   }
 
   .approve-input {

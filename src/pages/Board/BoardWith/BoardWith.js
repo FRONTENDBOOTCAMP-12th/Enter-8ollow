@@ -2,6 +2,7 @@ import { html, LitElement } from 'lit';
 import { BoardWithCSS } from '/src/pages/Board/BoardWith/BoardWithCSS.js';
 import buttonReset from '/src/style/buttonReset.css?inline';
 import pb from '/src/api/pocketbase';
+import down from '/src/assets/common/direction/down.svg';
 
 class BoardWith extends LitElement {
   static properties = {
@@ -224,10 +225,7 @@ class BoardWith extends LitElement {
           name=${this.sortRecent ? '최근 작성순' : '오래된 순'}
           style="--button-padding: 15px"
           @click=${() => this.toggleRecent()}
-          ><img
-            src="/src/assets/common/direction/down.svg"
-            alt="아래 방향 화살표"
-            style="padding-right: 5px"
+          ><img src="${down}" alt="아래 방향 화살표" style="padding-right: 5px"
         /></main-button>
         <main-button
           name="모집 중인 글만"
