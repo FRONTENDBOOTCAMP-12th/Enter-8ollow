@@ -6,7 +6,7 @@ export default css`
     align-items: center;
     list-style: none;
     gap: 12px;
-    padding: 12px 12px 5px 12px;
+    padding: 0px 12px 5px 12px;
     border-bottom: 1px solid var(--contents--content-secondary, #919191);
     margin: 0;
   }

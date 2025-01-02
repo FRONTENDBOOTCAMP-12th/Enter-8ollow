@@ -14,6 +14,8 @@ export const BoardWithCSS = css`
     position: fixed;
     top: 40px;
     z-index: 2;
+    margin-top: 1.25rem;
+    margin-block-start: 1.25rem;
   }
 
   .all-button {
@@ -55,7 +57,7 @@ export const BoardWithCSS = css`
   .main-button-container {
     display: flex;
     flex-direction: row;
-    margin-top: 130px;
+    margin-top: 150px;
     position: sticky;
     top: 127px;
   }
@@ -95,7 +97,7 @@ export const BoardWithCSS = css`
 
   .title {
     font-size: var(--label---medium);
-    margin-bottom: 8px;
+    margin: 8px 0px;
   }
 
   .participationTime {
