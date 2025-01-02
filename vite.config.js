@@ -47,6 +47,23 @@ const config = defineConfig({
         register: resolve(__dirname, 'src/pages/register/index.html'),
         main: resolve(__dirname, 'src/pages/main/index.html'),
         board: resolve(__dirname, 'src/pages/Board/index.html'),
+
+        BoardContent: resolve(
+          __dirname,
+          'src/pages/Board/BoardContent/index.html'
+        ),
+        BoardWith: resolve(__dirname, 'src/pages/Board/BoardWith/index.html'),
+        SearchActivities: resolve(
+          __dirname,
+          'src/pages/Board/SearchActivities/index.html'
+        ),
+        WithWho: resolve(__dirname, 'src/pages/Board/WithWho/index.html'),
+
+        WriteActivities: resolve(
+          __dirname,
+          'src/pages/Board/WriteActivities/index.html'
+        ),
+
         exchange: resolve(__dirname, 'src/pages/main/Exchange/index.html'),
         exchangedetail: resolve(
           __dirname,
@@ -62,8 +79,7 @@ const config = defineConfig({
         ),
 
         qna: resolve(__dirname, 'src/pages/qna/index.html'),
-
-        qnaBoard: resolve(__dirname, 'src/pages/qna/qnaBoard/index.html'),
+        qnaBoard: resolve(__dirname, 'src/pages/qnaBoard/index.html'),
 
         exchageDetail: resolve(
           __dirname,
