@@ -107,7 +107,9 @@ export default class Exchange extends LitElement {
                   .item=${item}
                   tabindex="0"
                   @click="${() => this.handleClick(item.id)}"
-                  @keydown="${(event) => this.handleKeyDown(event, item.id)}"
+                  @keydown="${(e) => this.handleKeyDown(e, item.id)}"
+                  loading="lazy"
+                  aria-label="${item.title} (가격: ${item.price.toLocaleString()}원)"
                 ></list-item>
               `
             )

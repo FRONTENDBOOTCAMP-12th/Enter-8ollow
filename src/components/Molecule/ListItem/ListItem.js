@@ -50,7 +50,13 @@ class ListItem extends LitElement {
     return html`
       <section class="list-item">
         <div class="item-img-container">
-          <img src="${this.item.image}" alt="기기거래 상품 이미지" />
+          <img
+            src="${this.item.image}"
+            alt="기기거래 상품 이미지"
+            loading="lazy"
+            width="90"
+            height="90"
+          />
         </div>
         <ul>
           <li class="title">${this.item.title || '제목 없음'}</li>

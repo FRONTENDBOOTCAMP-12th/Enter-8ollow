@@ -9,7 +9,7 @@ export class ProfileFooter extends LitElement {
       gap: 1rem; /* 메뉴 사이 여백 */
       padding: 1rem;
       max-width: 400px; /* 최대 너비 설정 */
-
+      margin: 0 auto; /* 중앙 정렬 */
       font-family: Arial, sans-serif;
       font-size: 0.95rem;
       color: #333;
@@ -47,15 +47,21 @@ export class ProfileFooter extends LitElement {
     }
   `;
 
+  handleLogout() {
+    // 로그아웃 후 이동할 경로
+    window.location.href = '/index.html';
+  }
+
   render() {
     return html`
       <div class="footer-container">
-        <a class="menu-item" href="#">보관 질문</a>
-        <a class="menu-item" href="#">설정</a>
-        <a class="menu-item" href="#">지식 iN 공식 블로그</a>
-        <a class="menu-item" href="#">서비스 정보</a>
-        <a class="menu-item" href="#">공지사항</a>
-        <a class="logout" href="#">로그아웃</a>
+
+        <div class="menu-item">보관 질문</div>
+        <div class="menu-item">설정</div>
+        <div class="menu-item">지식 iN 공식 블로그</div>
+        <div class="menu-item">서비스 정보</div>
+        <div class="menu-item">공지사항</div>
+        <a class="logout" href="#" @click=${this.handleLogout}>로그아웃</a>
       </div>
     `;
   }
