@@ -61,6 +61,10 @@ const config = defineConfig({
           'src/pages/main/SeniorDetail/index.html'
         ),
 
+        qna: resolve(__dirname, 'src/pages/qna/index.html'),
+
+        qnaBoard: resolve(__dirname, 'src/pages/qna/qnaBoard/index.html'),
+
         exchageDetail: resolve(
           __dirname,
           'src/pages/main/ExchangeDetail/index.html'
