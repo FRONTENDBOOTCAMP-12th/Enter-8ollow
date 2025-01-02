@@ -156,6 +156,7 @@ export const WriteActivitiesCSS = css`
     top: 19%; /* 세로 중앙 */
     left: 50%; /* 가로 중앙 */
     transform: translate(-50%, -50%); /* 중앙으로 이동 */
+    cursor: pointer;
   }
 
   .increase:before {
@@ -166,6 +167,7 @@ export const WriteActivitiesCSS = css`
     top: 30%; /* 세로 중앙 */
     left: 50%; /* 가로 중앙 */
     transform: translate(-50%, -50%); /* 중앙으로 이동 */
+    cursor: pointer;
   }
   .date-container {
     display: grid;

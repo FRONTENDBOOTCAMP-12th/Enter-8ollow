@@ -16,6 +16,15 @@ class WriteActivities extends LitElement {
     this.title = 'EUID 피그마 스터디 하실분!';
     this.categoryList = ['스터디', '프로젝트', '오프라인', '공모전'];
     this.category = '카테고리를 선택해주세요';
+    this.participationNum = 0;
+  }
+
+  firstUpdated() {
+    const inputForm = this.shadowRoot.querySelector('.with-post-form');
+    const inputDescription = inputForm.querySelector('.activity-content');
+
+    console.log(inputForm);
+    console.log(inputDescription);
   }
 
   toggleCategoryList(e) {
@@ -33,13 +42,32 @@ class WriteActivities extends LitElement {
     this.category = this.categoryList[index];
   }
 
-  handleWrite() {
+  handleWrite(e) {
+    e.preventDefault();
+
+    const inputForm = this.shadowRoot.querySelector('.with-post-form');
+
+    if (!inputForm.checkValidity()) {
+      inputForm.reportValidity();
+      return;
+    }
+
     const inputCategory = this.category;
+    const inputDescription = inputForm.querySelector('#activity-content').value;
+    const inputParticipationNum = this.participationNum;
+    const inputDate = inputForm.querySelector('#date').value;
+    const inputTime = inputForm.querySelector('#time').value;
+    const inputPlace = inputForm.querySelector('#place').value;
+
     sessionStorage.setItem('boardCategory', inputCategory);
-  }
-  handleWho() {
+    sessionStorage.setItem('boardDescription', inputDescription);
+    sessionStorage.setItem('boardPeople', inputParticipationNum);
+    sessionStorage.setItem('boardDate', inputDate);
+    sessionStorage.setItem('boardTime', inputTime);
+    sessionStorage.setItem('boardPlace', inputPlace);
     location.href = '/src/pages/Board/WithWho/index.html';
   }
+
   render() {
     window.onload = () => {
       this.title = sessionStorage.getItem('withTitle');
@@ -91,6 +119,7 @@ class WriteActivities extends LitElement {
         <label for="activity-content" class="hidden">활동 내용</label>
         <input
           class="activity-content"
+          id="activity-content"
           type="text"
           required
           placeholder="활동 내용을 입력해주세요"
@@ -101,9 +130,17 @@ class WriteActivities extends LitElement {
             >인원</label
           >
           <div class="participation-container">
-            <div class="decrease"></div>
+            <div
+              class="decrease"
+              @click="${() => {
+                if (this.participationNum !== 0) --this.participationNum;
+              }}"
+            ></div>
             <span>${this.participationNum}명</span>
-            <div class="increase"></div>
+            <div
+              class="increase"
+              @click="${() => ++this.participationNum}"
+            ></div>
           </div>
         </div>
 
@@ -121,6 +158,7 @@ class WriteActivities extends LitElement {
           <label for="place" class="place">장소</label>
           <input
             type="text"
+            id="place"
             class="place-input"
             required
             placeholder="입력해주세요"
@@ -130,7 +168,7 @@ class WriteActivities extends LitElement {
         <common-button
           title="다음"
           type="submit"
-          @click-event="${this.handleWho}"
+          @click="${this.handleWrite}"
         ></common-button>
       </form>
     `;
