@@ -38,7 +38,6 @@ class WriteActivities extends LitElement {
 
   chooseCategory(index) {
     this.checked = index;
-
     this.category = this.categoryList[index];
   }
 

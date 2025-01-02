@@ -56,9 +56,6 @@ export const WithWhoCSS = css`
     margin-left: 0.75rem;
     margin-bottom: 12px;
   }
-  main-button {
-    padding-right: 0.4375rem;
-  }
 
   .age-container,
   .approve-container {
@@ -176,5 +173,68 @@ export const WithWhoCSS = css`
     width: 90%;
     left: 50%;
     transform: translate(-50%);
+  }
+
+  .category {
+    all: unset;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .category {
+    background-color: var(--white);
+    height: var(--button-height, 27px);
+    padding-left: var(--button-padding, 8px);
+    padding-right: var(--button-padding, 8px);
+    padding-inline: var(--button-padding, 8px);
+    margin-right: 2px;
+
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-block: 4px;
+    border-radius: var(--border-radius---large);
+    border: 2px solid var(--contents--content-tertiary);
+    white-space: nowrap;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & img {
+      width: 1.25rem;
+      height: 1.25rem;
+      padding: 0.25rem;
+    }
+
+    & svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      padding: 0.25rem;
+    }
+
+    & span {
+      margin: 0;
+      margin-bottom: 0.125rem;
+      font-size: var(--paragraph---small);
+    }
+  }
+
+  .checked {
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+
+    & span {
+      color: var(--white);
+    }
+
+    & svg path {
+      stroke: white;
+    }
+  }
+
+  .hidden {
+    display: none;
   }
 `;
