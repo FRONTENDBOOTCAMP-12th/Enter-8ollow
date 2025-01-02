@@ -11,7 +11,10 @@ class WithUs extends LitElement {
       width: 50px;
       height: 17px;
       border-radius: 4px;
-      padding: 8px;
+      padding: var(--padding, 8px);
+      padding-left: var(--padding-left, 0px);
+      padding-right: var(--padding-right, 0px);
+
       display: flex;
       align-items: center;
       justify-content: center;

@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit';
+
 import { BoardCSS } from '/src/pages/Board/BoardCSS';
 import pb from '/src/api/pocketbase';
 
@@ -81,7 +82,6 @@ class Board extends LitElement {
       }
     });
 
-    console.log(this.postDetailArray);
     this.requestUpdate();
   }
 
@@ -189,44 +189,51 @@ class Board extends LitElement {
     }
 
     return html`
-      <div class="main-button-container">
-        <main-button class="category" name="주제"></main-button>
-        <main-button name="인기글"></main-button>
-        <a href="/src/pages/Board/BoardWith/index.html"
-          ><main-button name="같이해요"></main-button
-        ></a>
-        <main-button name="질의응답"> </main-button>
-        <main-button name="자유게시판"></main-button>
-      </div>
+      <div class="app">
+        <div class="main-button-container">
+          <main-button class="category" name="주제"></main-button>
+          <main-button name="인기글"></main-button>
+          <a href="/src/pages/Board/BoardWith/index.html"
+            ><main-button name="같이해요"></main-button
+          ></a>
+          <a href="/src/pages/qna/index.html"
+            ><main-button name="질의응답"></main-button
+          ></a>
+          <main-button name="자유게시판"></main-button>
+        </div>
 
-      <ul class="board-field-container">
-        ${this.postDetailArray.map(
-          (item) => html`
-            <li>
-              <board-field
-                text=${item.collectionName}
-                title=${item.title.length > 18
-                  ? item.title.substring(0, 18) + '..'
-                  : item.title}
-                location=${item.place}
-                description=${item.content
-                  ? item.content.length > 24
-                    ? item.content.substring(0, 24) + '..'
-                    : item.content
-                  : ''}
-                viewCount=${item.viewCount}
-                time=${formatTimeDifference(item.created)}
-                personCount="${item.people}/${item.peoples}"
-                gender=${item.gender}
-                meetDay=${formatMeetDay(item.time)}
-                imgLink=${item.img}
-                @click="${() => this.handleClick(item)}"
-              ></board-field>
-            </li>
-          `
-        )}
-      </ul>
-      <board-theme-list id="board-theme-list" class="hidden"></board-theme-list>
+        <ul class="board-field-container">
+          ${this.postDetailArray.map(
+            (item) => html`
+              <li>
+                <board-field
+                  text=${item.collectionName}
+                  title=${item.title.length > 18
+                    ? item.title.substring(0, 18) + '..'
+                    : item.title}
+                  location=${item.place}
+                  description=${item.content
+                    ? item.content.length > 24
+                      ? item.content.substring(0, 24) + '..'
+                      : item.content
+                    : ''}
+                  viewCount=${item.viewCount}
+                  time=${formatTimeDifference(item.created)}
+                  personCount="${item.people}/${item.peoples}"
+                  gender=${item.gender}
+                  meetDay=${formatMeetDay(item.time)}
+                  imgLink=${item.img}
+                  @click="${() => this.handleClick(item)}"
+                ></board-field>
+              </li>
+            `
+          )}
+        </ul>
+        <board-theme-list
+          id="board-theme-list"
+          class="hidden"
+        ></board-theme-list>
+      </div>
     `;
   }
 }

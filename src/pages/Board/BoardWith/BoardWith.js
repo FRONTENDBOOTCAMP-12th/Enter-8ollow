@@ -2,6 +2,7 @@ import { html, LitElement } from 'lit';
 import { BoardWithCSS } from '/src/pages/Board/BoardWith/BoardWithCSS.js';
 import buttonReset from '/src/style/buttonReset.css?inline';
 import pb from '/src/api/pocketbase';
+import down from '/src/assets/common/direction/down.svg';
 
 class BoardWith extends LitElement {
   static properties = {
@@ -34,6 +35,7 @@ class BoardWith extends LitElement {
 
     postArray.forEach((item) => {
       const {
+        id,
         category,
         allCategory = ['전체', ...category],
         created,
@@ -48,6 +50,7 @@ class BoardWith extends LitElement {
       } = item;
 
       this.postDetailArray.push({
+        id,
         category,
         allCategory,
         created,
@@ -99,6 +102,10 @@ class BoardWith extends LitElement {
 
   handleNavigation() {
     window.location.href = '/src/pages/Board/SearchActivities/index.html'; // 이동할 URL
+  }
+
+  handleClick(item) {
+    location.href = `/src/pages/BoardDetail/?detail=${item.id}`;
   }
 
   render() {
@@ -218,10 +225,7 @@ class BoardWith extends LitElement {
           name=${this.sortRecent ? '최근 작성순' : '오래된 순'}
           style="--button-padding: 15px"
           @click=${() => this.toggleRecent()}
-          ><img
-            src="/src/assets/common/direction/down.svg"
-            alt="아래 방향 화살표"
-            style="padding-right: 5px"
+          ><img src="${down}" alt="아래 방향 화살표" style="padding-right: 5px"
         /></main-button>
         <main-button
           name="모집 중인 글만"
@@ -253,7 +257,7 @@ class BoardWith extends LitElement {
           })
           .map(
             (item) => html`
-              <li>
+              <li @click="${() => this.handleClick(item)}">
                 <div class="board-status">
                   <span class="recruite"
                     >${item.peoples == item.people
@@ -263,7 +267,7 @@ class BoardWith extends LitElement {
                   · <span>${item.category}</span> ·
                   <span>${item.place}</span>
                 </div>
-                <h3 class="title">${item.title}</h3>
+                <h2 class="title">${item.title}</h2>
                 <board-info-items
                   gender="${item.gender}"
                   meetDay="${formatMeetDay(item.time, item.lastTime)}"

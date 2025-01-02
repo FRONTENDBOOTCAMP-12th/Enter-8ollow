@@ -40,12 +40,14 @@ export const WriteActivitiesCSS = css`
       padding-bottom: 10px;
       padding-block: 10px;
       color: var(--contents--content-tertiary);
+      cursor: pointer;
     }
 
-    & li:hover {
+    & .checked {
       color: var(--black);
     }
   }
+
   .show {
     display: grid;
   }
@@ -59,7 +61,7 @@ export const WriteActivitiesCSS = css`
 
     width: 11px;
     height: 11px;
-    background-image: url('/src/assets/common/direction/down.svg');
+    background-image: url('/down.svg');
     background-size: cover;
     background-position: center;
 
@@ -107,7 +109,8 @@ export const WriteActivitiesCSS = css`
     background-position: center;
 
     background-color: var(--black);
-    mask: url('/src/assets/board/people.svg') no-repeat center;
+
+    mask: url('/people.svg') no-repeat center;
   }
 
   .participation-container {
@@ -154,6 +157,7 @@ export const WriteActivitiesCSS = css`
     top: 19%; /* 세로 중앙 */
     left: 50%; /* 가로 중앙 */
     transform: translate(-50%, -50%); /* 중앙으로 이동 */
+    cursor: pointer;
   }
 
   .increase:before {
@@ -164,6 +168,7 @@ export const WriteActivitiesCSS = css`
     top: 30%; /* 세로 중앙 */
     left: 50%; /* 가로 중앙 */
     transform: translate(-50%, -50%); /* 중앙으로 이동 */
+    cursor: pointer;
   }
   .date-container {
     display: grid;
@@ -186,7 +191,7 @@ export const WriteActivitiesCSS = css`
     background-position: center;
 
     background-color: var(--black);
-    mask: url('/src/assets/board/calender.svg') no-repeat center;
+    mask: url('/calender.svg') no-repeat center;
   }
 
   .date-input {
@@ -217,7 +222,7 @@ export const WriteActivitiesCSS = css`
     background-position: center;
 
     background-color: var(--black);
-    mask: url('/src/assets/board/time.svg') no-repeat center;
+    mask: url('/time.svg') no-repeat center;
   }
 
   .time-input {
@@ -248,7 +253,7 @@ export const WriteActivitiesCSS = css`
     background-position: center;
 
     background-color: var(--black);
-    mask: url('/src/assets/map.svg') no-repeat center;
+    mask: url('/map.svg') no-repeat center;
   }
 
   .place-input {
