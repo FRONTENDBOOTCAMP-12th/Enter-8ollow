@@ -81,6 +81,7 @@ export const BoardWithCSS = css`
 
     list-style: none;
     border-bottom: 1px solid var(--contents--content-tertiary);
+    cursor: pointer;
   }
 
   h3 {

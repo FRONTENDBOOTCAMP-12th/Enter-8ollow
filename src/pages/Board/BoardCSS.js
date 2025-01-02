@@ -42,6 +42,7 @@ export const BoardCSS = css`
     padding: 0;
     list-style: none;
     border-bottom: 1px solid var(--contents--content-secondary);
+    cursor: pointer;
   }
 
   board-field {
@@ -72,7 +73,7 @@ export const BoardCSS = css`
 
   board-theme-list {
     position: fixed;
-    width: 100%;
+    width: 95%;
     z-index: 1;
     bottom: 68px;
   }
