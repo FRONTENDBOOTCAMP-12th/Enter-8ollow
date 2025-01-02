@@ -37,7 +37,7 @@ export const styles = css`
       background-repeat: no-repeat;
       padding: 0.25rem;
       position: absolute;
-      right: 50px;
+      right: 60px;
 
       &:focus-visible {
         outline: solid 2px #5a85ee;

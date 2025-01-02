@@ -77,12 +77,12 @@ class ExchangeDetail extends LitElement {
   // 현재 포스트 데이터 가져오기
   async fetchPost() {
     try {
-      console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
+      // console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
       const loginData = JSON.parse(localStorage.getItem('isLogin'));
       const userId = loginData ? loginData.UID : null;
 
       const record = await pb.collection('exchangePosts').getOne(this.postId);
-      console.log('받아온 데이터:', record);
+      // console.log('받아온 데이터:', record);
 
       // 좋아요 상태 확인
       this.liked = userId ? record.liked_count.includes(userId) : false; // liked 상태 설정
@@ -138,22 +138,25 @@ class ExchangeDetail extends LitElement {
     if (!this.post?.image || this.post.image.length === 0) {
       return html`<p>No images available</p>`;
     }
-
     return html`
-      <swiper-container
-        class="custom-swiper-container"
-        pagination="true"
-        navigation="true"
-      >
+      <swiper-container pagination="true" navigation="true">
         ${this.post.image.map(
-          (image) =>
-            html`<swiper-slide class="custom-swiper-slide">
-              <img
-                src="${image}"
-                alt="상품 이미지"
-                style="width: 100%; height: auto;"
-              />
-            </swiper-slide>`
+          (image) => html`
+            <swiper-slide>
+              <picture>
+                <source
+                  srcset="${image}?thumb=320x284&format=webp"
+                  type="image/webp"
+                />
+                <img
+                  src="${image}?thumb=320x284"
+                  alt="상품 이미지"
+                  loading="lazy"
+                  style="width: 100%; height: auto;"
+                />
+              </picture>
+            </swiper-slide>
+          `
         )}
       </swiper-container>
     `;
@@ -162,10 +165,6 @@ class ExchangeDetail extends LitElement {
   // 연관 글 데이터 가져오기
   async fetchRelatedItems({ id: postId, category }) {
     try {
-      if (!category || category.trim() === '') {
-        console.error('유효하지 않은 카테고리 값:', category);
-        return;
-      }
       const trimmedCategory = category.trim();
       const filter = `category = "${trimmedCategory}" && id != "${postId}"`;
 
@@ -174,7 +173,9 @@ class ExchangeDetail extends LitElement {
         sort: '-created',
       });
 
-      console.log('받아온 연관 글 목록:', list);
+      // console.log('받아온 연관 글 목록:', list.items);
+
+      // 연관 글 데이터 그대로 유지
       this.relatedItems = list.items;
       this.requestUpdate();
     } catch (error) {
@@ -188,38 +189,44 @@ class ExchangeDetail extends LitElement {
       return html`<p>연관 글이 없습니다.</p>`;
     }
 
-    return this.relatedItems.map(
-      (item, index) => html`
+    return this.relatedItems.map((item, index) => {
+      const imageUrl = this.getPbImagesURL(item);
+      // console.log(`렌더링 중 연관 글 ${index + 1} 이미지 URL:`, imageUrl);
+
+      return html`
         <li class="related-item">
           <article>
             <a href="/src/pages/main/ExchangeDetail/index.html?post=${item.id}">
               <img
-                src=${this.getPbImagesURL(item)}
+                src="${imageUrl}"
                 alt="관련 글 ${index + 1}"
                 class="related-item-image"
+                style="width: 100%; height: auto;"
               />
               <h4 class="related-item-title">${item.title}</h4>
               <p class="related-item-price">${item.price.toLocaleString()}원</p>
             </a>
           </article>
         </li>
-      `
-    );
+      `;
+    });
   }
 
   // 이미지 URL 가져오기
   getPbImagesURL(item) {
-    if (!item.image) {
+    if (!item.image || !Array.isArray(item.image) || item.image.length === 0) {
       return defaultImage;
     }
-    return pb.files.getURL(item, item.image);
+
+    // 이미지 배열의 첫 번째 항목 반환
+    return pb.files.getURL(item, item.image[0]);
   }
 
   // 좋아요 토글 및 업데이트
   async toggleLike() {
-    console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
+    // console.log(localStorage.getItem('isLogin')); // 로컬 스토리지 값 출력
     const loginData = JSON.parse(localStorage.getItem('isLogin'));
-    console.log('Parsed loginData:', loginData); // 파싱 데이터
+    // console.log('Parsed loginData:', loginData); // 파싱 데이터
 
     // UID를 userId로 사용
     const userId = loginData ? loginData.UID : null;
@@ -244,7 +251,7 @@ class ExchangeDetail extends LitElement {
       await pb.collection('exchangePosts').update(this.postId, {
         liked_count: this.post.liked_count,
       });
-      console.log(`좋아요 상태 업데이트: ${this.liked}`);
+      // console.log(`좋아요 상태 업데이트: ${this.liked}`);
     } catch (error) {
       console.error('좋아요 업데이트 실패:', error.message);
       // 업데이트 실패 시 상태 복구
@@ -284,6 +291,7 @@ class ExchangeDetail extends LitElement {
               class="profile-image"
               src="${this.post.authorProfileImage}"
               alt="프로필 이미지"
+              loading="lazy"
             />
 
             <div class="profile-text">

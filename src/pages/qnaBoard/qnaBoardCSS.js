@@ -9,9 +9,26 @@ export const styles = css`
     color: #000;
   }
 
+  .article-image {
+    width: 294px;
+    height: 367px;
+    border-radius: 8px;
+  }
+
   .organizer-profile .ddd,
   .organizer-profile .created {
     color: #9da1b4;
+  }
+
+  .app {
+    padding: 16px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    margin-block-end: 16px;
   }
 
   .field h2 {
@@ -22,6 +39,11 @@ export const styles = css`
 
   .field h2 .question {
     color: #5a85ee;
+  }
+
+  .field img {
+    width: 100%;
+    justify-items: center;
   }
 
   .field p {
