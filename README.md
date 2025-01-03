@@ -135,17 +135,17 @@
 - [Q&A 목록](https://euid-8ollow.netlify.app/src/pages/qna/index.html)
   | 동작 화면 | 기능 및 구현 방법 |
   | :------: | :------ |
-  | <img src="GIF_URL" width="400" height=800 alt="QnA 목록"> | - 질의응답 게시판의 글만 모아서 볼 수 있다. |
+  | <img src="src/assets/qnagif.gif" width="400" height=800 alt="QnA 목록"> | - 질의응답 게시판의 글만 모아서 볼 수 있다. |
 
 - [Q&A 게시글 작성](https://euid-8ollow.netlify.app/src/pages/writeqna/writeqna)
   | 동작 화면 | 기능 및 구현 방법 |
   | :------: | :------ |
-  | <img src="GIF_URL" width="400" height=800 alt="QnA 게시글 목록"> | - 제목과 본문 란에 각각 한 글자 이상 입력하면 완료 버튼이 활성화된다. <br> - 완료 버튼을 누르면 PocketBase 서버에 저장되고 Q&A 페이지에서 확인할 수 있다. |
+  | <img src="src/assets/writeqnagif.gif" width="400" height=800 alt="QnA 게시글 목록"> | - 제목과 본문 란에 각각 한 글자 이상 입력하면 완료 버튼이 활성화된다. <br> - 완료 버튼을 누르면 PocketBase 서버에 저장되고 Q&A 페이지에서 확인할 수 있다. |
 
 - [Q&A 게시글](https://euid-8ollow.netlify.app/src/pages/qnaboard/?qnadetail=0eh9t2m8p730m54)
   | 동작 화면 | 기능 및 구현 방법 |
   | :------: | :------ |
-  | <img src="https://github.com/user-attachments/assets/db4ad3f8-6da9-4911-a2fe-21d4cf571c2c" width="400" height=800 alt="QnA 게시글"> | - 게시글을 확인하고 댓글을 입력하거나 확인할 수 있다. <br> - '스마일' 버튼을 누르면 이모지를 사용할 수 있다. |
+  | <img src="src/assets/qnadetailgif.gif" width="400" height=800 alt="QnA 게시글"> | - 게시글을 확인하고 댓글을 입력하거나 확인할 수 있다. <br> - '스마일' 버튼을 누르면 이모지를 사용할 수 있다. |
 
 - [프로필](https://euid-8ollow.netlify.app/src/pages/profile/index.html?checked=4)
   | 동작 화면 | 기능 및 구현 방법 |
