@@ -1,6 +1,9 @@
 # 💪 Enter-8ollow
-[![Enter-8ollow 바로가기](src/assets/qr.png)](https://euid-8ollow.netlify.app/) <br>
-*👆 Enter-8ollow 배포 링크 바로가기 👆*
+<a href="https://euid-8ollow.netlify.app/">
+    <img src="src/assets/qr.png" width="200" height=200 alt="Enter-8ollow 배포 링크 바로가기">
+</a>
+<br>
+👆 Enter-8ollow 배포 링크 바로가기 👆
 
 
 ## 📋 목차 
