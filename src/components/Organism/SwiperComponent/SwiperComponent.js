@@ -5,6 +5,7 @@ import { SwiperSlide } from '/src/components/Organism/SwiperComponent/SwiperComp
 import mainImage from '/src/assets/MainSwiper.png';
 import likeLion from '/src/assets/likelion.webp';
 import follow from '/src/assets/8ollow.png';
+import blogStudy from '/src/assets/blogStudy.png';
 
 register();
 
@@ -75,7 +76,7 @@ class SwiperComponent extends LitElement {
           </div>
         </swiper-slide>
         <swiper-slide>
-          <div>
+          <div class="hero-container">
             <img src="${likeLion}" alt="" />
           </div>
         </swiper-slide>
@@ -84,7 +85,18 @@ class SwiperComponent extends LitElement {
             <img src="${follow}" alt="" />
           </div>
         </swiper-slide>
-        <swiper-slide>Slide 4</swiper-slide>
+        <swiper-slide
+          ><div class="image-container">
+            <img src="${blogStudy}" alt="" />
+          </div>
+
+          <div class="text-container">
+            <p class="title">
+              오늘의 추천 스터디<br />
+              블로그 기록하기
+            </p>
+          </div>
+        </swiper-slide>
       </swiper-container>
 
       <button class="next sr-only" type="button">다음 배너</button>

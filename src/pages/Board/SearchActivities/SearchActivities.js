@@ -13,13 +13,20 @@ class SearchActivities extends LitElement {
     this.place = '남가좌제2동';
   }
 
-  handleWrite() {
+  handleWrite(e) {
+    e.preventDefault();
+
     const inputComponent = this.shadowRoot.querySelector('input-component');
+
     const inputValue =
       inputComponent.shadowRoot.querySelector('.number-input').value;
+
     console.log(inputValue);
     sessionStorage.setItem('withTitle', inputValue); // 값 저장
-    location.href = '/src/pages/Board/WriteActivities/index.html';
+
+    if (inputValue)
+      location.href = '/src/pages/Board/WriteActivities/index.html';
+    else alert('제목을 입력하세요!');
   }
 
   render() {
@@ -29,7 +36,7 @@ class SearchActivities extends LitElement {
         <input-component
           placeholder="이웃과 어떤 활동을 할까요"
           style=" --border-color: 1px solid var(--background); --text-size: var(--label---large); --font-weight:600"
-          required
+          @input="${this.handleTitle}"
         ></input-component>
 
         <section class="popular-activities">

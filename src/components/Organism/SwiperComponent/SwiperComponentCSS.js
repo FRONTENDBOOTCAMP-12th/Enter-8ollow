@@ -62,6 +62,24 @@ export const SwiperSlide = css`
     }
   }
 
+  .hero-container {
+    width: inherit;
+    background: linear-gradient(to bottom, #8d4209, #201101);
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-container img {
+    max-width: 400px;
+    height: auto;
+    width: auto;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
   .sr-only {
     position: absolute;
     width: 1px;
