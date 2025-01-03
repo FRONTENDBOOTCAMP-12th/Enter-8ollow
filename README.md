@@ -112,13 +112,13 @@
 - [같이해요 목록](https://euid-8ollow.netlify.app/src/pages/board/boardwith/)
   | 동작 화면 | 기능 및 구현 방법 |
   | :------: | :------ |
-  | <img src="GIF_URL" width="400" height=800 alt="같이해요 목록"> | - '같이해요' 카테고리의 게시글만 모아 볼 수 있다. <br> - 플러스(+) 버튼 클릭 시 글쓰기 페이지로 이동한다. <br> - '스터디', '오프라인' 등 각각의 버튼을 클릭하면 해당 특성의 모집 글을 조회할 수 있다. |
+  | <img src="src/assets/withusgif.gif" width="400" height=800 alt="같이해요 목록"> | - '같이해요' 카테고리의 게시글만 모아 볼 수 있다. <br> - 플러스(+) 버튼 클릭 시 글쓰기 페이지로 이동한다. <br> - '스터디', '오프라인' 등 각각의 버튼을 클릭하면 해당 특성의 모집 글을 조회할 수 있다. |
 
 
 - [같이해요 게시글 작성](https://euid-8ollow.netlify.app/src/pages/board/searchactivities/)
   | 동작 화면 | 기능 및 구현 방법 |
   | :------: | :------ |
-  | <img src="GIF_URL" width="400" height=800 alt="같이해요 게시글 작성"> | - 설명 |
+  | <img src="src/assets/writewithusgif.gif" width="400" height=800 alt="같이해요 게시글 작성"> | - 설명 |
 
 - [기기거래 목록](https://euid-8ollow.netlify.app/src/pages/main/exchange/?checked=2)
   | 동작 화면 | 기능 및 구현 방법 |
