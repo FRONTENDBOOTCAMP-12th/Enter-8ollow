@@ -12,6 +12,9 @@
 3. [기술 스택](#기술-스택)  
 4. [주요 기능](#주요-기능)
 
+### [✍️ 백로그 바로가기](https://github.com/orgs/FRONTENDBOOTCAMP-12th/projects/3)
+### [📖 위키 바로가기](https://github.com/FRONTENDBOOTCAMP-12th/Enter-8ollow/wiki)
+
 
 ## 1️⃣ 프로젝트 소개
 ![그레이 블랙 심플한 마케터 포트폴리오 프레젠테이션 (28)](https://github.com/user-attachments/assets/fd86120a-b6a9-4644-a574-082260ad3af7)
@@ -152,3 +155,5 @@
   | :------: | :------ |
   | <img src="https://github.com/user-attachments/assets/ee2c4336-572e-4e01-8942-3cd4f17b5663" width="400" height=800 alt="프로필"> | - PocketBase 서버에 저장된 각 사용자의 평가 수를 바탕으로 열정 온도를 산출한다. (현재는 댓글 10개 당 온도 1이 오름) <br> - 로그인 시 PocketBase 서버에 저장되어 있는 닉네임과 아이디를 통해 로그인한 유저를 인식하고 UI를 다르게 렌더링한다. <br> - '받은 매너 평가' 탭을 클릭하면 PocketBase 서버 내에 저장된 세부 평가를 확인할 수 있다. <br> - '나의 프로필' 버튼을 클릭하면 프로필 디테일 페이지로 이동한다. <br> - 팝업 창을 통해 기본정보와 추가정보를 입력할 수 있다. |
   
+## 5️⃣ 회고
+### [스프린트 회고 바로가기](https://github.com/FRONTENDBOOTCAMP-12th/Enter-8ollow/wiki#-%EC%A3%BC%EA%B0%84-%EC%8A%A4%ED%94%84%EB%A6%B0%ED%8A%B8-%ED%9A%8C%EA%B3%A0)
